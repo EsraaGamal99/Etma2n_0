@@ -61,6 +61,12 @@ class TodoHomeScreen extends StatelessWidget {
                     scaffoldkey.currentState!
                         .showBottomSheet(
                           (context) => Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(50),
+                                topRight: Radius.circular(50),
+                              ),
+                            ),
                             color: Colors.white,
                             padding: const EdgeInsets.all(20.0),
                             child: SingleChildScrollView(

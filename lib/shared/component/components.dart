@@ -1,6 +1,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:etma2n/data/consultation.dart';
 import 'package:etma2n/layout/consultation/consultationView.dart';
+import 'package:etma2n/login/constant/constant.dart';
 import 'package:etma2n/todo_list/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +73,7 @@ Widget buildConslItem(String consQ, String conA, context) => Padding(
                   Expanded(
                     child: Text(
                       consQ,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -80,7 +81,7 @@ Widget buildConslItem(String consQ, String conA, context) => Padding(
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5.0,
                   ),
                   Expanded(
@@ -237,14 +238,14 @@ Widget buildTaskItem(Map model, context) => Dismissible(
                   ),
                   Text(
                     '${model['date']}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20.0,
             ),
             IconButton(
@@ -364,5 +365,61 @@ Widget defaulttaskFormField({
               )
             : null,
         border: const OutlineInputBorder(),
+      ),
+    );
+
+late int start;
+late int end;
+late String StartDate ;
+late String EndDate ;
+
+Widget defultAlertDialog({
+  required List<String> dates,
+  required context,
+  required String date,
+
+}) =>
+    AlertDialog(
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Choose Date',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
+            ),
+            const SizedBox(height: 15),
+            for (int i = 0; i < dates.length; i++)
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.only(bottom: 15.0),
+                child: MaterialButton(
+                  shape: const StadiumBorder(),
+                  color: KButtomcolor,
+                  padding: const EdgeInsets.symmetric(vertical: 15.0),
+                  child: Text(
+                    dates[i],
+                  ),
+                  onPressed: () {
+                    if(date == 's'){
+                    StartDate = dates[i];
+                    dates.remove(StartDate);
+                    start=i;
+                    }
+                    else{
+                      EndDate = dates[i];
+                      dates.remove(EndDate);
+                      end = i;
+                    }
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+          ],
+        ),
       ),
     );

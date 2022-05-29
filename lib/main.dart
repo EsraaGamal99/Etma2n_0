@@ -6,14 +6,23 @@ import 'package:etma2n/doctor_calender.dart';
 import 'package:etma2n/home.dart';
 import 'package:etma2n/layout/test/cubit/cubit.dart';
 import 'package:etma2n/layout/test/cubit/states.dart';
+import 'package:etma2n/login/login_cubit/cubit.dart';
+import 'package:etma2n/login/reg_cubit/cubit.dart';
 import 'package:etma2n/login/screen/login_screen.dart';
 import 'package:etma2n/nada.dart';
 import 'package:etma2n/todo_list/toDoHome.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main()  {
+  //WidgetsFlutterBinding.ensureInitialized();
+
+  /*await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );*/
+///////////
   runApp(MyApp());
 }
 
@@ -24,27 +33,32 @@ class MyApp extends StatelessWidget {
       0xff576dca,
       <int, Color>{
         50: Color(0xff576dca),
-        100:  Color(0xff576dca),
-        200:  Color(0xff576dca),
-        300:  Color(0xff576dca),
-        400:  Color(0xff576dca),
-        500:  Color(0xff576dca),
-        600:  Color(0xff576dca),
-        700:  Color(0xff576dca),
-        800:  Color(0xff576dca),
-        900:  Color(0xff576dca),
+        100: Color(0xff576dca),
+        200: Color(0xff576dca),
+        300: Color(0xff576dca),
+        400: Color(0xff576dca),
+        500: Color(0xff576dca),
+        600: Color(0xff576dca),
+        700: Color(0xff576dca),
+        800: Color(0xff576dca),
+        900: Color(0xff576dca),
       },
     );
     Color mainColor = const Color(0xffa9c1f7);
     Color secondColor = const Color(0xff576dca);
     return MultiBlocProvider(
-      providers:
-      [
+      providers: [
         BlocProvider(
-            create: (BuildContext context) => TestCubit(),
+          create: (BuildContext context) => TestCubit(),
         ),
         BlocProvider(
           create: (BuildContext context) => DoctorScheduleCubit(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => LoginCubit(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => RegisterCubit(),
         ),
       ],
       child: BlocConsumer<TestCubit, TestStates>(
@@ -72,7 +86,6 @@ class MyApp extends StatelessWidget {
                 ),
                 backgroundColor: Colors.white,
                 primaryColor: secondColor,
-
               ),
               /*color: Colors.deepPurpleAccent,
               theme: ThemeData(
@@ -159,7 +172,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               home: Directionality(
                 textDirection: TextDirection.rtl,
-                child: HomeScreen(),
+                child: LoginScreen(),
               ),
             );
           }),

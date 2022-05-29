@@ -1,22 +1,22 @@
-import 'package:etma2n/MOVE_ON/books/api_books.dart';
-import 'package:etma2n/MOVE_ON/models/books_models.dart';
-import 'package:etma2n/MOVE_ON/widgets/customelist_books.dart';
-import 'package:etma2n/MOVE_ON/widgets/widgets.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/books_models.dart';
+import '../../widgets/components.dart';
+import 'api_books.dart';
 import 'view_book.dart';
-
 
 class BooksMainPage extends StatefulWidget {
   static String id = 'BooksMainPage';
+
+  const BooksMainPage({Key? key}) : super(key: key);
 
   @override
   _BooksMainPageState createState() => _BooksMainPageState();
 }
 
 class _BooksMainPageState extends State<BooksMainPage> {
-  Color? color1;
+  late Color color1;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +24,12 @@ class _BooksMainPageState extends State<BooksMainPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-         // backgroundColor: Color(0xFF5271ff),
-          title: Center(
+          backgroundColor: const Color(0xFF5271ff),
+          title: const Center(
             child: Text(
               'كتب',
               style: TextStyle(
-               // color: Colors.white,
+                color: Colors.white,
                 fontSize: 25.0,
                 fontWeight: FontWeight.w600,
               ),
@@ -37,13 +37,13 @@ class _BooksMainPageState extends State<BooksMainPage> {
           ),
           actions: [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.menu,
               ),
               onPressed: () {
                 onPrint();
               },
-             // color: Colors.white,
+              color: Colors.white,
             ),
           ],
         ),
@@ -58,7 +58,7 @@ class _BooksMainPageState extends State<BooksMainPage> {
                   onTap: onPrint,
                   child: Container(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         colors: [Colors.white, Colors.grey],
                         begin: Alignment.topLeft,
                         end: Alignment.topRight,
@@ -67,12 +67,12 @@ class _BooksMainPageState extends State<BooksMainPage> {
                         15.0,
                       ),
                     ),
-                    padding: EdgeInsets.all(
+                    padding: const EdgeInsets.all(
                       8.0,
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Icon(
                           Icons.search,
                         ),
@@ -87,279 +87,34 @@ class _BooksMainPageState extends State<BooksMainPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
 
                 // list of books
-                CustomListOfBooks(
-                  title: book[0].bkname,
-                  image1: AssetImage(book[0].bkimage),
-                  writer: book[0].bkwriter,
-                  description: book[0].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 0;
-                    final url = 'books_pdf/book1.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) => booksCard(
+                    onClick: () async {
+                      final url = book[index].bkpath;
+                      final file = await BookApi.loadAsset(url);
+                      navigateTo (context,BookViewerPage(file: file, bookindex: index));},
+                    /*  Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                BookViewerPage(file: file, bookindex: index)),)
+                      ;},*/
+                    image1: AssetImage(book[index].bkimage),
+                    title: book[index].bkname,
+                    description: book[index].bkdescription,
+                    writer: book[index].bkwriter,
+                  ),
+                  separatorBuilder: (context, index) =>
+                      myLine(Colors.grey[350]!),
+                  itemCount: book.length,
                 ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                myLine(color1= Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[0].bkname,
-                  image1: AssetImage(book[0].bkimage),
-                  writer: book[0].bkwriter,
-                  description: book[0].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 4;
-                    final url = 'books_pdf/book1.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                myLine(color1= Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[1].bkname,
-                  image1: AssetImage(book[1].bkimage),
-                  writer: book[1].bkwriter,
-                  description: book[1].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 1;
-                    final url = 'books_pdf/book2.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(height: 15.0,),
-                myLine(color1= Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[2].bkname,
-                  image1: AssetImage(book[2].bkimage),
-                  writer: book[2].bkwriter,
-                  description: book[2].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 0;
-                    final url =
-                        'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf';
-                    final file = await BookApi.loadNetwork(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                myLine(color1=Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[3].bkname,
-                  image1: AssetImage(book[3].bkimage),
-                  writer: book[3].bkwriter,
-                  description: book[3].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 3;
-                    final url = 'books_pdf/sample.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                myLine(color1=Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[4].bkname,
-                  image1: AssetImage(book[4].bkimage),
-                  writer: book[4].bkwriter,
-                  description: book[4].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 2;
-                    final url = 'books_pdf/sample.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                myLine(color1=Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[0].bkname,
-                  image1: AssetImage(book[0].bkimage),
-                  writer: book[0].bkwriter,
-                  description: book[0].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 0;
-                    final url =
-                        'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf';
-                    final file = await BookApi.loadNetwork(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                myLine(color1=Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[1].bkname,
-                  image1: AssetImage(book[1].bkimage),
-                  writer: book[1].bkwriter,
-                  description: book[1].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 1;
-                    final url = 'books_pdf/book1.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                myLine(color1=Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[2].bkname,
-                  image1: AssetImage(book[2].bkimage),
-                  writer: book[2].bkwriter,
-                  description: book[2].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 2;
-                    final url = 'books_pdf/sample.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(height: 15.0,),
-                myLine(color1=Color(0XFFD6D6D6)),
-                SizedBox(height: 15.0,),
-
-                CustomListOfBooks(
-                  title: book[3].bkname,
-                  image1: AssetImage(book[3].bkimage),
-                  writer: book[3].bkwriter,
-                  description: book[3].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 3;
-                    final url = 'books_pdf/book1.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(height: 15.0,),
-                myLine(color1=Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
-
-                CustomListOfBooks(
-                  title: book[4].bkname,
-                  image1: AssetImage(book[4].bkimage),
-                  writer: book[4].bkwriter,
-                  description: book[4].bkdescription,
-                  onClick: () async {
-                    //print("ops!!!!!!!!!!!!!!!!!!!");
-                    final bookindex = 4;
-                    final url = 'books_pdf/sample.pdf';
-                    final file = await BookApi.loadAsset(url);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              BookViewerPage(file: file, bookindex: bookindex)),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                myLine(color1=Color(0XFFD6D6D6)),
-                SizedBox(
-                  height: 15.0,
-                ),
+                //booksBuilder(context),
               ],
             ),
           ),
@@ -370,57 +125,3 @@ class _BooksMainPageState extends State<BooksMainPage> {
 }
 
 onPrint() => print("printed");
-
-/*
-void openPDF(BuildContext context, File file) => Navigator.of(context).push(
-  MaterialPageRoute(builder: (context) => PDFViewerPage(file: file)),);
-*/
-
-/*
-ListView.separated(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => CustomListOfBooks(
-                    image1: AssetImage('images/img.jpg'),
-                    onClick: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PdfViewPage(path: assetPDFPath),
-                        ),
-                      );},
-                  ),
-
-                  separatorBuilder: (context, index) => SizedBox (height: 20.0,),
-                  itemCount: 5,
-                ),
- */
-
-/*
-
-@override
-  void initState() {
-    super.initState();
-    getFileFromAsset("/book1.pdf").then((f) {
-      setState(() {
-        assetPDFPath = f.path;
-        print(assetPDFPath);
-      });
-    });
-  }
-
-  Future<File> getFileFromAsset(String asset) async {
-    try {
-      var data = await rootBundle.load(asset);
-      var bytes = data.buffer.asUint8List();
-      var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/book1.pdf");
-
-      File assetFile = await file.writeAsBytes(bytes);
-      return assetFile;
-    } catch (e) {
-      throw Exception("Error opening asset file");
-    }
-  }
-
- */

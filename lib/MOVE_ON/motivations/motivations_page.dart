@@ -1,14 +1,15 @@
-import 'package:etma2n/MOVE_ON/models/motivation_models.dart';
-import 'package:etma2n/MOVE_ON/widgets/sessioncards.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/motivation_models.dart';
+import '../../widgets/sessioncards.dart';
 
 class MotivationPage extends StatefulWidget {
   final int motindex;
-  final Color backcolor;
+  final Color? backcolor;
   static Color? color1;
 
-  MotivationPage({required this.motindex, required this.backcolor});
+  const MotivationPage({Key? key, required this.motindex, this.backcolor})
+      : super(key: key);
 
   @override
   _MotivationPageState createState() => _MotivationPageState();
@@ -17,11 +18,8 @@ class MotivationPage extends StatefulWidget {
 class _MotivationPageState extends State<MotivationPage> {
   @override
   Widget build(BuildContext context) {
-    var isPlay = false;
-    var isFav = false;
-    var isColor = false;
-    var index = widget.motindex;
-    //   var sessioncounter = motivation[index].motnum_sessions;
+//    var index = widget.motindex;
+//   var sessioncounter = motivation[index].motnum_sessions;
 
     double height1 = MediaQuery.of(context).size.height;
     double width1 = MediaQuery.of(context).size.width;
@@ -40,14 +38,12 @@ class _MotivationPageState extends State<MotivationPage> {
                 height: 320,
                 width: width1,
                 fit: BoxFit.cover,
-                color: widget.backcolor.withOpacity(1),
+                color: widget.backcolor!.withOpacity(1),
                 colorBlendMode: BlendMode.softLight,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // background image
-
                   Column(
                     children: <Widget>[
                       Container(
@@ -55,7 +51,7 @@ class _MotivationPageState extends State<MotivationPage> {
                         width: width1,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [widget.backcolor, Colors.black12],
+                            colors: [widget.backcolor!, Colors.black12],
                             begin: Alignment.bottomLeft,
                             end: Alignment.topRight,
                             tileMode: TileMode.mirror,
@@ -63,7 +59,7 @@ class _MotivationPageState extends State<MotivationPage> {
                         ),
                         child: Container(
                           alignment: Alignment.bottomRight,
-                          padding: EdgeInsets.only(top: 200, right: 20),
+                          padding: const EdgeInsets.only(top: 200, right: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -94,7 +90,7 @@ class _MotivationPageState extends State<MotivationPage> {
                         height: height1 - 300,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [widget.backcolor, Colors.white24],
+                            colors: [widget.backcolor!, Colors.white24],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomLeft,
                             tileMode: TileMode.mirror,
@@ -103,70 +99,17 @@ class _MotivationPageState extends State<MotivationPage> {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
-                              /*PageView.builder(
-                                onPageChanged: (page){
-                                },
-                                itemCount: motivation[index].motnum_sessions,
-                                  itemBuilder: (context,index){return;}
-                              ),*/
-
-                              SessionCard(
-                                sessionTitle: motivation[widget.motindex]
-                                    .motsessions_discription[0],
-                                onClick: () {
-                                  isPlay = !isPlay;
-                                  isColor = !isColor;
-                                  isFav = !isFav;
-                                },
-                              ),
-                              SessionCard(
-                                onClick: () {
-                                  isPlay = !isPlay;
-                                  isFav = !isFav;
-                                  isColor = !isColor;
-                                  onPrint();
-                                },
-                                sessionTitle: motivation[index]
-                                    .motsessions_discription[1],
-                              ),
-                              SessionCard(
-                                onClick: () {
-                                  isPlay = !isPlay;
-                                  isFav = !isFav;
-                                  isColor = !isColor;
-                                  onPrint();
-                                },
-                                sessionTitle: motivation[index]
-                                    .motsessions_discription[2],
-                              ),
-                              SessionCard(
-                                onClick: () {
-                                  isPlay = !isPlay;
-                                  isFav = !isFav;
-                                  isColor = !isColor;
-                                  onPrint();
-                                },
-                                sessionTitle: motivation[index]
-                                    .motsessions_discription[3],
-                              ),
-                              SessionCard(
-                                onClick: () {
-                                  isPlay = !isPlay;
-                                  isFav = !isFav;
-                                  isColor = !isColor;
-                                  onPrint();
-                                },
-                                sessionTitle: motivation[index]
-                                    .motsessions_discription[4],
-                              ),
-                              SessionCard(
-                                sessionTitle: motivation[widget.motindex]
-                                    .motsessions_discription[5],
-                                onClick: () {
-                                  isPlay = !isPlay;
-                                  isColor = !isColor;
-                                  isFav = !isFav;
-                                },
+                              ListView.separated(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context, index) => SessionCard(
+                                  sessionTitle: session[index].sestitle,
+                                  sespath: session[index].sespath,
+                                ),
+                                separatorBuilder: (context, index) => const SizedBox(
+                                  height: 1,
+                                ),
+                                itemCount: session.length,
                               ),
                             ],
                           ),

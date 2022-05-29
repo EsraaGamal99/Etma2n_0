@@ -1,15 +1,16 @@
 import 'dart:io';
-import 'package:etma2n/MOVE_ON/models/books_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+//import 'package:path/path.dart';
 
-import 'package:path/path.dart';
+import '../../models/books_models.dart';
 
 class BookViewerPage extends StatefulWidget {
   final File file;
   final int bookindex;
 
-  const BookViewerPage({ required this.file, required this.bookindex});
+  const BookViewerPage({Key? key, required this.file, required this.bookindex})
+      : super(key: key);
 
   @override
   _BookViewerPageState createState() => _BookViewerPageState();
@@ -29,11 +30,11 @@ class _BookViewerPageState extends State<BookViewerPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF5271ff),
+          backgroundColor: const Color(0xFF5271ff),
           title: Center(
             child: Text(
               book[widget.bookindex].bkname,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
                 fontWeight: FontWeight.w600,

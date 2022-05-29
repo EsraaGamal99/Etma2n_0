@@ -1,67 +1,53 @@
-import 'package:etma2n/MOVE_ON/models/article_models.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../models/article_models.dart';
 
 class ArticlePage extends StatefulWidget {
   static String id = 'ArticlePage';
   final int artindex;
 
-  ArticlePage({ required this.artindex});
+  const ArticlePage({Key? key, required this.artindex}) : super(key: key);
 
   @override
   _ArticlePageState createState() => _ArticlePageState();
 }
 
+bool  isColor = false;
+bool  isFav = false;
+
 class _ArticlePageState extends State<ArticlePage> {
+
+  String txtfile='';
+  getData () async {
+    String response;
+    response = await rootBundle.loadString('article_txt/art1.txt');
+    setState(() {
+      txtfile=response;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double height1 = MediaQuery.of(context).size.height;
-    var isColor = false;
-    var isFav = false;
+    //double width1 = MediaQuery.of(context).size.width;
 
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-/*        appBar: AppBar(
-          backgroundColor: Colors.grey[200],
-          leading: IconButton(
-            onPressed: () {Navigator.pop(context);},
-            icon: Icon(
-              Icons.arrow_back,
-              color: Color(0xff5271ff),
-            ),
-          ),
-          title: Center(
-            child: Text(
-              article[widget.artindex].arttitle,
-              style: TextStyle(
-                color: Color(0xFF5271ff),
-                fontSize: 25.0,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.menu,),
-              onPressed: () {print("pressed !!!!!");},
-              color: Color(0xFF5271ff),),
-          ],
-        ),*/
         body: Column(
           children: [
             Container(
               height: height1,
               clipBehavior: Clip.antiAlias,
-              padding: EdgeInsets.only(right: 20, left: 20, top: 77),
+              padding: const EdgeInsets.only(right: 20, left: 20, top: 77),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.5),
                 gradient: LinearGradient(
                   colors: [
-                    Color(0XFFD6D6D6),
-                    Color(0xFF5271ff),
-                    Color(0XFFE0E0E0)
+                    Colors.grey[350]!,
+                    const Color(0xFF5271ff),
+                    Colors.grey[300]!
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -80,7 +66,7 @@ class _ArticlePageState extends State<ArticlePage> {
                             backgroundImage: AssetImage(
                                 article[widget.artindex].writerimage),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 12.5,
                           ),
                           Column(
@@ -110,20 +96,19 @@ class _ArticlePageState extends State<ArticlePage> {
                         ]),
                       ),
                       IconButton(
-                        iconSize: 33,
-                        color: isColor == false ? Colors.white70 : Colors.red,
-                        icon: Icon(
-                          isFav == false
-                              ? Icons.favorite_border_rounded
-                              : Icons.favorite,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            isColor = !isColor;
-                            isFav = !isFav;
-                          });
-                        },
-                      ),
+                          iconSize: 30,
+                          color: isColor != true ? Colors.white : Colors.red,
+                          icon: Icon(
+                            isFav != true
+                                ? Icons.favorite_border_rounded
+                                : Icons.favorite,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isFav = !isFav;
+                              isColor = !isColor;
+                            });
+                          }),
                     ],
                   ),
                   const SizedBox(
@@ -142,14 +127,14 @@ class _ArticlePageState extends State<ArticlePage> {
                               fontSize: 22.5,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
 
                         //article
                         Text(
                           article[widget.artindex].artcontant,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18.5,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
@@ -167,3 +152,31 @@ class _ArticlePageState extends State<ArticlePage> {
     );
   }
 }
+
+/*        appBar: AppBar(
+          backgroundColor: Colors.grey[200],
+          leading: IconButton(
+            onPressed: () {Navigator.pop(context);},
+            icon: Icon(
+              Icons.arrow_back,
+              color: Color(0xff5271ff),
+            ),
+          ),
+          title: Center(
+            child: Text(
+              article[widget.artindex].arttitle,
+              style: TextStyle(
+                color: Color(0xFF5271ff),
+                fontSize: 25.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.menu,),
+              onPressed: () {print("pressed !!!!!");},
+              color: Color(0xFF5271ff),),
+          ],
+        ),*/

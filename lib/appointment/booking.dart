@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
+import 'package:flutter/material.dart';
 
 class BookingCalendarDemoApp extends StatefulWidget {
   const BookingCalendarDemoApp({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
         bookingStart: DateTime(now.year, now.month, now.day, 8, 0));
   }
 
-  Stream<dynamic>? getBookingStreamMock(
+  Stream<dynamic> getBookingStreamMock(
       {required DateTime end, required DateTime start}) {
     return Stream.value([]);
   }
@@ -39,20 +39,20 @@ class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
 
   List<DateTimeRange> converted = [];
 
-  List<DateTimeRange> convertStreamResultMock({required dynamic streamResult}) {
+  List<DateTimeRange> convertStreamResultMock({@required dynamic streamResult}) {
     ///here you can parse the streamresult and convert to [List<DateTimeRange>]
     DateTime first = now;
-    DateTime second = now.add(Duration(minutes: 55));
-    DateTime third = now.subtract(Duration(minutes: 240));
-    DateTime fourth = now.subtract(Duration(minutes: 500));
+    DateTime second = now.add(const Duration(minutes: 55));
+    DateTime third = now.subtract(const Duration(minutes: 240));
+    DateTime fourth = now.subtract(const Duration(minutes: 500));
     converted
-        .add(DateTimeRange(start: first, end: now.add(Duration(minutes: 30))));
+        .add(DateTimeRange(start: first, end: now.add(const Duration(minutes: 30))));
     converted.add(
-        DateTimeRange(start: second, end: second.add(Duration(minutes: 23))));
+        DateTimeRange(start: second, end: second.add(const Duration(minutes: 23))));
     converted.add(
-        DateTimeRange(start: third, end: third.add(Duration(minutes: 15))));
+        DateTimeRange(start: third, end: third.add(const Duration(minutes: 15))));
     converted.add(
-        DateTimeRange(start: fourth, end: fourth.add(Duration(minutes: 50))));
+        DateTimeRange(start: fourth, end: fourth.add(const Duration(minutes: 50))));
     return converted;
   }
 
@@ -60,7 +60,7 @@ class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
   Widget build(BuildContext context) {
     return  Scaffold(
           appBar: AppBar(
-            title: const Text('Booking Calendar Demo'),
+            title: const Text('التاريخ'),
           ),
           body: Center(
             child: BookingCalendar(

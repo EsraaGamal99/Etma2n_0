@@ -15,7 +15,7 @@ class BookApi {
   }
 
 
-  static Future<File> loadNetwork(String url) async {
+  static Future<File> loadNetwork(url) async {
     final response = await http.get(url);
     final bytes = response.bodyBytes;
 

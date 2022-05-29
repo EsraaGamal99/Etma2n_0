@@ -1,20 +1,19 @@
-import 'package:etma2n/home.dart';
-import 'package:etma2n/login/constant/constant.dart';
-import 'package:etma2n/login/widget/imagefield.dart';
-import 'package:etma2n/login/widget/textfield.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
+import 'package:etma2n/home.dart';
+import 'package:etma2n/shared/component/components.dart';
+import 'package:flutter/material.dart';
+import '../../widgets/components.dart';
+import '../constant/constant.dart';
+import 'forgetting_password.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  //final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   static String id = 'LoginScreen';
-
-  //final _auth = Auth();
-  final doctorPassword = 'DOCTOR#P@SSWORD';
+  static String doctorPassword = 'DOCTOR#P@SSWORD';
   bool isDoctor = false;
-  late String email, password;
+  var email= TextEditingController(), password = TextEditingController();
+
+  LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,31 +24,34 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: KTherdycolor,
         body: ListView(
           children: <Widget>[
-            CustomImageField(
-              image: AssetImage('assets/images/etmaan.png'),
+
+            customImageField(
+              height: MediaQuery.of(context).size.height * .3,
+              image: const AssetImage('assets/images/etmaan.png'),
             ),
             SizedBox(height: height * .045),
 
             //الايميل
-            CustomTextField(
-                onClick: (value) {
-                  email = value!;
-                },
+            customTextField(
+                controller: email,
+                type: TextInputType.emailAddress,
+              onPressed: (){},
                 icon: Icons.email,
                 hint: 'الايميل'),
             SizedBox(height: height * .040),
 
             //كلمة السر
-            CustomTextField(
-                onClick: (value) {
-                  password = value!;
-                },
+            customTextField(
+                controller: password,
+                type: TextInputType.visiblePassword,
+              onPressed: (){
+
+              },
                 icon: Icons.lock,
                 icon1: Icons.remove_red_eye,
-                onPressed: () {},
                 hint: 'كلمة السر'),
             SizedBox(height: height * .060),
-
+///
             // button login
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 130),
@@ -57,35 +59,32 @@ class LoginScreen extends StatelessWidget {
                 builder: (context) => FlatButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(color: KTherdycolor),
+                    side: const BorderSide(color: KTherdycolor),
                   ),
                   onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
-                  },
+
+                    navigateTo ( context,const HomeScreen());},
                   color: KSeconedarycolor,
-                  child: Text(
+                  child: const Text(
                     'تسجيل الدخول',
                     style: TextStyle(color: KTherdycolor),
                   ),
                 ),
               ),
             ),
+
             SizedBox(height: height * .025),
 
             //forget password
             Center(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegisterScreen()),
-                  );
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context)
+                    => ForgettingPassword()),);
                   print('هل نسيت كلمة السر !!!!!!');
                 },
-                child: Text(
+                child: const Text(
                   'هل نسيت كلمة السر؟',
                   style: TextStyle(
                     color: Colors.grey,
@@ -100,20 +99,15 @@ class LoginScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'ليس لديك حساب ؟ ',
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegisterScreen()),
-                    );
-                  },
-                  child: Text(
+                  onTap: () { navigateTo ( context,const RegisterScreen());},
+                  child: const Text(
                     'تسجيل',
                     style: TextStyle(
                       color: KButtomcolor,
