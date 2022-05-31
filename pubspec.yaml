@@ -61,12 +61,13 @@ dependencies:
   flutter_conditional_rendering: ^1.0.4
   booking_calendar:
   firebase_core: ^1.17.1
+
   firebase_auth: ^3.3.19
   http_parser: ^4.0.0
   firebase_core_dart: ^1.0.0
   flutterfire_cli: ^0.2.2+2
   #cloud_firestore: ^3.1.17
-  #firebase_storage: ^10.2.17
+  firebase_storage: ^10.2.17
 
 dev_dependencies:
   flutter_test:

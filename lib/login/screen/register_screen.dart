@@ -215,13 +215,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           onPressed: () async {
 ///////////////////////
-                           /*cubit.userRegister(
+                           cubit.userRegister(
                               name: username.text,
                               email: email.text,
                               phone: phone.text,
                               gender: selectedGender,
                               password: password.text,
-                            );*/
+                            );
                             navigateTo(context, const HomeScreen());
                           },
                           color: KSeconedarycolor,

@@ -10,7 +10,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
 
   static RegisterCubit get(context) => BlocProvider.of(context);
 ///
-/*  void userRegister({
+  void userRegister({
   required String name,
   required String email,
   required String phone,
@@ -31,6 +31,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
       .catchError((error){
       emit(RegisterErrorState(error.toString())) ;
     }) ;
-  }*/
+  }
 
 }

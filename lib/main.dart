@@ -16,12 +16,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main()  {
-  //WidgetsFlutterBinding.ensureInitialized();
+import 'firebase_options.dart';
 
-  /*await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );*/
+void main() async  {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+   options: DefaultFirebaseOptions.currentPlatform,
+  );
+
 ///////////
   runApp(MyApp());
 }
