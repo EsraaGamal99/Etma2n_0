@@ -9,7 +9,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit() : super(RegisterInitialState());
 
   static RegisterCubit get(context) => BlocProvider.of(context);
-///
+
   void userRegister({
   required String name,
   required String email,
@@ -17,6 +17,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
   required String gender,
   required String password,
 }){
+    print('Hello');
     emit(RegisterLoadingState()) ;
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(

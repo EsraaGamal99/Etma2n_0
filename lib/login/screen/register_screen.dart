@@ -85,9 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       /* onClick: (value) {
                   username = value;
                 },*/
-                      onPressed: (){
-                        print('nada');
-                      },
+                      onPressed: (){},
                       icon: Icons.perm_identity,
                       hint: 'اسم المستخدم',
                     ),
@@ -99,9 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         /*  onClick: (value) {
                     email = value;
                   },*/
-                        onPressed: (){
-                          print('nada');
-                        },
+                        onPressed: (){},
                         icon: Icons.email,
                         hint: 'البريد'),
                     SizedBox(height: height * .022),
@@ -111,9 +107,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       type: TextInputType.phone,
                       icon: Icons.phone,
                       hint: 'رقم الهاتف',
-                      onPressed: (){
-                        print('nada');
-                      },
+                      onPressed: (){},
                     ),
                     SizedBox(height: height * .022),
 
@@ -214,15 +208,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             side: const BorderSide(color: KTherdycolor),
                           ),
                           onPressed: () async {
-///////////////////////
-                           cubit.userRegister(
-                              name: username.text,
-                              email: email.text,
-                              phone: phone.text,
-                              gender: selectedGender,
-                              password: password.text,
-                            );
-                            navigateTo(context, const HomeScreen());
+
+                              cubit.userRegister(
+                                name: username.text,
+                                email: email.text,
+                                phone: phone.text,
+                                gender: selectedGender,
+                                password: password.text,
+                              );
+                              navigateTo(context, const HomeScreen());
+
+
                           },
                           color: KSeconedarycolor,
                           child: const Text(
