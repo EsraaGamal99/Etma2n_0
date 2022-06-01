@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:etma2n/login/constant/constant.dart';
+import 'package:etma2n/shared/component/constants.dart';
 import 'package:etma2n/todo_list/archivedtasks/archivedtask.dart';
 import 'package:etma2n/todo_list/donetask/donetask.dart';
 import 'package:etma2n/todo_list/newtask/newtask.dart';
@@ -27,62 +29,89 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
     emit(DoctorScheduleChangeBottomState());
   }
 
-  List<String> dates = [
-    '12:00 AM',
-    '12:30 AM',
-    '1:00 AM',
-    '1:30 AM',
-    '2:00 AM',
-    '2:30 AM',
-    '3:00 AM',
-    '3:30 AM',
-    '4:00 AM',
-    '4:30 AM',
-    '5:00 AM',
-    '5:30 AM',
-    '6:00 AM',
-    '6:30 AM',
-    '7:00 AM',
-    '7:30 AM',
-    '8:00 AM',
-    '8:30 AM',
-    '9:00 AM',
-    '9:30 AM',
-    '10:00 AM',
-    '10:30 AM',
-    '11:00 AM',
-    '11:30 AM',
-    '12:00 PM',
-    '12:30 PM',
-    '1:00 PM',
-    '1:30 PM',
-    '2:00 PM',
-    '2:30 PM',
-    '3:00 PM',
-    '3:30 PM',
-    '4:00 PM',
-    '4:30 PM',
-    '5:00 PM',
-    '5:30 PM',
-    '6:00 PM',
-    '6:30 PM',
-    '7:00 PM',
-    '7:30 PM',
-    '8:00 PM',
-    '8:30 PM',
-    '9:00 PM',
-    '9:30 PM',
-    '10:00 PM',
-    '10:30 pM',
-    '11:00 pM',
-    '11:30 PM',
-  ];
-  late String StartDate;
-  late String EndDate;
-  bool isPress = false ;
+  List<String> Dates = DatesConstant;
 
-  void addRow(){
+  bool isPress = false;
+
+  void addRow() {
     isPress = true;
     emit(DoctorScheduleAddRow());
   }
+
+  late int start1;
+  late int start2;
+  late int end1;
+  late int end2;
+  late String StartDate;
+
+  late String EndDate;
+
+  Widget defultAlertDialog({
+    required List<String> dates,
+    required context,
+    required String date,
+
+  }) =>
+      AlertDialog(
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Choose Date',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                ),
+              ),
+              const SizedBox(height: 15),
+              for (int i = 0; i < dates.length; i++)
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.only(bottom: 15.0),
+                  child: MaterialButton(
+                    shape: const StadiumBorder(),
+                    color: KButtomcolor,
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Text(
+                      dates[i],
+                    ),
+                    onPressed: () {
+                      if (date == 's1') {
+                        StartDate = dates[i];
+                        dates.remove(StartDate);
+                        start1 = i;
+
+                      }
+                      else if (date == 's2') {
+                        StartDate = dates[i];
+                        dates.remove(StartDate);
+                        start2 = i;
+                      }
+                      else if (date == 'e2') {
+                        EndDate = dates[i];
+                        dates.remove(EndDate);
+                        end2 = i;
+                      }
+                      else if (date == 'e1') {
+                        EndDate = dates[i];
+                        dates.remove(EndDate);
+                        end1 = i;
+                      }
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+            ],
+          ),
+        ),
+      );
+
+  void checkDoctor(List<String> date) {
+     //Dates = DatesConstant.removeRange(start1, end1) ;
+
+
+  }
+
 }
