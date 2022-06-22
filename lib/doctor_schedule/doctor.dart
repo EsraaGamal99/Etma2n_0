@@ -18,16 +18,18 @@ class _DoctorState extends State<Doctor> {
   bool isBottomSheetShow = false;
   bool isPress = false;
   late String StartDate;
-  late int start ;
+  late int start;
+
   late int end;
   late String EndDate;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorScheduleCubit, DoctorScheduleStates>(
       listener: (context, state) {},
-      builder: (context, state){
+      builder: (context, state) {
         var cubit = DoctorScheduleCubit.get(context);
-        var dates = cubit.Dates ;
+        var dates = cubit.Dates;
         Color secondColor = const Color(0xff576dca);
         return Directionality(
           textDirection: ui.TextDirection.rtl,
@@ -91,159 +93,198 @@ class _DoctorState extends State<Doctor> {
                                     scaffoldkey.currentState
                                         ?.showBottomSheet(
                                           (context) => Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(topLeft: Radius.circular(50),
-                                            topRight:  Radius.circular(50),
-                                          ),
-                                          color: KTherdycolor,
-                                        ),
-
-                                        padding: const EdgeInsets.all(20.0),
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(50),
+                                                topRight: Radius.circular(50),
+                                              ),
+                                              color: KTherdycolor,
+                                            ),
+                                            padding: const EdgeInsets.all(20.0),
+                                            child: SingleChildScrollView(
+                                              child: Column(
                                                 children: [
-                                                  MaterialButton(
-                                                    child: const Text(
-                                                      "Start Date",
-                                                      style: TextStyle(
-                                                          color: Colors.white
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      MaterialButton(
+                                                        child: const Text(
+                                                          "Start Date",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        shape:
+                                                            const StadiumBorder(),
+                                                        color: secondColor,
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 15.0),
+                                                        onPressed: () =>
+                                                            showDialog(
+                                                          context: context,
+                                                          builder: (_) => cubit
+                                                              .defultAlertDialog(
+                                                            dates: dates,
+                                                            context: context,
+                                                            date: 's1',
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                    shape: const StadiumBorder(),
-                                                    color: secondColor,
-                                                    padding: const EdgeInsets.symmetric(vertical: 15.0),
-                                                    onPressed: () => showDialog(
-                                                      context: context,
-                                                      builder: (_) => cubit.defultAlertDialog(
-                                                        dates: dates,
-                                                        context: context,
-                                                        date: 's1',
+                                                      const SizedBox(
+                                                        width: 15.0,
                                                       ),
-                                                    ),
+                                                      MaterialButton(
+                                                        child: const Text(
+                                                          "End Date",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        shape:
+                                                            const StadiumBorder(),
+                                                        color: secondColor,
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 15.0),
+                                                        onPressed: () =>
+                                                            showDialog(
+                                                          context: context,
+                                                          builder: (_) => cubit
+                                                              .defultAlertDialog(
+                                                            dates: cubit.Dates,
+                                                            context: context,
+                                                            date: 'e1',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                   const SizedBox(
-                                                    width: 15.0,
+                                                    height: 30.0,
                                                   ),
-                                                  MaterialButton(
-                                                    child: const Text(
-                                                      "End Date",
-                                                      style: TextStyle(
-                                                          color: Colors.white
-                                                      ),
+                                                  if (isPress)
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        MaterialButton(
+                                                          child: const Text(
+                                                            "Start Date",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                          shape:
+                                                              const StadiumBorder(),
+                                                          color: secondColor,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      15.0),
+                                                          onPressed: () =>
+                                                              showDialog(
+                                                            context: context,
+                                                            builder: (_) => cubit
+                                                                .defultAlertDialog(
+                                                              dates: cubit.Dates2,
+                                                              context: context,
+                                                              date: 's2',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 15.0,
+                                                        ),
+                                                        MaterialButton(
+                                                          child: const Text(
+                                                            "End Date",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                          shape:
+                                                              const StadiumBorder(),
+                                                          color: secondColor,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      15.0),
+                                                          onPressed: () =>
+                                                              showDialog(
+                                                            context: context,
+                                                            builder: (_) => cubit
+                                                                .defultAlertDialog(
+                                                              dates: cubit.Dates2,
+                                                              context: context,
+                                                              date: 'e2',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    shape: const StadiumBorder(),
-                                                    color: secondColor,
-                                                    padding: const EdgeInsets.symmetric(vertical: 15.0),
-                                                    onPressed: () => showDialog(
-                                                      context: context,
-                                                      builder: (_) => cubit.defultAlertDialog(
-                                                        dates: cubit.Dates,
-                                                        context: context,
-                                                        date: 'e1',
+                                                  const SizedBox(
+                                                    height: 50.0,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      MaterialButton(
+                                                        child: const Text(
+                                                          "حفظ",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        shape:
+                                                            const StadiumBorder(),
+                                                        color: secondColor,
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 15.0),
+                                                        onPressed: () {
+                                                          if(isPress == false){
+                                                          cubit.checkDoctor();
+                                                          }
+                                                          Navigator.pop(context);
+                                                          // dates = DatesConstant.removeRange(cubit.start1, cubit.end1) ;
+                                                        },
                                                       ),
-                                                    ),
+                                                      const Spacer(),
+                                                      FloatingActionButton(
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            isPress = true;
+                                                          });
+                                                        },
+                                                        child: Icon(
+                                                          Icons.add,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
-                                              const SizedBox(height: 30.0,),
-
-                                              if(isPress)
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    MaterialButton(
-                                                      child: const Text(
-                                                        "Start Date",
-                                                        style: TextStyle(
-                                                            color: Colors.white
-                                                        ),
-                                                      ),
-                                                      shape: const StadiumBorder(),
-                                                      color: secondColor,
-                                                      padding: const EdgeInsets.symmetric(vertical: 15.0),
-                                                      onPressed: () => showDialog(
-                                                        context: context,
-                                                        builder: (_) => cubit.defultAlertDialog(
-                                                          dates: dates,
-                                                          context: context,
-                                                          date: 's2',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 15.0,
-                                                    ),
-                                                    MaterialButton(
-                                                      child: const Text(
-                                                        "End Date",
-                                                        style: TextStyle(
-                                                            color: Colors.white
-                                                        ),
-                                                      ),
-                                                      shape: const StadiumBorder(),
-                                                      color: secondColor,
-                                                      padding: const EdgeInsets.symmetric(vertical: 15.0),
-                                                      onPressed: () => showDialog(
-                                                        context: context,
-                                                        builder: (_) => cubit.defultAlertDialog(
-                                                          dates: dates,
-                                                          context: context,
-                                                          date: 'e2',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              const SizedBox(height: 50.0,),
-
-                                              Row(
-                                                children: [
-                                                  MaterialButton(
-                                                    child: const Text(
-                                                      "حفظ",
-                                                      style: TextStyle(
-                                                          color: Colors.white
-                                                      ),
-                                                    ),
-                                                    shape: const StadiumBorder(),
-                                                    color: secondColor,
-                                                    padding: const EdgeInsets.symmetric(vertical: 15.0),
-                                                    onPressed: (){
-                                                     // dates = DatesConstant.removeRange(cubit.start1, cubit.end1) ;
-                                                    },
-                                                    ),
-                                                  FloatingActionButton(onPressed: (){
-                                                    setState(() {
-                                                      isPress= true;
-                                                    });
-
-                                                  }, child: Icon(
-                                                    Icons.add,
-                                                    color: Colors.white,
-                                                  ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      elevation: 20.0,
-                                    )
+                                          elevation: 20.0,
+                                        )
                                         .closed
                                         .then((value) {
-
                                       cubit.changeBottomSheet(
                                           isShow: false, icon: Icons.add);
-
                                     });
 
                                     cubit.changeBottomSheet(
                                         isShow: true, icon: Icons.edit);
-
                                   }
                                 },
                               ),

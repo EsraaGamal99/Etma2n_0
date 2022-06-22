@@ -66,8 +66,9 @@ class TodoHomeScreen extends StatelessWidget {
                                 topLeft: Radius.circular(50),
                                 topRight: Radius.circular(50),
                               ),
+                              color: Colors.white,
                             ),
-                            color: Colors.white,
+
                             padding: const EdgeInsets.all(20.0),
                             child: SingleChildScrollView(
                               child: Form(

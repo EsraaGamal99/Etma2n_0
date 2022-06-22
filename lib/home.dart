@@ -2,11 +2,14 @@ import 'package:etma2n/MOVE_ON/move_on_home.dart';
 import 'package:etma2n/appointment/menu_doctors.dart';
 import 'package:etma2n/doctor_calender.dart';
 import 'package:etma2n/doctor_schedule/doctor.dart';
+import 'package:etma2n/layout/consultation/DoctorAnswerCon.dart';
+import 'package:etma2n/layout/consultation/Doctor_Questions_View.dart';
 import 'package:etma2n/layout/consultation/cons_home.dart';
 import 'package:etma2n/layout/test/test_home.dart';
-import 'package:etma2n/nada.dart';
+import 'package:etma2n/shared/AppCubit/cubit.dart';
+
 import 'package:etma2n/todo_list/toDoHome.dart';
-import 'package:etma2n/widgets/components.dart';
+
 import 'package:flutter/material.dart';
 
 import 'shared/component/components.dart';
@@ -23,17 +26,24 @@ class HomeScreen extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  navigateTo(context, DoctorCalender());
-                },
-                icon: const Icon(
-                  Icons.add,
-                )),
-            IconButton(
-                onPressed: () {
                   navigateTo(context, Doctor());
                 },
                 icon: const Icon(
                   Icons.calendar_today_outlined,
+                )),
+            IconButton(
+                icon: Icon(
+                  Icons.brightness_4_outlined,
+                ),
+                onPressed: () {
+                  AppCubit.get(context).changeAppMode();
+                }),
+            IconButton(
+                onPressed: () {
+                  navigateTo(context, ConsQuestionHome());
+                },
+                icon: const Icon(
+                  Icons.help,
                 )),
           ],
           /* title: Text(
@@ -71,6 +81,7 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15.0,
                 ),
+
                 buildCart(
                   function: () {
                     navigateTo(
@@ -78,10 +89,12 @@ class HomeScreen extends StatelessWidget {
                       MoveonHomePage(),
                     );
                   },
-                  imageLink:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDnFVpWtJI9sbb2v88jZpxhITLQEz9hB-h7kcdkMqYZGW9KtGbe6hJpiyWNR2n5lK02Us&usqp=CAU',
-                ),
+                  imageLink:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh95tYMfqR1i5-jDr-C6p9jTJN0Brk5YUKlzh16QBWaap9R67pR6mSUTiZ5bsISsuXsLQ&usqp=CAU',
 
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 buildCart(
                   function: () {
                     navigateTo(
@@ -89,13 +102,34 @@ class HomeScreen extends StatelessWidget {
                       TodoHomeScreen(),
                     );
                   },
-                  imageLink:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDnFVpWtJI9sbb2v88jZpxhITLQEz9hB-h7kcdkMqYZGW9KtGbe6hJpiyWNR2n5lK02Us&usqp=CAU',
+                  imageLink:' https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwCQ0D6KL2xS4HFBaiynsVVAVFO-SMAGW0pg&usqp=CAU',
                 ),
                 const SizedBox(
                   height: 20,
                 ),
+                buildCart(
+                  function: () {
+                    navigateTo(
+                      context,
+                      MenuDoctors(),
+                    );
+                  },
+                  imageLink: 'https://image.shutterstock.com/image-vector/man-makes-appointment-online-doctor-260nw-1284005350.jpg',
+        ),
 
+                const SizedBox(
+                  height: 15.0,
+                ),
+               /* buildCart(
+                  function: () {
+                    navigateTo(
+                      context,
+                      DoctorAnswerCon(),
+                    );
+                  },
+                  imageLink:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDnFVpWtJI9sbb2v88jZpxhITLQEz9hB-h7kcdkMqYZGW9KtGbe6hJpiyWNR2n5lK02Us&usqp=CAU',
+                ),*/
                 /*motivationCard(
                   onClick: () {
                    // navigateTo(context,  MoveonHomePage());
@@ -113,7 +147,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 motivationCard(
                   onClick: () {
-                    //navigateTo(context, const MenuDoctors());
+                    //navigateTo(context, const MenuDoctorsMenuDoctors());
                   },
                   height1: 200,
                   image1: const NetworkImage(

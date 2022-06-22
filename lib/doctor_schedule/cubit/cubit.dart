@@ -1,13 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:etma2n/login/constant/constant.dart';
 import 'package:etma2n/shared/component/constants.dart';
-import 'package:etma2n/todo_list/archivedtasks/archivedtask.dart';
-import 'package:etma2n/todo_list/donetask/donetask.dart';
-import 'package:etma2n/todo_list/newtask/newtask.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sqflite/sqflite.dart';
 
 import 'states.dart';
 
@@ -30,6 +24,7 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
   }
 
   List<String> Dates = DatesConstant;
+  List<String> Dates2 = DatesConstant;
 
   bool isPress = false;
 
@@ -38,10 +33,10 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
     emit(DoctorScheduleAddRow());
   }
 
-  late int start1;
-  late int start2;
-  late int end1;
-  late int end2;
+   int start1 = -1;
+   int start2 = -1;
+   int end1 = -1;
+   int end2 = -1;
   late String StartDate;
 
   late String EndDate;
@@ -50,7 +45,6 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
     required List<String> dates,
     required context,
     required String date,
-
   }) =>
       AlertDialog(
         content: SingleChildScrollView(
@@ -81,23 +75,33 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
                       if (date == 's1') {
                         StartDate = dates[i];
                         dates.remove(StartDate);
-                        start1 = i;
+                        if(end1 == -1) {
+                          start1 = i;
+                        } else {
+                          start1 = i +1 ;
+                        }
 
-                      }
-                      else if (date == 's2') {
+                        print(StartDate);
+                      } else if (date == 's2') {
                         StartDate = dates[i];
                         dates.remove(StartDate);
                         start2 = i;
-                      }
-                      else if (date == 'e2') {
+
+                        print(StartDate);
+                      } else if (date == 'e2') {
                         EndDate = dates[i];
                         dates.remove(EndDate);
                         end2 = i;
-                      }
-                      else if (date == 'e1') {
+                        print(EndDate);
+                      } else if (date == 'e1') {
                         EndDate = dates[i];
                         dates.remove(EndDate);
-                        end1 = i;
+                        if(start1 == -1) {
+                          end1 = i;
+                        } else {
+                          end1 = i+ 1 ;
+                        }
+                        print(EndDate);
                       }
                       Navigator.of(context).pop();
                     },
@@ -108,10 +112,9 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
         ),
       );
 
-  void checkDoctor(List<String> date) {
-     //Dates = DatesConstant.removeRange(start1, end1) ;
+  void checkDoctor() {
 
-
+    Dates2.removeRange(start1, end1);
+    emit(DoctorSchedulSecondDateState());
   }
-
 }
