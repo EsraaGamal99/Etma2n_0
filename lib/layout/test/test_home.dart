@@ -31,14 +31,14 @@ class TestHome extends StatelessWidget {
                     buildCart(
                       function: () {
                         cubit.testIndex = 0;
-                        cubit.testName = "  مقياس الاكتئاب";
+                        cubit.testName = "مقياس الاكتئاب";
                         navigateTo(
                           context,
-                          Welcom("  مقياس الاكتئاب"),
+                          Welcom("مقياس الاكتئاب"),
                         );
                         print(cubit.testName);
                       },
-                      testName: "  مقياس الاكتئاب",
+                      testName: " مقياس الاكتئاب",
                       imageLink:
                           'https://assets.telegraphindia.com/telegraph/12b2cd31-8bb8-48cd-9229-09aa33a7821f.jpg',
                     ),
@@ -48,14 +48,14 @@ class TestHome extends StatelessWidget {
                     buildCart(
                       function: () {
                         cubit.testIndex = 1;
-                        cubit.testName = "  مقياس اضطراب ما بعد الصدمة";
-                        navigateTo(
+                        cubit.testName = "مقياس اضطراب ما بعد الصدمة";
+                       navigateTo(
                           context,
-                          Welcom("  مقياس اضطراب ما بعد الصدمة"),
+                          Welcom("مقياس اضطراب ما بعد الصدمة"),
                         );
                         print(cubit.testName);
                       },
-                      testName: "  مقياس اضطراب ما بعد الصدمة",
+                      testName: "مقياس اضطراب ما بعد الصدمة",
                       imageLink:
                           'https://imageio.forbes.com/specials-images/imageserve/60123248d374d90da5101ec2/Head-shape-with-PTSD-Post-traumatic-stress-disorder-/960x0.jpg?fit=bounds&format=jpg&width=960',
                     ),
@@ -68,11 +68,11 @@ class TestHome extends StatelessWidget {
                         cubit.testName = "  مقياس الوسواس القهري";
                         navigateTo(
                           context,
-                          Welcom("  مقياس الوسواس القهري"),
+                          Welcom("مقياس الوسواس القهري"),
                         );
                         print('hello');
                       },
-                      testName: "  مقياس الوسواس القهري",
+                      testName: "مقياس الوسواس القهري",
                       imageLink:
                           'https://static.webteb.net/images/content/tbl_articles_article_25664_32669ee971d-ded9-456d-95d1-921e33bbbc08.jpg',
                     ),

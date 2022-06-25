@@ -24,6 +24,7 @@ class DoctorProfile extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              //pics
               Stack(
                   clipBehavior: Clip.none,
                   alignment: Alignment.center,
@@ -47,12 +48,12 @@ class DoctorProfile extends StatelessWidget {
                       ),
                     ),
                   ]),
-              const SizedBox(
-                height: 5,
-              ),
+
+              const SizedBox(height: 5,),
               //about
               Column(
                 children: [
+
                   //name
                   Container(
                     padding: EdgeInsets.only(top: bottom1),
@@ -66,6 +67,7 @@ class DoctorProfile extends StatelessWidget {
                       ),
                     ),
                   ),
+
                   //rate
                   Row(
                     children: [
@@ -99,9 +101,9 @@ class DoctorProfile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 18,
-                  ),
+
+                  const SizedBox(height: 18,),
+
                   //about
                   Padding(
                     padding: const EdgeInsets.only(
@@ -112,41 +114,37 @@ class DoctorProfile extends StatelessWidget {
                         Expanded(
                           child: Text(
                             '${doctor[docindex].docabout} ${doctor[docindex].docabout} ${doctor[docindex].docabout} ${doctor[docindex].docabout} ${doctor[docindex].docabout}',
-                            style: TextStyle(
-                              backgroundColor: Colors.grey[200],
+                            style: const TextStyle(
+                              //backgroundColor: Colors.grey[200],
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.black),
                             maxLines: 5,
-                            // overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+
+                  const SizedBox(height: 15,),
+
                   myLine(Colors.grey[200]!),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15,),
 
                   //مهارات
                   buildAbout(
                     icon1: doctor[docindex].icnyears,
                     about: doctor[docindex].docyears,
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 15,),
+
                   buildAbout(
                     icon1: doctor[docindex].icnconnects,
                     about: doctor[docindex].docconects,
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+
+                  const SizedBox(height: 15,),
+
                   buildAbout(
                     icon1: doctor[docindex].icnlangs,
                     about: doctor[docindex].doclangs,
@@ -284,9 +282,7 @@ class DoctorProfile extends StatelessWidget {
                     ],
                   ),
 
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5,),
                   myLine(Colors.grey[200]!),
                   const SizedBox(
                     height: 10,
@@ -339,7 +335,7 @@ class DoctorProfile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              FlatButton(
+              MaterialButton(
                 onPressed: () {
                   navigateTo ( context, AboutSession(docindex: docindex));
                 },

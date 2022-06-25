@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:etma2n/shared/AppCubit/states.dart';
 import 'package:etma2n/shared/network/local/cache_helper.dart';
+import 'package:etma2n/shared/styles/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
@@ -9,6 +10,7 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
+  var TextColor = TextLColor;
 
   bool isDark = false;
 

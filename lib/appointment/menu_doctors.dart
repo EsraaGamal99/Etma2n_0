@@ -1,7 +1,9 @@
-
+import 'package:etma2n/Settings/main_setting_page.dart';
 import 'package:etma2n/shared/component/components.dart';
+
 import 'package:flutter/material.dart';
 import '../models/doctors_model.dart';
+import '../shared/styles/colors.dart';
 import '../widgets/components.dart';
 import 'doctor_profile.dart';
 
@@ -14,12 +16,13 @@ class MenuDoctors extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF5271ff),
+          elevation: 0.0,
+          backgroundColor: Colors.white,
           title: const Center(
             child: Text(
               'اختر طبيبك',
               style: TextStyle(
-                color: Colors.white,
+                color: KSeconedarycolor,
                 fontSize: 25.0,
                 fontWeight: FontWeight.w600,
               ),
@@ -31,9 +34,9 @@ class MenuDoctors extends StatelessWidget {
                 Icons.menu,
               ),
               onPressed: () {
-                //onPrint();
+                navigateTo(context, const SettingScreen());
               },
-              color: Colors.white,
+              color: KSeconedarycolor,
             ),
           ],
         ),
@@ -95,6 +98,7 @@ class MenuDoctors extends StatelessWidget {
                 ),
               ),
                   const SizedBox(height: 10.0,),
+
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
@@ -104,7 +108,7 @@ class MenuDoctors extends StatelessWidget {
                       docname: doctor[index].docname,
                       docabout: doctor[index].docabout,
                       image1: NetworkImage(doctor[index].docpic),
-                      onClick: () async {
+                      onClick: () {
                         navigateTo ( context, DoctorProfile(docindex: index));
                   },
                 ),

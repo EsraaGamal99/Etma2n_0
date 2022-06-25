@@ -69,7 +69,7 @@ Widget buildConsUlItem( context,{
               navigateTo(context, ConsView(consQ, conA,ImageLink,DoctorName));
             },
             child: SizedBox(
-              height: 140.0,
+              height: 150.0,
               width: double.infinity,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -80,7 +80,7 @@ Widget buildConsUlItem( context,{
                     child: Text(
                       consQ,
                       style: const TextStyle(
-                        fontSize: 20.0,
+                        fontSize: 15.0,
                         fontWeight: FontWeight.bold,
                       ),
                       maxLines: 2,
@@ -98,7 +98,7 @@ Widget buildConsUlItem( context,{
                             conA,
                             style: TextStyle(
                               color: Colors.blueGrey,
-                              fontSize: 15.0,
+                              fontSize: 12.0,
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -113,7 +113,7 @@ Widget buildConsUlItem( context,{
                               alignment: AlignmentDirectional.bottomEnd,
                               children: [
                                 CircleAvatar(
-                                  radius: 19.0,
+                                  radius: 11.0,
                                   backgroundImage: NetworkImage(
                                     ImageLink),
                                 ),
@@ -127,7 +127,7 @@ Widget buildConsUlItem( context,{
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 13.0,
+                                fontSize: 11.0,
                               ),
                             ),
                           ],
@@ -187,7 +187,7 @@ Widget buildConsQlItem(String consQ, context,{
                 child: Text(
                   consQ,
                   style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
                   maxLines: 2,
@@ -205,7 +205,7 @@ Widget buildConsQlItem(String consQ, context,{
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 11.0,
+                      fontSize: 9.0,
                     ),
                   ),
                   const SizedBox(
@@ -215,7 +215,7 @@ Widget buildConsQlItem(String consQ, context,{
                     alignment: AlignmentDirectional.bottomEnd,
                     children: [
                       CircleAvatar(
-                        radius: 11.0,
+                        radius: 9.0,
                         backgroundImage: NetworkImage(
                            ImageLink),
                       ),
@@ -560,3 +560,51 @@ Widget buildhomeCart({
       ),
     );
 
+
+
+
+
+
+
+Widget Buidsch({
+  required String day,
+  required var OnPress,
+  required IconData icon,
+}) => Container(
+  height: 70.0,
+  width: double.infinity,
+  padding: const EdgeInsets.all(20),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(15),
+    gradient: const LinearGradient(
+      colors: [Color(0xFF5271ff), Colors.grey],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+  ),
+  child: Stack(
+    children: [
+      Row(
+        children: [
+           Text(
+            day,
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
+
+          const Spacer(),
+          IconButton(
+            icon: Icon(
+              icon,
+              color: Colors.white,
+            ),
+            // backgroundColor: Colors.purpleAccent,
+        onPressed: OnPress,
+          ),
+        ],
+      ),
+    ],
+  ),
+);

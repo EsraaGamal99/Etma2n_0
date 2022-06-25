@@ -41,41 +41,45 @@ class MoveonHomePage extends StatelessWidget {
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 35, right: 5, left: 5),
-          child: Center(
-            child: Column(
-              children: [
-                moveonCard(
-                  onClick: (){navigateTo ( context,const BooksMainPage());},
-                  title: 'كتب',
-                  image1: const AssetImage('assets/images/books/books2.png'),
-                  description :
-                  "تقدر تقرأ من مكتبتك النفسية كتب"
-                      " لدكاترة نفسيين ومتخصصين وتذود وعيك الثقافي بالصحة النفسية عشا"
-                      "ن تساعد نفسك وإلى حواليك,صحتك النفسية تهمنا.",
-                ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 35, right: 5, left: 5),
+            child: Center(
+              child: Column(
+                children: [
 
-                const SizedBox(height: 25),
+                  moveonCard(
+                    onClick: (){ navigateTo ( context,const BooksMainPage());},
+                    title: 'كتب',
+                    image1: const NetworkImage('https://cdn-icons-png.flaticon.com/512/29/29302.png'),
+                    description :
+                    "تقدر تقرأ من مكتبتك النفسية كتب"
+                        " لدكاترة نفسيين ومتخصصين وتذود وعيك الثقافي بالصحة النفسية عشا"
+                        "ن تساعد نفسك وإلى حواليك,صحتك النفسية تهمنا.",
+                  ),
 
-                moveonCard(
-                  onClick: (){navigateTo ( context,const ArticlesMainPage());},
-                  title: 'مقالات',
-                  image1: const AssetImage('assets/images/articles/articles0.png'),
-                  description : 'اطلع على كل ما هو جديد مع نُخبة من افضل '
-                      'مقالات اطبائنا النفسيين فى التعامل مع مشكلاتك '
-                      'النفسية ومعرفة إدارة ضغوطاتك بشكل يسير.',
-                ),
+                  const SizedBox(height: 25),
 
-                const SizedBox(height:25),
+                  moveonCard(
+                    onClick: (){navigateTo ( context,const ArticlesMainPage());},
+                    title: 'مقالات',
+                    image1: const NetworkImage('https://cdn4.iconfinder.com/data/icons/seo-outline-422/50/content-form-application-article-paper-512.png'),
+                    description : 'اطلع على كل ما هو جديد مع نُخبة من افضل '
+                        'مقالات اطبائنا النفسيين فى التعامل مع مشكلاتك '
+                        'النفسية ومعرفة إدارة ضغوطاتك بشكل يسير.',
+                  ),
 
-                moveonCard(
-                  onClick: (){navigateTo ( context,const MotivationsMainPage());},
-                  title: 'جلسات استرخاء',
-                  image1: const AssetImage('assets/images/motivations/motivation.png'),
-                  description : 'يمكنك مع مكتبتك الصوتية التعامل مع ضغوطاتك اليومية بجلسات تأمل يومية مليئة بالنصائح والانشطة لمساعدتك لاستعادة نشاطك وحماسك.',
-                ),
-              ],
+                  const SizedBox(height:25),
+
+                  moveonCard(
+                    onClick: (){navigateTo ( context,const MotivationsMainPage());},
+                    title: 'جلسات استرخاء',
+                    image1: const NetworkImage(
+                      'https://cdn-icons-png.flaticon.com/512/2689/2689027.png'
+                    ),   description : 'يمكنك مع مكتبتك الصوتية التعامل مع ضغوطاتك اليومية بجلسات تأمل يومية مليئة بالنصائح والانشطة لمساعدتك لاستعادة نشاطك وحماسك.',
+                  ),
+                ],
+              ),
             ),
           ),
         ),

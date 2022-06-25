@@ -41,22 +41,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const MaterialColor ThemeColor = MaterialColor(
-      0xff576dca,
+      0xFF5271ff,
       <int, Color>{
-        50: Color(0xff576dca),
-        100: Color(0xff576dca),
-        200: Color(0xff576dca),
-        300: Color(0xff576dca),
-        400: Color(0xff576dca),
-        500: Color(0xff576dca),
-        600: Color(0xff576dca),
-        700: Color(0xff576dca),
-        800: Color(0xff576dca),
-        900: Color(0xff576dca),
+        50: Color(0xFF5271ff),
+        100: Color(0xFF5271ff),
+        200: Color(0xFF5271ff),
+        300: Color(0xFF5271ff),
+        400: Color(0xFF5271ff),
+        500: Color(0xFF5271ff),
+        600: Color(0xFF5271ff),
+        700: Color(0xFF5271ff),
+        800: Color(0xFF5271ff),
+        900: Color(0xFF5271ff),
       },
     );
     var mainColor =  Color(0xffa9c1f7);
-    var secondColor =  Color(0xff576dca);
+    const KButtomcolor = Color(0xFF2b44f7);
+    var secondColor =  Color(0xFF5271ff);
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -85,6 +86,11 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 scaffoldBackgroundColor: Colors.white,
                 primarySwatch: ThemeColor,
+                textTheme: const TextTheme(
+                bodyText1: TextStyle(
+                color: Colors.white,
+                ),
+                ),
                 appBarTheme: AppBarTheme(
                   backgroundColor: Colors.white,
                   iconTheme: IconThemeData(
@@ -101,6 +107,7 @@ class MyApp extends StatelessWidget {
                     statusBarIconBrightness: Brightness.dark,
                   ),
                 ),
+
                 backgroundColor: Colors.white,
                 primaryColor: secondColor,
               ),
@@ -125,6 +132,12 @@ class MyApp extends StatelessWidget {
                   iconTheme: IconThemeData(
                     color:KSeconedarycolor,
                   ),
+                  textTheme: TextTheme(
+                    bodyText1: TextStyle(
+                      color: Colors.white,
+                    ),
+
+                  ),
                 ),
                 bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                   backgroundColor: Colors.black54,
@@ -139,8 +152,6 @@ class MyApp extends StatelessWidget {
                 ),
                 textTheme: const TextTheme(
                   bodyText1: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
                     color: Colors.white,
                   ),
                 ),

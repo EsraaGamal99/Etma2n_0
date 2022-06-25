@@ -88,9 +88,9 @@ class ResultScreen extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               vertical: 15.0, horizontal: 30.0),
                           child: Text(
-                            "الرجوع للصفحه الرئيسية",
+                            "الرجوع للصفحة الرئيسية",
                             style:
-                                TextStyle(color: Colors.white, fontSize: 25.0),
+                                TextStyle(color: Colors.white, fontSize: 20.0),
                           ),
                         ),
                       ),

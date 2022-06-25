@@ -1,7 +1,14 @@
+
+import 'package:etma2n/appointment/session_date.dart';
+import 'package:etma2n/shared/component/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-import 'session_date.dart';
+import '../Settings/main_setting_page.dart';
+import '../widgets/constant.dart';
+
+//import 'session_date.dart';
 
 class AboutSession extends StatefulWidget {
   final int docindex;
@@ -29,13 +36,13 @@ class _AboutSessionState extends State<AboutSession> {
                           print(result);
  */
   int price=250;
-  String selected_duration='30 دقيقة';
-  late String times;
+  String selectedDuration='30 دقيقة';
+  late String times='1';
   List<String> items = ['30 دقيقه', '45 دقيقه', '60 دقيقه'];
   List<String> sessiontimes = ['1 جلسه','2 جلسه','4 جلسه','6 جلسه','8 جلسه'];
-  late String selectedGender ;
-  late String selectedTimes ;
-  late int RES;
+  late String? selectedGender = '30 دقيقه';
+  late String? selectedTimes = '1 جلسه';
+  late int res;
   int result=250;
   String time='30 دقيقه';
 
@@ -48,11 +55,19 @@ class _AboutSessionState extends State<AboutSession> {
       textDirection: ui.TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF5271ff),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+            color: KSeconedarycolor,
+          ),
+          elevation: 0.0,
+          backgroundColor: Colors.white,
           title: const Text(
             'جلسه جديدة',
             style: TextStyle(
-              color: Colors.white,
+              color: KSeconedarycolor,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             ),
@@ -64,9 +79,9 @@ class _AboutSessionState extends State<AboutSession> {
                 Icons.menu,
               ),
               onPressed: () {
-                print('setting opened');
+                navigateTo(context, const SettingScreen());
               },
-              color: Colors.white,
+              color: KSeconedarycolor,
             ),
           ],
         ),
@@ -97,7 +112,7 @@ class _AboutSessionState extends State<AboutSession> {
                         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                         child: DropdownButton<String>(
                           isExpanded: true,
-                          value: selectedGender,
+                          value: selectedGender!,
                           elevation: 10,
                           hint: Text('اختر مدة الجلسة',style: TextStyle(
                               color: Colors.grey[500],
@@ -110,20 +125,22 @@ class _AboutSessionState extends State<AboutSession> {
                               selectedGender = newValue!;
                             });
                             result=250;
-                          if(selectedGender==items[0]){
+                          if(selectedGender! ==items[0]){
                             result=result;
-                            selected_duration=items[0];
+                            selectedDuration=items[0];
                           }
-                          else if(selectedGender==items[2]){
+                          else if(selectedGender! ==items[2]){
                             result=result*2;
-                            selected_duration=items[2];
+                            selectedDuration=items[2];
                           }
-                          else if(selectedGender==items[1]){
+                          else if(selectedGender! ==items[1]){
                             result=(result+125);
-                            selected_duration=items[1];
+                            selectedDuration=items[1];
                           }
                           price=result;
-                          print(price);
+                          if (kDebugMode) {
+                            print(price);
+                          }
                           },
                           underline: const SizedBox(),
                           items: items
@@ -176,23 +193,27 @@ class _AboutSessionState extends State<AboutSession> {
 
                             if(selectedTimes==sessiontimes[0]){
                               times='1';
-                              RES=price  ;}
+                              res=price  ;}
                             if(selectedTimes==sessiontimes[1]){
                               times='2';
-                              RES=(price*2) ;}
+                              res=(price*2) ;}
                             if(selectedTimes==sessiontimes[2]){
                               times='4';
-                              RES=(price*4) ;}
+                              res=(price*4) ;}
                             if(selectedTimes==sessiontimes[3]){
-                              RES=(price*6) ;
+                              res=(price*6) ;
                               times='6';}
                             if(selectedTimes==sessiontimes[4]){
                               times='8';
-                              RES=(price*8);
+                              res=(price*8);
                             }
-                            price=RES;
-                            print(price);
-                            print(times);
+                            price=res;
+                            if (kDebugMode) {
+                              print(price);
+                            }
+                            if (kDebugMode) {
+                              print(times);
+                            }
                           },
                           underline: const SizedBox(),
                           items: sessiontimes
@@ -220,12 +241,12 @@ class _AboutSessionState extends State<AboutSession> {
           ),
           child: Row(
             children: [
-              FlatButton(
+              MaterialButton(
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) =>
                         SessionDate(docindex: widget.docindex,result: result,
-                          price: price, selectedDuration: selected_duration,times: times)),
+                          price: price, selectedDuration: selectedDuration,times: times,)),
                   );
                 },
                 color: Colors.indigoAccent,
@@ -256,7 +277,7 @@ class _AboutSessionState extends State<AboutSession> {
 //              SizedBox(width: 99,),
               Expanded(
                 child: Text(
-                  '$result ج.م / $selected_duration',
+                  '$result ج.م / $selectedDuration',
                   style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w800,

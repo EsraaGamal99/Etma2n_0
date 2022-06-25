@@ -7,3 +7,5 @@ const KTherdycolor = Color(0xFFe7e7e7);
 const KButtomcolor = Color(0xFF2b44f7);
 const TextLColor = Colors.white;
 const TextDColor = Colors.black;
+var mainColor =  Color(0xffa9c1f7);
+var secondColor =  Color(0xff576dca);

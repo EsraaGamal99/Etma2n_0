@@ -1,6 +1,7 @@
 import 'package:etma2n/shared/component/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import '../../Settings/main_setting_page.dart';
 import '../../models/books_models.dart';
 import '../../widgets/components.dart';
 import 'api_books.dart';
@@ -41,7 +42,7 @@ class _BooksMainPageState extends State<BooksMainPage> {
                 Icons.menu,
               ),
               onPressed: () {
-                onPrint();
+                navigateTo(context, const SettingScreen());
               },
               color: Colors.white,
             ),
@@ -55,7 +56,11 @@ class _BooksMainPageState extends State<BooksMainPage> {
               children: [
                 //search row
                 GestureDetector(
-                  onTap: onPrint,
+                  onTap: () {
+                    if (kDebugMode) {
+                      print('search opened');
+                    }
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -99,7 +104,9 @@ class _BooksMainPageState extends State<BooksMainPage> {
                     onClick: () async {
                       final url = book[index].bkpath;
                       final file = await BookApi.loadAsset(url);
-                      navigateTo (context,BookViewerPage(file: file, bookindex: index));},
+                      navigateTo (context,BookViewerPage
+                        (file: file, bookindex: index));
+                      },
                     /*  Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (context) =>
@@ -123,5 +130,3 @@ class _BooksMainPageState extends State<BooksMainPage> {
     );
   }
 }
-
-onPrint() => print("printed");

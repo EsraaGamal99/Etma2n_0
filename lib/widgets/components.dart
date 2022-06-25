@@ -1,15 +1,17 @@
+import 'package:date_field/date_field.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../login/constant/constant.dart';
+import 'package:path/path.dart';
+import 'constant.dart';
 
 Widget moveonCard({
-  required Function onClick,
+  required Function() onClick,
   required String title,
-  String? description,
-  ImageProvider? image1,
-  double? height1,
+  required String description,
+  required ImageProvider image1,
 }) =>
     GestureDetector(
-      onTap: onClick(),
+      onTap: onClick,
       child: Card(
         clipBehavior: Clip.antiAlias,
         shadowColor: Colors.black,
@@ -29,14 +31,12 @@ Widget moveonCard({
           ),
           child: Row(
             children: [
-              GestureDetector(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Image(
-                    image: image1!,
-                    height: 66,
-                    width: 66,
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Image(
+                  image: image1,
+                  height: 66,
+                  width: 66,
                 ),
               ),
               Expanded(
@@ -52,7 +52,7 @@ Widget moveonCard({
                       ),
                     ),
                     Text(
-                      description!,
+                      description,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 13.5,
@@ -69,7 +69,7 @@ Widget moveonCard({
     );
 
 Widget motivationCard({
-  Function? onClick,
+  required Function() onClick,
   double? height1,
   ImageProvider? image1,
   String? title,
@@ -78,7 +78,7 @@ Widget motivationCard({
   String? description,
 }) =>
     GestureDetector(
-      onTap: onClick!(),
+      onTap: onClick,
       child: Card(
         clipBehavior: Clip.antiAlias,
         shadowColor: Colors.black,
@@ -95,7 +95,7 @@ Widget motivationCard({
               fit: BoxFit.cover,
               height: 170,
               child: InkWell(
-                onTap: onClick(),
+                onTap: onClick,
               ),
             ),
 
@@ -163,18 +163,18 @@ Widget motivationCard({
     );
 
 Widget articleCard({
-  Function? onClick,
+  required Function() onClick,
   ImageProvider? image1,
   String? title,
   String? owner,
   String? hour,
   String? thearticle,
-  Function? onTop,
+  Function()? onTop,
   bool? isFav,
   bool? isColor,
 }) =>
     GestureDetector(
-      onTap: onClick!(),
+      onTap: onClick,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Card(
@@ -235,7 +235,7 @@ Widget articleCard({
                               ? Icons.favorite_border_rounded
                               : Icons.favorite,
                         ),
-                        onPressed: onClick()),
+                        onPressed: onClick),
                   ],
                 ),
 
@@ -257,7 +257,7 @@ Widget articleCard({
                       Padding(
                         padding: const EdgeInsets.only(right: 230),
                         child: TextButton(
-                          onPressed: onClick(),
+                          onPressed: onClick,
                           child: const Text(
                             'أقرا المزيد',
                             style: TextStyle(
@@ -279,7 +279,6 @@ Widget articleCard({
       ),
     );
 
-//////
 Widget myLine(Color color1) => Padding(
       padding: const EdgeInsetsDirectional.only(
         start: 20.0,
@@ -297,7 +296,7 @@ Widget mySession({
   bool isFav = false,
   Color? color1,
   double? height1,
-  Function? onClick,
+  required Function() onClick,
   bool isColor = false,
   String? sessionTitle,
 }) =>
@@ -312,7 +311,7 @@ Widget mySession({
               icon: Icon(
                 isFav != true ? Icons.favorite_border_rounded : Icons.favorite,
               ),
-              onPressed: onClick!(),
+              onPressed: onClick,
             ),
             const SizedBox(
               width: 5,
@@ -340,9 +339,7 @@ Widget mySession({
               ),
               color: Colors.white,
               iconSize: 35,
-              onPressed: onClick(
-                isPlay,
-              ),
+              onPressed: onClick,
             ),
           ],
         ),
@@ -350,7 +347,7 @@ Widget mySession({
     );
 
 Widget booksCard({
-  Function()? onClick,
+  required Function() onClick,
   ImageProvider? image1,
   String? title,
   String? writer,
@@ -360,12 +357,9 @@ Widget booksCard({
       onTap: onClick,
       child: Row(
         children: [
-          GestureDetector(
-            onTap: onClick,
-            child: Image(
-              image: image1!,
-              height: 100,
-            ),
+          Image(
+            image: image1!,
+            height: 100,
           ),
           const SizedBox(
             width: 20.0,
@@ -423,7 +417,7 @@ Widget booksCard({
     );
 
 Widget doctorList({
-  Function? onClick,
+  required Function() onClick,
   ImageProvider? image1,
   String? docname,
   String? docabout,
@@ -432,18 +426,15 @@ Widget doctorList({
   List<Color>? ratcolor,
 }) =>
     GestureDetector(
-      onTap: onClick!(),
+      onTap: onClick,
       child: Container(
         padding: const EdgeInsets.only(top: 15, bottom: 15),
         child: Row(
           children: [
             //profile pic
-            GestureDetector(
-              onTap: onClick(),
-              child: CircleAvatar(
-                radius: 30.0,
-                backgroundImage: image1,
-              ),
+            CircleAvatar(
+              radius: 30.0,
+              backgroundImage: image1,
             ),
             const SizedBox(
               width: 20.0,
@@ -576,6 +567,7 @@ Widget sessionData(
       ),
     );
 
+/*
 String? errorMessage(String hint) {
   switch (hint) {
     case 'الاسم':
@@ -595,91 +587,322 @@ String? errorMessage(String hint) {
   }
   return null;
 }
+*/
 
-Widget customTextField({
-  String? hint,
-  IconData? icon,
-  IconData? icon1,
-  Function? onPressed,
+
+Widget defaultFormField1({
+
   required TextEditingController controller,
   required TextInputType type,
-
-}) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 25),
-    child: Material(
-      elevation: 8.0,
-      borderRadius: BorderRadius.circular(30),
-      shadowColor: KSeconedarycolor,
-      child: TextFormField(
-        controller: controller,
-        keyboardType: type,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return errorMessage(hint!);
-          }
-          return null;
-        },
-        obscureText: hint == 'Password' ? true : false,
-        cursorColor: KSeconedarycolor,
-        decoration: InputDecoration(
-          hintText: hint,
-          prefixIcon: Icon(
-            icon,
-            color: KSeconedarycolor,
-          ),
-          suffixIcon: IconButton(
-            icon: Icon(icon1, color: KSeconedarycolor),
-            onPressed: onPressed!(),
-          ),
-          filled: true,
-          fillColor: KTherdycolor,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(color: KSeconedarycolor),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(color: KSeconedarycolor),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(color: KSeconedarycolor),
+  //Function()? onSubmit,
+  //Function()? onChange,
+  //Function()? onTap,
+  bool isPassword = false,
+  required Function validate,
+  required String label,
+  required IconData prefix,
+  IconData? suffix,
+  Function()? suffixPressed,
+  //bool isClickable = true,
+}) =>
+    Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Material(
+        elevation: 8.0,
+        borderRadius: BorderRadius.circular(30),
+        shadowColor: KSeconedarycolor,
+        child: TextFormField(
+          cursorColor: KSeconedarycolor,
+          obscuringCharacter: '*',
+          controller: controller,
+          keyboardType: type,
+          obscureText: isPassword,
+          //enabled: isClickable,
+          //onFieldSubmitted: onSubmit!(),
+          //onChanged: onChange!(),
+          //onTap: onTap,
+          //validator: validate(),
+          decoration: InputDecoration(
+            labelText: label,
+            prefixIcon: Icon(
+              prefix,
+              color: KSeconedarycolor,
+            ),
+            suffixIcon: suffix != null
+                ? IconButton(
+                    onPressed: suffixPressed!(),
+                    icon: Icon(suffix,color: KSeconedarycolor,),
+            ) : null,
+            filled: false,
+            fillColor: KTherdycolor,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: const BorderSide(color: KSeconedarycolor),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: const BorderSide(color: KSeconedarycolor),
+            ),
+            border: const OutlineInputBorder(),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
 
-/*void navigateTo(context, widget) => Future.delayed(Duration.zero, () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => widget,
+
+
+/*Widget customTextField({
+  String? hint,
+  IconData? icon,
+  IconData? icon1,
+  Function()? onpress,
+  required TextEditingController controle,
+  required TextInputType keyboard,
+  bool isPassword = false,
+  required Function() validate,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Material(
+        elevation: 8.0,
+        borderRadius: BorderRadius.circular(30),
+        shadowColor: KSeconedarycolor,
+        // cursorColor: KSeconedarycolor,
+        //           obscuringCharacter: '*',
+        child: TextFormField(
+          controller: controle,
+          validator: validate(),
+          obscureText: hint == 'Password' ? true : false,
+          cursorColor: KSeconedarycolor,
+          obscuringCharacter: '*',
+          keyboardType: keyboard,
+          decoration: InputDecoration(
+            hintText: hint,
+            prefixIcon: Icon(
+              icon,
+              color: KSeconedarycolor,
+            ),
+            suffixIcon: IconButton(
+                onPressed: onpress, icon: Icon(icon1, color: KSeconedarycolor)),
+            filled: true,
+            fillColor: KTherdycolor,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: const BorderSide(color: KSeconedarycolor),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: const BorderSide(color: KSeconedarycolor),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: const BorderSide(color: KSeconedarycolor),
+            ),
+          ),
         ),
-      );
-    });*/
+      ),
+    );*/
+
+/*
+Widget defaultFormField({
+  required TextEditingController controller,
+  required TextInputType type,
+  ValueChanged<String>? onSubmit,
+  ValueChanged<String>? onChange,
+  GestureTapCallback? onTap,
+  bool isPassword = false,
+  required validate,
+  required String label,
+  IconData? prefix,
+  IconData? suffix,
+  Function()? suffixPressed,
+  bool isClickable = true,
+}) =>
+    TextFormField(
+      minLines: 5,
+      maxLines: 10,
+      controller: controller,
+      keyboardType: type,
+      obscureText: isPassword,
+      enabled: isClickable,
+      onFieldSubmitted: onSubmit,
+      onChanged: onChange,
+      onTap: onTap,
+      validator: validate,
+      decoration: InputDecoration(
+        labelText: label,
+        prefixIcon: Icon(
+          prefix,
+        ),
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: suffixPressed,
+                icon: Icon(
+                  suffix,
+                ),
+              )
+            : null,
+        border: const OutlineInputBorder(),
+      ),
+    );
+ */
+
+Widget dateForm() =>  Container(
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 1,),
+    child: Material(
+      shadowColor: KSeconedarycolor,
+      elevation: 8.0,
+      borderRadius: BorderRadius.circular(30),
+      child: DecoratedBox(
+        decoration: const ShapeDecoration(
+          color:  Colors.white,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(width: 1.0, style: BorderStyle.solid,
+                color: KSeconedarycolor),
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 7.0),
+    child: DateTimeFormField(
+      decoration: const InputDecoration(
+        hintStyle: TextStyle(color: Colors.black45),
+        errorStyle: TextStyle(color: Colors.redAccent),
+        prefixIcon: Icon(
+          Icons.event_note,
+          color: KSeconedarycolor,
+        ),
+        filled: true,
+        labelText: 'تاريخ ميلادك',
+      ),
+      mode: DateTimeFieldPickerMode.date,
+      autovalidateMode: AutovalidateMode.always,
+      validator: (e) =>
+          (e?.day ?? 0) == 1 ? 'تاريخ الميلاد غير صحيح' : null,
+      onDateSelected: (DateTime value) {
+        if (kDebugMode) {
+          print(value);}
+      },
+    ),
+    ),
+  ),
+    ),
+);
+
+Widget genderForm({
+  String selectedGender = 'النوع',
+  List<String> gender = const ['انثي', 'ذكر'],
+  required Function() onChange,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 25,
+        vertical: 1,
+      ),
+      child: Material(
+        shadowColor: KSeconedarycolor,
+        elevation: 8.0,
+        borderRadius: BorderRadius.circular(30),
+        child: DecoratedBox(
+          decoration: const ShapeDecoration(
+            //color: KTherdycolor,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                  width: 1.0,
+                  style: BorderStyle.solid,
+                  color: KSeconedarycolor),
+              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+            ),
+          ),
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 25.0, vertical: 7.0),
+            child: DropdownButton<String>(
+              value: selectedGender,
+              elevation: 10,
+              icon: const Icon(
+                Icons.arrow_drop_down,
+                color: Colors.white,
+              ),
+              onChanged: onChange(),
+              underline: const SizedBox(),
+              items: gender.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+      ),
+    );
 
 Widget customImageField({
   required ImageProvider image,
   double? height,
 }) {
   return Padding(
-    padding: const EdgeInsets.only(top: 30),
+    padding: const EdgeInsets.only(top: 30,right: 20,left: 20),
     child: Container(
       padding: const EdgeInsets.only(top: 40),
-      child: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          Image(
-            image: image,
-          ),
-        ],
+      child: Center(
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Image(
+              image: image,
+            ),
+          ],
+        ),
       ),
     ),
   );
 }
+
+Widget buildSettingCard({
+  //required Function() onClick,
+  required String title,
+  required IconData icon,
+}) =>
+    Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Material(
+        elevation: 5,
+        color: KTherdycolor,
+        shadowColor: KSeconedarycolor,
+        borderRadius: BorderRadius.circular(20),
+        clipBehavior: Clip.antiAlias,
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 10.0,
+            ),
+            Icon(
+              icon,
+              size: 35,
+            ),
+            const SizedBox(
+              width: 15.0,
+            ),
+            Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Spacer(),
+              const Icon(
+                Icons.arrow_forward_ios,
+              ),
+          ],
+        ),
+      ),
+    );
+
 
 /*Widget defaultDateFormField({
   required TextEditingController controller,
