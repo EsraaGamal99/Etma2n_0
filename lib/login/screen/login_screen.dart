@@ -1,19 +1,35 @@
 
 import 'package:etma2n/home.dart';
+import 'package:etma2n/login/login_cubit/cubit.dart';
+import 'package:etma2n/login/login_cubit/states.dart';
+import 'package:etma2n/login/screen/forgetting_password.dart';
 import 'package:etma2n/shared/component/components.dart';
+import 'package:etma2n/widgets/components.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/components.dart';
-import '../constant/constant.dart';
-import 'forgetting_password.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../shared/styles/colors.dart';
+
+//import 'register_screen.dart';
+
+
 import 'register_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static String id = 'LoginScreen';
   static String doctorPassword = 'DOCTOR#P@SSWORD';
-  bool isDoctor = false;
-  var email= TextEditingController(), password = TextEditingController();
 
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool isDoctor = false;
+  TextEditingController emcontroller = TextEditingController();
+  TextEditingController passcontroller = TextEditingController();
+  //late String email, password;
+  bool isPassword= true;
 
   @override
   Widget build(BuildContext context) {
@@ -22,102 +38,125 @@ class LoginScreen extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: KTherdycolor,
-        body: ListView(
-          children: <Widget>[
-
-            customImageField(
-              height: MediaQuery.of(context).size.height * .3,
-              image: const AssetImage('assets/images/etmaan.png'),
-            ),
-            SizedBox(height: height * .045),
-
-            //الايميل
-            customTextField(
-                controller: email,
-                type: TextInputType.emailAddress,
-              onPressed: (){},
-                icon: Icons.email,
-                hint: 'الايميل'),
-            SizedBox(height: height * .040),
-
-            //كلمة السر
-            customTextField(
-                controller: password,
-                type: TextInputType.visiblePassword,
-              onPressed: (){
-
-              },
-                icon: Icons.lock,
-                icon1: Icons.remove_red_eye,
-                hint: 'كلمة السر'),
-            SizedBox(height: height * .060),
-///
-            // button login
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 130),
-              child: Builder(
-                builder: (context) => FlatButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(color: KTherdycolor),
-                  ),
-                  onPressed: () async {
-
-                    navigateTo ( context,const HomeScreen());},
-                  color: KSeconedarycolor,
-                  child: const Text(
-                    'تسجيل الدخول',
-                    style: TextStyle(color: KTherdycolor),
-                  ),
-                ),
-              ),
-            ),
-
-            SizedBox(height: height * .025),
-
-            //forget password
-            Center(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context)
-                    => ForgettingPassword()),);
-                  print('هل نسيت كلمة السر !!!!!!');
-                },
-                child: const Text(
-                  'هل نسيت كلمة السر؟',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: height * .015),
-
-            //لديك حساب؟؟
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
               children: [
-                const Text(
-                  'ليس لديك حساب ؟ ',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+
+                customImageField(
+                  height: MediaQuery.of(context).size.height * .25,
+                  image: const AssetImage('assets/images/etmaan.png'),
                 ),
-                GestureDetector(
-                  onTap: () { navigateTo ( context,const RegisterScreen());},
-                  child: const Text(
-                    'تسجيل',
-                    style: TextStyle(
-                      color: KButtomcolor,
-                      fontSize: 16,
+                SizedBox(height: height * .045),
+
+               //الايميل
+               defaultFormField1 (
+                   controller: emcontroller,
+                   type: TextInputType.emailAddress,
+                   validate: (value)
+                   {
+                     if(value.isEmpty)
+                     {
+                       return 'البريد غير صحيح';}
+                     },
+                   label: 'البريد',
+                   prefix: Icons.email_outlined),
+
+
+                SizedBox(height: height * .015),
+
+                //كلمة السر
+                defaultFormField1(
+                  controller: passcontroller,
+                  label: 'كلمة السر',
+                  prefix: Icons.lock,
+                  suffix: isPassword ? Icons.visibility : Icons.visibility_off,
+                  isPassword: isPassword,
+                  suffixPressed: ()
+                  {
+                    setState(()
+                    {
+                      isPassword = !isPassword;
+                    });
+                  },
+                  type: TextInputType.visiblePassword,
+                  validate: (String value)
+                  {
+                    if(value.isEmpty)
+                    {
+                      return 'password is too short';
+                    }
+
+                    return null;
+                  },
+                ),
+
+                // button login
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 130),
+                  child: Builder(
+                    builder: (context) => MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: const BorderSide(color: KTherdycolor),
+                      ),
+                      onPressed: () async {
+                        navigateTo ( context,const HomeScreen());},
+                      color: KSeconedarycolor,
+                      child: const Text(
+                        'تسجيل الدخول',
+                        style: TextStyle(color: KTherdycolor),
+                      ),
                     ),
                   ),
                 ),
+
+                SizedBox(height: height * .05),
+
+                //forget password
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context)
+                        => const ForgettingPassword()),);
+                    },
+                    child: const Text(
+                      'هل نسيت كلمة السر؟',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: height * .015),
+
+                //لديك حساب؟؟
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'ليس لديك حساب ؟ ',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () { navigateTo ( context,const RegisterScreen());},
+                      child: const Text(
+                        'تسجيل',
+                        style: TextStyle(
+                          color: KSeconedarycolor,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

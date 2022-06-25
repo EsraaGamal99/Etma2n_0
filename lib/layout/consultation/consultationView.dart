@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class ConsView extends StatelessWidget {
   final String conQ;
   final String conA;
-
-  ConsView(this.conQ, this.conA);
+  final String DoctorName;
+  final String ImageLink ;
+  ConsView(this.conQ, this.conA,this.ImageLink, this.DoctorName);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class ConsView extends StatelessWidget {
                       CircleAvatar(
                         radius: 19.0,
                         backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/1912/1912304.png'),
+                           ImageLink),
                       ),
                     ],
                   ),
@@ -69,7 +70,7 @@ class ConsView extends StatelessWidget {
                     width: 5.0,
                   ),
                   Text(
-                    'دكتورة دينا',
+                    DoctorName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

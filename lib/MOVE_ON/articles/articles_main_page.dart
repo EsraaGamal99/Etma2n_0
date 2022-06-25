@@ -63,10 +63,10 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
                   thearticle: article[index].artcontant,
                   image1: AssetImage(article[index].writerimage),
                   onClick: () {
-                    setState(() {
+                    /*setState(() {
                       isColor =! isColor;
                       isFav =! isFav;
-                    });
+                    });*/
                     navigateTo ( context,ArticlePage(artindex: index,));},
                 ),
                 separatorBuilder: (context, index) => const SizedBox(height: 1,),

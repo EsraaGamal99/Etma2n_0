@@ -1,5 +1,6 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:etma2n/data/consultation.dart';
+import 'package:etma2n/layout/consultation/DoctorAnswerCon.dart';
 import 'package:etma2n/layout/consultation/consultationView.dart';
 import 'package:etma2n/login/constant/constant.dart';
 import 'package:etma2n/todo_list/cubit/cubit.dart';
@@ -53,28 +54,33 @@ void navigateTo(context, widget) => Navigator.push(
         builder: (context) => widget,
       ),
     );
-
-Widget buildConslItem(String consQ, String conA, context) => Padding(
+ // ConUser
+Widget buildConsUlItem( context,{
+  required String consQ,
+  required String conA,
+  required String DoctorName,
+  required String ImageLink ,
+}) => Padding(
       padding: const EdgeInsets.all(18.0),
       child: Column(
         children: [
           InkWell(
             onTap: () {
-              navigateTo(context, ConsView(consQ, conA));
+              navigateTo(context, ConsView(consQ, conA,ImageLink,DoctorName));
             },
             child: SizedBox(
-              height: 130.0,
+              height: 150.0,
               width: double.infinity,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Text(
                       consQ,
                       style: const TextStyle(
-                        fontSize: 20.0,
+                        fontSize: 15.0,
                         fontWeight: FontWeight.bold,
                       ),
                       maxLines: 2,
@@ -92,7 +98,7 @@ Widget buildConslItem(String consQ, String conA, context) => Padding(
                             conA,
                             style: TextStyle(
                               color: Colors.blueGrey,
-                              fontSize: 15.0,
+                              fontSize: 12.0,
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -107,9 +113,9 @@ Widget buildConslItem(String consQ, String conA, context) => Padding(
                               alignment: AlignmentDirectional.bottomEnd,
                               children: [
                                 CircleAvatar(
-                                  radius: 19.0,
+                                  radius: 11.0,
                                   backgroundImage: NetworkImage(
-                                      'https://cdn-icons-png.flaticon.com/512/1912/1912304.png'),
+                                    ImageLink),
                                 ),
                               ],
                             ),
@@ -117,11 +123,11 @@ Widget buildConslItem(String consQ, String conA, context) => Padding(
                               height: 3.0,
                             ),
                             Text(
-                              'Dr Dina',
+                              DoctorName,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 13.0,
+                                fontSize: 11.0,
                               ),
                             ),
                           ],
@@ -137,11 +143,14 @@ Widget buildConslItem(String consQ, String conA, context) => Padding(
       ),
     );
 
-Widget consBuilder(context) => ConditionalBuilder(
+/*Widget consBuilder(context,*//*{
+  String UserName= 'غير معلن',
+  String ImageLink = 'http://www.daar1.com/default_images/profile.png',
+}*//*) => ConditionalBuilder(
       condition: consultation.isNotEmpty,
       builder: (context) => ListView.separated(
         physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) => buildConslItem(
+        itemBuilder: (context, index) => buildConsUlItem(
             // هنا يعرض السؤال ولاجابة
             consultation[index].conslQ,
             consultation[index].conslA,
@@ -153,7 +162,90 @@ Widget consBuilder(context) => ConditionalBuilder(
           child: CircularProgressIndicator(
         color: Colors.deepPurpleAccent,
       )),
-    );
+    );*/
+//ConDoc
+Widget buildConsQlItem(String consQ, context,{
+  String UserName= 'غير معلن',
+  String ImageLink = 'http://www.daar1.com/default_images/profile.png',
+}) => Padding(
+  padding: const EdgeInsets.all(18.0),
+  child: Column(
+    children: [
+      InkWell(
+        onTap: () {
+          navigateTo(context, DoctorAnswerCon(consQ));
+        },
+        child: SizedBox(
+          width: double.infinity,
+          height: 100.0,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Text(
+                  consQ,
+                  style: const TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              /*const SizedBox(
+                height: 5.0,
+              ),*/
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    UserName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 9.0,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 3.0,
+                  ),
+                  Stack(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    children: [
+                      CircleAvatar(
+                        radius: 9.0,
+                        backgroundImage: NetworkImage(
+                           ImageLink),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  ),
+);
+/*Widget consQBuilder(context) => ConditionalBuilder(
+  condition: consultation.isNotEmpty,
+  builder: (context) => ListView.separated(
+    physics: const BouncingScrollPhysics(),
+    itemBuilder: (context, index) => buildConsQlItem(
+      // هنا يعرض لاجابة
+        consultation[index].conslQ,
+        context),
+    separatorBuilder: (context, index) => myDivider(),
+    itemCount: consultation.length,
+  ),
+  fallback: (context) => const Center(
+      child: CircularProgressIndicator(
+        color: Colors.deepPurpleAccent,
+      )),
+);*/
 
 Widget myDivider() => Padding(
       padding: const EdgeInsetsDirectional.only(
@@ -425,3 +517,94 @@ Widget defultAlertDialog({
       ),
     );
 */
+
+Widget buildhomeCart({
+  required Function() function,
+  String fName = '',
+  required String imageLink,
+  var height,
+  var width,
+}) =>
+    Card(
+      clipBehavior: Clip.antiAlias,
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            Ink.image(
+              image: NetworkImage(imageLink),
+              child: InkWell(
+                onTap: function,
+              ),
+              height: 200,
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Text(
+                  fName,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+
+
+
+
+
+
+Widget Buidsch({
+  required String day,
+  required var OnPress,
+  required IconData icon,
+}) => Container(
+  height: 70.0,
+  width: double.infinity,
+  padding: const EdgeInsets.all(20),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(15),
+    gradient: const LinearGradient(
+      colors: [Color(0xFF5271ff), Colors.grey],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+  ),
+  child: Stack(
+    children: [
+      Row(
+        children: [
+           Text(
+            day,
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
+
+          const Spacer(),
+          IconButton(
+            icon: Icon(
+              icon,
+              color: Colors.white,
+            ),
+            // backgroundColor: Colors.purpleAccent,
+        onPressed: OnPress,
+          ),
+        ],
+      ),
+    ],
+  ),
+);

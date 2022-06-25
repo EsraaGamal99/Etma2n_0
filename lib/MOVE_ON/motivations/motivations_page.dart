@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../models/motivation_models.dart';
 import '../../widgets/sessioncards.dart';
 

@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:etma2n/layout/consultation/cons_home.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,10 @@ class _AddNewConsState extends State<AddNewCons> {
                 color: secondColor,
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 //بكتب الفانكشن اللى هتخزن وتبعت السؤال للدكتور
-                onPressed: () {},
+                onPressed: () {
+
+                  navigateTo(context, ConsHome());
+                },
                 child: const Text(
                   'ارسال',
                   style: TextStyle(

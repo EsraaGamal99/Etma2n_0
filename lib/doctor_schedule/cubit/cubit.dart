@@ -1,14 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:etma2n/login/constant/constant.dart';
 import 'package:etma2n/shared/component/constants.dart';
-import 'package:etma2n/todo_list/archivedtasks/archivedtask.dart';
-import 'package:etma2n/todo_list/donetask/donetask.dart';
-import 'package:etma2n/todo_list/newtask/newtask.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sqflite/sqflite.dart';
-
+import '../../model/DoctorSchudeleModel.dart';
 import 'states.dart';
 
 class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
@@ -30,6 +24,7 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
   }
 
   List<String> Dates = DatesConstant;
+  List<String> Dates2 = DatesConstant;
 
   bool isPress = false;
 
@@ -38,19 +33,19 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
     emit(DoctorScheduleAddRow());
   }
 
-  late int start1;
-  late int start2;
-  late int end1;
-  late int end2;
+   int start1 = -1;
+   int start2 = -1;
+   int end1 = -1;
+   int end2 = -1;
   late String StartDate;
-
   late String EndDate;
+  late String StartDate2;
+  late String EndDate2;
 
   Widget defultAlertDialog({
     required List<String> dates,
     required context,
     required String date,
-
   }) =>
       AlertDialog(
         content: SingleChildScrollView(
@@ -76,28 +71,52 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Text(
                       dates[i],
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
                     ),
                     onPressed: () {
                       if (date == 's1') {
                         StartDate = dates[i];
                         dates.remove(StartDate);
-                        start1 = i;
+                        if(end1 == -1) {
+                          start1 = i;
+                        } else {
+                          start1 = i +1 ;
+                        }
 
+                        print(StartDate);
+                        print(start1);
                       }
                       else if (date == 's2') {
-                        StartDate = dates[i];
-                        dates.remove(StartDate);
-                        start2 = i;
-                      }
-                      else if (date == 'e2') {
+                        StartDate2 = dates[i];
+                        dates.remove(StartDate2);
+                        if(end2 == -1) {
+                          start2 = i;
+                        } else {
+                          start2 = i +1 ;
+                        }
+                        print(StartDate2);
+                      } else if (date == 'e2') {
+                        EndDate2 = dates[i];
+                        dates.remove(EndDate2);
+                        if(start2 == -1) {
+                          end2 = i;
+                        } else {
+                          end2 = i+ 1 ;
+                        }
+                        print(EndDate2);
+                       // print(end1);
+                      } else if (date == 'e1') {
                         EndDate = dates[i];
                         dates.remove(EndDate);
-                        end2 = i;
-                      }
-                      else if (date == 'e1') {
-                        EndDate = dates[i];
-                        dates.remove(EndDate);
-                        end1 = i;
+                        if(start1 == -1) {
+                          end1 = i;
+                        } else {
+                          end1 = i+ 1 ;
+                        }
+                        print(EndDate);
+                        print(end1);
                       }
                       Navigator.of(context).pop();
                     },
@@ -107,11 +126,85 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
           ),
         ),
       );
+   late int index;
+   List<String> SelectedDates =[];
+   List<String> SelectedDatessun =[];
+   List<String> SelectedDatesmon =[];
+   List<String> SelectedDatestue =[];
+   List<String> SelectedDateswed =[];
+   List<String> SelectedDatesthu =[];
+   List<String> SelectedDatesfri =[];
+   List<String> SelectedDatessat =[];
+   List<String> SelectedDates2 =[];
+   List<String> XDates2 =[];
+   List<String> MainDates = DatesConstant;
+  void checkDoctor(String day) {
+    //SelectedDates.add(StartDate);
+    if(isPress==false){
+      isPress= true;
+      print(SelectedDates);
+    SelectedDates = MainDates.getRange(start1, end1-1).toList();
+    SelectedDates.add(EndDate);
+    Dates2.removeRange(start1, end1);
+    XDates2 = Dates2;
+    SelectedDates.insert (0,StartDate);
+    print(SelectedDates);
+    print(SelectedDates);
+    index = SelectedDates.length;
 
-  void checkDoctor(List<String> date) {
-     //Dates = DatesConstant.removeRange(start1, end1) ;
+    }
+    else{
+      SelectedDates2 = XDates2.getRange(start2, end2-1).toList();
+      print(SelectedDates2);
+      SelectedDates.add(StartDate2);
+      SelectedDates.addAll(SelectedDates2);
+      SelectedDates.add(EndDate2);
+     // SelectedDates.insert (index,StartDate2);
+      print(SelectedDates);
+      print(SelectedDates);
 
+    }
+    if(day=='sat'){
 
+      SelectedDatessat = SelectedDates;
+      SaveData('sat',SelectedDatessat );
+    }
+    else if(day=='sun') {
+      SelectedDatessun = SelectedDates;
+      SaveData('sun',SelectedDatessun );
+    } else if(day=='mon') {
+      SelectedDatesmon = SelectedDates;
+      SaveData('mon',SelectedDatesmon );
+    } else if(day=='tue') {
+      SelectedDatestue = SelectedDates;
+      SaveData('tue',SelectedDatestue );
+    } else if(day=='wed') {
+      SelectedDateswed = SelectedDates;
+      SaveData('wed',SelectedDateswed );
+    } else if(day=='thu') {
+      SelectedDatesthu = SelectedDates;
+      SaveData('thu',SelectedDatesthu );
+    } else if(day=='fri') {
+      SelectedDatesfri = SelectedDates;
+      SaveData('fri',SelectedDatesfri );
+    }
+    emit(DoctorSchedulSecondDateState());
   }
-
+  void SaveData(String day, List<String> dates){
+    DotorDatesModel(
+      day,
+      SelectedDates,
+    );
+  }
+  void ResetData() {
+        end1=-1;
+        start1=-1;
+        start2=-1;
+        end2=-1;
+        SelectedDates =[];
+        Dates = DatesConstant;
+        Dates2 = DatesConstant;
+        isPress = false;
+        emit(DoctorSchedulSecondDateState());
+  }
 }
