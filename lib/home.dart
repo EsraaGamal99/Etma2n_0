@@ -46,13 +46,6 @@ class HomeScreen extends StatelessWidget {
                 icon: const Icon(
                   Icons.help,
                 )),
-            IconButton(
-                onPressed: () {
-                  navigateTo(context, NADA());
-                },
-                icon: const Icon(
-                  Icons.calendar_today_outlined,
-                )),
           ],
           /* title: Text(
             'الصفحه الرئيسية',
