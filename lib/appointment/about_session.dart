@@ -55,22 +55,9 @@ class _AboutSessionState extends State<AboutSession> {
       textDirection: ui.TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(Icons.arrow_back_ios),
-            color: KSeconedarycolor,
-          ),
-          elevation: 0.0,
-          backgroundColor: Colors.white,
+
           title: const Text(
             'جلسه جديدة',
-            style: TextStyle(
-              color: KSeconedarycolor,
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-            ),
           ),
           centerTitle: true,
           actions: [
@@ -81,7 +68,6 @@ class _AboutSessionState extends State<AboutSession> {
               onPressed: () {
                 navigateTo(context, const SettingScreen());
               },
-              color: KSeconedarycolor,
             ),
           ],
         ),
@@ -236,7 +222,7 @@ class _AboutSessionState extends State<AboutSession> {
         bottomNavigationBar: Container(
           padding: const EdgeInsets.only(right: 15, left: 8),
           decoration: BoxDecoration(
-            color: Colors.grey[100],
+           // color: Colors.grey[100],
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(

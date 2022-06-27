@@ -38,32 +38,18 @@ class _SessionDateState extends State<SessionDate> {
       textDirection: ui.TextDirection.rtl,
       child: Scaffold(
           appBar: AppBar(
-            elevation: 0.0,
-            backgroundColor: Colors.white, //const Color(0xFF5271ff),
-            leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.arrow_back_ios),
-              color: KSeconedarycolor,
-            ),
             title: const Text(
               'التاريخ',
-              style: TextStyle(
-                color: Color(0xFF5271ff),
-                fontSize: 25.0,
-                fontWeight: FontWeight.w600,
-              ),
+
             ),
             centerTitle: true,
             actions: [
               IconButton(
                 icon: const Icon(
-                  Icons.menu,
+                  Icons.settings,
                 ),
                 onPressed: () {
                   navigateTo ( context, const SettingScreen());},
-                color: KSeconedarycolor,
               ),
             ],
           ),

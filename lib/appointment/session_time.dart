@@ -43,34 +43,20 @@ class _SessionTimeState extends State<SessionTime> {
       textDirection: ui.TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(Icons.arrow_back_ios),
-            color: KSeconedarycolor,
-          ),
+
           title: const Text(
             'الموعد',
-            style: TextStyle(
-              color: KSeconedarycolor,
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-            ),
+
           ),
           centerTitle: true,
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.menu,
-                color: KSeconedarycolor,
+                Icons.settings,
               ),
               onPressed: () {
                 navigateTo(context, const SettingScreen());
               },
-              color: Colors.white,
             ),
           ],
         ),
@@ -215,60 +201,7 @@ class _SessionTimeState extends State<SessionTime> {
             ],
           ),
         ),
-/*
-        bottomNavigationBar: Container(
-          padding: const EdgeInsets.only(right: 15,left: 8,bottom: 5,top: 5),
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              MaterialButton(
-                onPressed: () {
-                  navigateTo ( context,AboutAppointment(docindex: widget.docindex,
-                            price: widget.price, selectedDuration: widget.selectedDuration,times: widget.times,selectedDate: widget.selectedDate,selectedTime: selectedTime,),);
-                },
-                color: Colors.indigoAccent,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                child: Row(
-                  children: const [
-                    Text(
-                      'التالي',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 18.5,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      Icons.download_done_outlined,
-                      color: Colors.white,
-                      // size: 15,
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(),
-              Expanded(
-                child: Text(
-                  '${widget.result} ج.م / ${widget.selectedDuration}',
-                  style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.indigoAccent),
-                  // maxLines: 2,
-                  // overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-        ),
-*/
+
       ),
     );
   }
