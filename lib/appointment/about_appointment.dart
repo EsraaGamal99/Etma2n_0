@@ -1,7 +1,9 @@
+import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-
+import '../Settings/main_setting_page.dart';
 import '../models/doctors_model.dart';
+import '../shared/styles/colors.dart';
 import '../widgets/components.dart';
 import 'payment_page.dart';
 
@@ -17,6 +19,7 @@ class AboutAppointment extends StatefulWidget {
 
   const AboutAppointment({Key? key, required this.docindex, required this.selectedDuration, required this.price, required this.selectedDate, required this.selectedTime,
      required this.times}) : super(key: key);
+
   @override
   _AboutAppointmentState createState() => _AboutAppointmentState();
 }
@@ -24,34 +27,41 @@ class AboutAppointment extends StatefulWidget {
 class _AboutAppointmentState extends State<AboutAppointment> {
   @override
   Widget build(BuildContext context) {
-
+    late var codecontroller = TextEditingController();
     //double height1 = MediaQuery.of(context).size.height;
     //double width1 = MediaQuery.of(context).size.width;
 
     double faces=((widget.price/100)*15);
     double discount=0.0;
     double total=widget.price+faces;
-    print(widget.times);
-    late String Times;
-    var   code = TextEditingController();
+    //print(widget.times);
+    late String times,code;
 
     if(widget.times=='1') {
-      Times='جلسة واحدة';
+      times='جلسة واحدة';
     } else if(widget.times=='2') {
-      Times='جلستان';
+      times='جلستان';
     } else {
-      Times='${widget.times} جلسات';
+      times='${widget.times} جلسات';
     }
 
     return Directionality(
       textDirection: ui.TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           backgroundColor: Colors.white,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+            color: KSeconedarycolor,
+          ),
           title: const Text(
             'تقرير',
             style: TextStyle(
-              color: Color(0xFF5271ff),
+              color: KSeconedarycolor,
               fontSize: 25.0,
               fontWeight: FontWeight.w600,
             ),
@@ -61,63 +71,65 @@ class _AboutAppointmentState extends State<AboutAppointment> {
             IconButton(
               icon: const Icon(
                 Icons.menu,
+              color: KSeconedarycolor,
               ),
               onPressed: () {
-                print('setting opened');
+                navigateTo(context, const SettingScreen());
               },
-              color: Colors.white,
             ),
           ],
         ),
-
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 //discount code
-                GestureDetector(
-                  onTap: () {
+                Container(
+                  height: 66,
+                  decoration: BoxDecoration(
+                    color: Colors.indigo.shade50,
+                    borderRadius: BorderRadius.circular(11.0,),
+                  ),
+                  padding: const EdgeInsets.only(right: 44),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      /*customTextField(
+                          icon: Icons.local_offer,
+                          hint: 'ادخل الكود',
+                        validate: (String value) {
+                          if (value.isEmpty) {
+                            return 'الكود فارغ';
+                          }
+                          return null;
+                        },
+                        controle: codecontroller,
+                        keyboard: TextInputType.number,
+                      ),*/
 
-                  },
-                  child: Container(
-                    height: 66,
-                    decoration: BoxDecoration(
-                      color: Colors.indigo.shade50,
-                      borderRadius: BorderRadius.circular(11.0,),
-                    ),
-                    padding: const EdgeInsets.only(right: 44),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        customTextField(
-                            controller: code,
-                            type: TextInputType.text,
-                            icon: Icons.local_offer,
-                            hint: 'ادخل الكود'),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: (){
-                            discount = (widget.price/100)*10;
-                            total=widget.price+faces-discount;
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.only(left: 44,right: 11),
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade500,
-                              borderRadius: BorderRadius.circular(11.0,),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                'تطبيق الكود',
-                                style: TextStyle(color: Colors.white),
-                              ),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: (){
+                          discount = (widget.price/100)*10;
+                          total=widget.price+faces-discount;
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 44,right: 11),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade500,
+                            borderRadius: BorderRadius.circular(11.0,),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'تطبيق الكود',
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
 
@@ -303,7 +315,7 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                     Padding(
                       padding: const EdgeInsets.only(right: 20,top: 10,bottom: 10),
                       child: Text(
-                        'عدد الجلسات   :   $Times',
+                        'عدد الجلسات   :   $times',
                         style: const TextStyle(
                           color: Colors.black87,
                           fontWeight: FontWeight.w700,
@@ -354,12 +366,12 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FlatButton(
+                    MaterialButton(
                       height: 50,
                       minWidth: 100,
                       onPressed: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => PaymentPage(),),);
+                          MaterialPageRoute(builder: (context) => const PaymentPage(),),);
                       },
                       color: Colors.indigoAccent,
                       shape: RoundedRectangleBorder(

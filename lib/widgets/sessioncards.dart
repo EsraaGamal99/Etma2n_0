@@ -6,7 +6,7 @@ import 'components.dart';
 
 class SessionCard extends StatefulWidget {
   //static String id = 'SessionCard';
-/////
+
   static Color? color1;
   //final Function onClick;
   final String sessionTitle;

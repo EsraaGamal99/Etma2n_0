@@ -66,8 +66,9 @@ class TodoHomeScreen extends StatelessWidget {
                                 topLeft: Radius.circular(50),
                                 topRight: Radius.circular(50),
                               ),
+                            //  color: Colors.white,
                             ),
-                            color: Colors.white,
+
                             padding: const EdgeInsets.all(20.0),
                             child: SingleChildScrollView(
                               child: Form(
@@ -181,7 +182,7 @@ class TodoHomeScreen extends StatelessWidget {
                     label: 'ارشيف',
                   ),
                 ],
-                unselectedItemColor: Colors.black45,
+                unselectedItemColor: Colors.grey,
                 //selectedItemColor: Colors.purpleAccent,
                 type: BottomNavigationBarType.fixed,
                 currentIndex: ToDoCubit.get(context).currentindex,

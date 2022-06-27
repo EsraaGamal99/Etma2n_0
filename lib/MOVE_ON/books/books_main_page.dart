@@ -1,6 +1,7 @@
 import 'package:etma2n/shared/component/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import '../../Settings/main_setting_page.dart';
 import '../../models/books_models.dart';
 import '../../widgets/components.dart';
 import 'api_books.dart';
@@ -24,15 +25,9 @@ class _BooksMainPageState extends State<BooksMainPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF5271ff),
           title: const Center(
             child: Text(
               'كتب',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 25.0,
-                fontWeight: FontWeight.w600,
-              ),
             ),
           ),
           actions: [
@@ -41,9 +36,8 @@ class _BooksMainPageState extends State<BooksMainPage> {
                 Icons.menu,
               ),
               onPressed: () {
-                onPrint();
+                navigateTo(context, const SettingScreen());
               },
-              color: Colors.white,
             ),
           ],
         ),
@@ -54,8 +48,13 @@ class _BooksMainPageState extends State<BooksMainPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //search row
+/*
                 GestureDetector(
-                  onTap: onPrint,
+                  onTap: () {
+                    if (kDebugMode) {
+                      print('search opened');
+                    }
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -90,6 +89,7 @@ class _BooksMainPageState extends State<BooksMainPage> {
                 const SizedBox(
                   height: 30.0,
                 ),
+*/
 
                 // list of books
                 ListView.separated(
@@ -99,13 +99,15 @@ class _BooksMainPageState extends State<BooksMainPage> {
                     onClick: () async {
                       final url = book[index].bkpath;
                       final file = await BookApi.loadAsset(url);
-                      navigateTo (context,BookViewerPage(file: file, bookindex: index));},
+                      navigateTo (context,BookViewerPage
+                        (file: file, bookindex: index));
+                      },
                     /*  Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (context) =>
                                 BookViewerPage(file: file, bookindex: index)),)
                       ;},*/
-                    image1: AssetImage(book[index].bkimage),
+                    image1: NetworkImage(book[index].bkimage),
                     title: book[index].bkname,
                     description: book[index].bkdescription,
                     writer: book[index].bkwriter,
@@ -123,5 +125,3 @@ class _BooksMainPageState extends State<BooksMainPage> {
     );
   }
 }
-
-onPrint() => print("printed");

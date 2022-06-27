@@ -20,23 +20,21 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final doctorPassword = 'DOCTOR#P@SSWORD';
-  var formKey = GlobalKey<FormState>();
-  //late DateTime selectedData;
+  late DateTime selectedData;
   bool isDoctor = false;
-  var email = TextEditingController(),
-      password = TextEditingController(),
-      phone = TextEditingController(),
-      confirm_password = TextEditingController(),
-      username = TextEditingController();
+  late var emcontroller   =TextEditingController();
+  late var conpasscontroller   =TextEditingController();
+  late var passcontroller =TextEditingController();
+  late var phoncontroller =TextEditingController();
+  late var namecontroller =TextEditingController();
+  late var username =TextEditingController();
+  late String email, password,phone,confirm_password;
   DateTime selectedDate = DateTime.now();
   Color secondColor = const Color(0xff576dca);
   String selectedGender = 'انثي';
-  List<String> gender = [
-    'انثي',
-    'ذكر',
-  ];
+  List<String> gender = ['انثي','ذكر',];
   final format = DateFormat('yyyy-MM-dd');
-
+  bool isPassword=true;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -51,14 +49,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
               body: Center(
                 child: ListView(
                   children: <Widget>[
+
                     customImageField(
-                      height: MediaQuery.of(context).size.height * .3,
+                      height: MediaQuery.of(context).size.height * .25,
                       image: const AssetImage('assets/images/etmaan.png'),
                     ),
 
                     //welcome
-                    Center(
-                        child: Column(
+                    Center(child: Column(
                       children: [
                         const Text(
                           'اهلا بيك',
@@ -68,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               fontWeight: FontWeight.w700),
                         ),
                         Text(
-                          'جملة ترحيبيه ^_^',
+                          'أطمئن ,طريقك للاستقرار النفسي',
                           style: TextStyle(
                               color: Colors.grey[500],
                               fontSize: 17,
@@ -79,90 +77,96 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     SizedBox(height: height * .044),
 
-                    customTextField(
-                      controller: username,
-                      type: TextInputType.text,
-                      /* onClick: (value) {
-                  username = value;
-                },*/
-                      onPressed: (){},
-                      icon: Icons.perm_identity,
-                      hint: 'اسم المستخدم',
+                    //name
+                    defaultFormField1(
+                        controller: namecontroller,
+                        type: TextInputType.name,
+                        validate: (String value) {
+                          if (value.isEmpty) {
+                            return 'الاسم فارغ';
+                          }
+                          return null;
+                        },
+                        label: 'الاسم',
+                        prefix: Icons.person_outline_outlined
                     ),
                     SizedBox(height: height * .022),
 
-                    customTextField(
-                        controller: email,
-                        type: TextInputType.emailAddress,
-                        /*  onClick: (value) {
-                    email = value;
-                  },*/
-                        onPressed: (){},
-                        icon: Icons.email,
-                        hint: 'البريد'),
+                    //email
+                    defaultFormField1(
+                      controller: emcontroller,
+                      type: TextInputType.emailAddress,
+                      validate: (String value) {
+                        if (value.isEmpty) {
+                          return 'البريد فارغ';
+                        }
+                        return null;
+                      },
+                      label: 'البريد',
+                      prefix: Icons.email_outlined,
+                    ),
+
                     SizedBox(height: height * .022),
 
-                    customTextField(
-                      controller: phone,
+                    //phone number
+                    defaultFormField1(
+                      controller: phoncontroller,
                       type: TextInputType.phone,
-                      icon: Icons.phone,
-                      hint: 'رقم الهاتف',
-                      onPressed: (){},
+                      validate: (String value) {
+                        if (value.isEmpty) {
+                          return 'رقم الهاتف فارغ';
+                        }
+                        return null;
+                      },
+                      label: 'رقم الهاتف',
+                      prefix: Icons.phone_outlined,
                     ),
+
                     SizedBox(height: height * .022),
 
                     //تاريخ الميلاد
                     Padding(
-                      padding: const EdgeInsets.only(right: 25, left: 25),
+                      padding: const EdgeInsets.all(1),
                       child: Material(
                         shadowColor: KSeconedarycolor,
                         elevation: 8.0,
-                        borderRadius: BorderRadius.circular(30),
+                        //borderRadius: BorderRadius.circular(30),
                         child: dateForm(),
+
                       ),
                     ),
 
                     SizedBox(height: height * .022),
                     // النوع
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25,
-                        vertical: 1,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 1,),
                       child: Material(
                         shadowColor: KSeconedarycolor,
                         elevation: 8.0,
                         borderRadius: BorderRadius.circular(30),
                         child: DecoratedBox(
                           decoration: const ShapeDecoration(
-                            color: KTherdycolor,
+                            color:  Colors.white,
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1.0,
-                                  style: BorderStyle.solid,
+                              side: BorderSide(width: 1.0, style: BorderStyle.solid,
                                   color: KSeconedarycolor),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25.0, vertical: 7.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 7.0),
                             child: DropdownButton<String>(
                               value: selectedGender,
-                              elevation: 10,
-                              icon: const Icon(
-                                Icons.arrow_drop_down,
-                                color: KTherdycolor,
-                              ),
+                              elevation: 8,
+                              icon: const Icon(Icons.arrow_drop_down,color: Colors.white,),
                               onChanged: (String? newValue) {
                                 setState(() {
                                   selectedGender = newValue!;
                                 });
                               },
-                              underline: const SizedBox(),
-                              items: gender.map<DropdownMenuItem<String>>(
-                                  (String value) {
+                              underline: const SizedBox(height: 2,),
+                              items: gender
+                                  .map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(value),
@@ -175,48 +179,79 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: height * .022),
 
-                    customTextField(
-                        controller: password,
-                        type: TextInputType.visiblePassword,
-                        /*onClick: (value) {
-                    password = value;
-                  },*/
-                        icon: Icons.lock,
-                        icon1: Icons.remove_red_eye,
-                        onPressed: () {},
-                        hint: 'كلمة السر'),
+                    //password
+                    defaultFormField1(
+                      controller: passcontroller,
+                      label: 'كلمة السر',
+                      prefix: Icons.lock,
+                      suffix: isPassword ? Icons.visibility : Icons.visibility_off,
+                      isPassword: isPassword,
+                      suffixPressed: ()
+                      {
+                        setState(()
+                        {
+                          isPassword = !isPassword;
+                        });
+                      },
+                      type: TextInputType.visiblePassword,
+                      validate: (String value)
+                      {
+                        if(value.isEmpty)
+                        {
+                          return 'كلمة السر قصيرة';
+                        }
+
+                        return null;
+                      },
+                    ),
+
                     SizedBox(height: height * .022),
 
-                    customTextField(
-                        controller: confirm_password,
-                        type: TextInputType.visiblePassword,
-                        /* onClick: (value) {
-                    confirm_password = value;
-                  },*/
-                        icon: Icons.lock,
-                        icon1: Icons.remove_red_eye,
-                        onPressed: () {},
-                        hint: 'تأكيد كلمة السر'),
+                    defaultFormField1(
+                      controller: conpasscontroller,
+                      label: 'تاكيد كلمة السر',
+                      prefix: Icons.lock,
+                      suffix: isPassword ? Icons.visibility : Icons.visibility_off,
+                      isPassword: isPassword,
+                      suffixPressed: ()
+                      {
+                        setState(()
+                        {
+                          isPassword = !isPassword;
+                        });
+                      },
+                      type: TextInputType.visiblePassword,
+                      validate: (String value)
+                      {
+                        if(value.isEmpty)
+                        {
+                          return 'كلمة السر غير متطابقة';
+                        }
+
+                        return null;
+                      },
+                    ),
+
                     SizedBox(height: height * .035),
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 111),
                       child: Builder(
-                        builder: (context) => FlatButton(
+                        builder: (context) => MaterialButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(17),
                             side: const BorderSide(color: KTherdycolor),
                           ),
                           onPressed: () async {
 
-                              cubit.userRegister(
-                                name: username.text,
-                                email: email.text,
-                                phone: phone.text,
-                                gender: selectedGender,
-                                password: password.text,
-                              );
-                              navigateTo(context, const HomeScreen());
+                            cubit.userRegister(
+                              name: namecontroller.text,
+                              email: emcontroller.text,
+                              phone: phoncontroller.text,
+                              gender: selectedGender,
+                              password: passcontroller.text,
+                            );
+                            navigateTo(context, const HomeScreen());
 
 
                           },
@@ -243,13 +278,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 10,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            navigateTo(context, LoginScreen());
-                          },
+                          onTap: () { navigateTo ( context,const LoginScreen());},
+
                           child: const Text(
                             'تسجيل دخول ',
                             style: TextStyle(
-                              color: KButtomcolor,
+                              color: KSeconedarycolor,
                               fontSize: 16,
                             ),
                           ),
@@ -257,6 +291,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ],
                     ),
                     SizedBox(height: height * .030),
+
                   ],
                 ),
               ),

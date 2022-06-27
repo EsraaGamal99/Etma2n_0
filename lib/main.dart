@@ -1,22 +1,25 @@
 // @dart=2.9
 
+import 'package:etma2n/appointment/menu_doctors.dart';
 import 'package:etma2n/doctor_schedule/cubit/cubit.dart';
 import 'package:etma2n/doctor_schedule/doctor.dart';
 import 'package:etma2n/doctor_calender.dart';
 import 'package:etma2n/home.dart';
 import 'package:etma2n/layout/test/cubit/cubit.dart';
 import 'package:etma2n/layout/test/cubit/states.dart';
+import 'package:etma2n/login/constant/constant.dart';
 import 'package:etma2n/login/login_cubit/cubit.dart';
 import 'package:etma2n/login/reg_cubit/cubit.dart';
 import 'package:etma2n/login/screen/login_screen.dart';
-import 'package:etma2n/nada.dart';
-import 'package:etma2n/todo_list/toDoHome.dart';
+import 'package:etma2n/shared/AppCubit/states.dart';
+import 'package:etma2n/shared/network/local/cache_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'firebase_options.dart';
+import 'shared/AppCubit/cubit.dart';
 
 void main() async  {
   WidgetsFlutterBinding.ensureInitialized(); //علشان نتأكد ان حصل Intialize
@@ -24,33 +27,46 @@ void main() async  {
   await Firebase.initializeApp(
    options: DefaultFirebaseOptions.currentPlatform,
   );
+  await CacheHelper.init();
 
-///////////
-  runApp(MyApp());
+  bool isDark = CacheHelper.getBoolean(key: 'isDark');
+
+  runApp(MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
+  final bool isDark;
+
+  const MyApp(this.isDark);
+
   @override
   Widget build(BuildContext context) {
-    const MaterialColor nada = MaterialColor(
-      0xff576dca,
+    const MaterialColor ThemeColor = MaterialColor(
+      0xFF5271ff,
       <int, Color>{
-        50: Color(0xff576dca),
-        100: Color(0xff576dca),
-        200: Color(0xff576dca),
-        300: Color(0xff576dca),
-        400: Color(0xff576dca),
-        500: Color(0xff576dca),
-        600: Color(0xff576dca),
-        700: Color(0xff576dca),
-        800: Color(0xff576dca),
-        900: Color(0xff576dca),
+        50: Color(0xFF5271ff),
+        100: Color(0xFF5271ff),
+        200: Color(0xFF5271ff),
+        300: Color(0xFF5271ff),
+        400: Color(0xFF5271ff),
+        500: Color(0xFF5271ff),
+        600: Color(0xFF5271ff),
+        700: Color(0xFF5271ff),
+        800: Color(0xFF5271ff),
+        900: Color(0xFF5271ff),
       },
     );
-    Color mainColor = const Color(0xffa9c1f7);
-    Color secondColor = const Color(0xff576dca);
+    var mainColor =  Color(0xffa9c1f7);
+    const KButtomcolor = Color(0xFF2b44f7);
+    var secondColor =  Color(0xFF5271ff);
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (BuildContext context) => AppCubit()
+            ..changeAppMode(
+              fromShared: isDark,
+            ),
+        ),
         BlocProvider(
           create: (BuildContext context) => TestCubit(),
         ),
@@ -64,13 +80,18 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => RegisterCubit(),
         ),
       ],
-      child: BlocConsumer<TestCubit, TestStates>(
+      child: BlocConsumer<AppCubit, AppStates>(
           listener: (context, state) {},
           builder: (context, state) {
             return MaterialApp(
               theme: ThemeData(
                 scaffoldBackgroundColor: Colors.white,
-                primarySwatch: nada,
+                primarySwatch: ThemeColor,
+                textTheme: const TextTheme(
+                bodyText1: TextStyle(
+                color: Colors.white,
+                ),
+                ),
                 appBarTheme: AppBarTheme(
                   backgroundColor: Colors.white,
                   iconTheme: IconThemeData(
@@ -87,9 +108,59 @@ class MyApp extends StatelessWidget {
                     statusBarIconBrightness: Brightness.dark,
                   ),
                 ),
+
                 backgroundColor: Colors.white,
                 primaryColor: secondColor,
               ),
+              darkTheme: ThemeData(
+                primarySwatch: ThemeColor,
+
+                scaffoldBackgroundColor: Colors.black54,
+                appBarTheme: const AppBarTheme(
+                  // ignore: deprecated_member_use
+                  backwardsCompatibility: false,
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                      statusBarColor: Colors.black45,
+                      //systemNavigationBarIconBrightness: ,
+                      statusBarIconBrightness: Brightness.light),
+                  titleTextStyle: TextStyle(
+                    color: KSeconedarycolor,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  backgroundColor: Colors.black45,
+                  elevation: 0.0,
+                  iconTheme: IconThemeData(
+                    color:KSeconedarycolor,
+                  ),
+                  textTheme: TextTheme(
+                    bodyText1: TextStyle(
+                      color: Colors.white,
+                    ),
+
+                  ),
+                ),
+                bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                  backgroundColor: Colors.black54,
+                  type: BottomNavigationBarType.fixed,
+                  selectedItemColor: KSeconedarycolor,
+                  unselectedItemColor: Colors.white60,
+                  elevation: 15.0,
+                ),
+                primaryColor:KSeconedarycolor,
+                floatingActionButtonTheme: const FloatingActionButtonThemeData(
+                  backgroundColor: KSeconedarycolor,
+                ),
+                textTheme: const TextTheme(
+                  bodyText1: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                backgroundColor: Colors.black54
+              ),
+              themeMode: AppCubit.get(context).isDark
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
               /*color: Colors.deepPurpleAccent,
               theme: ThemeData(
                 primaryColorLight: Colors.deepPurpleAccent,

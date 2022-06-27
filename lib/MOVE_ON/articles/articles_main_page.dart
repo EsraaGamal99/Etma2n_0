@@ -25,15 +25,11 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF5271ff),
+
           title: const Center(
             child: Text(
               'مقالات',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 25.0,
-                fontWeight: FontWeight.w600,
-              ),
+
             ),
           ),
           centerTitle: true,
@@ -45,7 +41,6 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
               onPressed: () {
                 onPrint();
               },
-              color: Colors.white,
             ),
           ],
         ),
@@ -61,12 +56,12 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
                   owner: article[index].writername,
                   hour: article[index].arttime,
                   thearticle: article[index].artcontant,
-                  image1: AssetImage(article[index].writerimage),
+                  image1: NetworkImage(article[index].writerimage),
                   onClick: () {
-                    setState(() {
+                    /*setState(() {
                       isColor =! isColor;
                       isFav =! isFav;
-                    });
+                    });*/
                     navigateTo ( context,ArticlePage(artindex: index,));},
                 ),
                 separatorBuilder: (context, index) => const SizedBox(height: 1,),

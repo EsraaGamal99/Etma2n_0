@@ -5,3 +5,4 @@ class DoctorSchedulechangeBottomNavBarState extends DoctorScheduleStates{}
 class DoctorScheduleCreateDB extends DoctorScheduleStates{}
 class DoctorScheduleAddRow extends DoctorScheduleStates{}
 class DoctorScheduleChangeBottomState extends DoctorScheduleStates{}
+class DoctorSchedulSecondDateState extends DoctorScheduleStates{}
