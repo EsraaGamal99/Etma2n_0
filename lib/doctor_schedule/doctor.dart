@@ -63,7 +63,7 @@ class _DoctorState extends State<Doctor> {
                       icon: cubit.fab,
                       OnPress: () {
                         {
-                          isPress=false;
+                         // isPress=false;
                           cubit.ResetData();
                           scaffoldkey.currentState
                               ?.showBottomSheet(

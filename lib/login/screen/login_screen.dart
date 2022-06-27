@@ -1,17 +1,11 @@
-
 import 'package:etma2n/home.dart';
-import 'package:etma2n/login/login_cubit/cubit.dart';
-import 'package:etma2n/login/login_cubit/states.dart';
 import 'package:etma2n/login/screen/forgetting_password.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:etma2n/widgets/components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+
 import '../../shared/styles/colors.dart';
-
-//import 'register_screen.dart';
-
-
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -30,10 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passcontroller = TextEditingController();
   //late String email, password;
   bool isPassword= true;
-  static const values = <String> [ 'مستخدم','طبيب'];
-  String selectedValue = values.first;
-  final selectedColor = KSeconedarycolor;
-  final unselectedColor = Colors.blueGrey;
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         side: const BorderSide(color: KTherdycolor),
                       ),
                       onPressed: () async {
+
                         navigateTo ( context,const HomeScreen());},
                       color: KSeconedarycolor,
                       child: const Text(
@@ -114,12 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-
-                SizedBox(height: height * .018),
-
-                //user or doctor
-                buildRadios(),
-
 
                 SizedBox(height: height * .05),
 
@@ -171,31 +156,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-
-
-  Widget buildRadios() => Row(
-    children: values.map(
-          ( value) {
-        return RadioListTile<String>(
-            value: value,
-            groupValue: selectedValue,
-            title: Row(
-              children: [
-                Text(value,style: const TextStyle(color: KSeconedarycolor,fontWeight: FontWeight.bold),),
-              ],
-            ),
-            activeColor: selectedColor,
-            onChanged: (value) {
-              setState(() {
-                selectedValue = value!;
-                if(selectedValue=='طبيب') {
-                  isDoctor=! isDoctor;
-                }
-              });
-            }
-        );
-      },
-    ).toList(),
-  );
 }

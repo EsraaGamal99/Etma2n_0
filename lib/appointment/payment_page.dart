@@ -51,28 +51,17 @@ class _PaymentPageState extends State<PaymentPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading:IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Color(0xFF5271ff),
-              ),
-            onPressed: () {},
-          ),
+
           title: const Text(
             'الدفع',
-            style: TextStyle(
-              color: Color(0xFF5271ff),
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-            ),
+
           ),
           centerTitle: true,
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.menu,
-                color: Color(0xFF5271ff),
+                Icons.settings,
+
               ),
               onPressed: () {
                 navigateTo(context, const SettingScreen());
@@ -88,114 +77,6 @@ class _PaymentPageState extends State<PaymentPage> {
                 const SizedBox(height: 20,),
                 buildRadios(),
                 const SizedBox(height: 44,),
- /*                     floatingActionButton: FloatingActionButton(
-                  // backgroundColor: Colors.purpleAccent,
-                  onPressed: () {
-                    if (ToDoCubit.get(context).isBottomSheetShow) {
-                      if (formkey.currentState.validate()) {
-                        ToDoCubit.get(context).insertdb(
-                            title: titelecontroller.text,
-                            time: timecontroller.text,
-                            date: datecontroller.text);
-                      }
-                    }
-                    else {
-                      scaffoldkey.currentState
-                          .showBottomSheet(
-                            (context) => Container(
-                          color: Colors.white,
-                          padding: const EdgeInsets.all(20.0),
-                          child: SingleChildScrollView(
-                            child: Form(
-                              key: formkey,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  defaultDateFormField(
-                                    controller: titelecontroller,
-                                    type: TextInputType.text,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'الاسم فارغ';
-                                      }
-                                      return null;
-                                    },
-                                    label: 'اسم المهمه',
-                                    prefix: Icons.task_alt_rounded,
-                                  ),
-                                  const SizedBox(
-                                    height: 15.0,
-                                  ),
-                                  defaultDateFormField(
-                                    controller: timecontroller,
-                                    type: TextInputType.datetime,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'الوقت فارغ';
-                                      }
-                                      return null;
-                                    },
-                                    onTap: () {
-                                      showTimePicker(
-                                        context: context,
-                                        initialTime: TimeOfDay.now(),
-                                      ).then((value) {
-                                        timecontroller.text =
-                                            value.format(context).toString();
-                                        print(value.format(context));
-                                      });
-                                    },
-                                    label: ' وقت المهمه',
-                                    prefix: Icons.watch_later_outlined,
-                                  ),
-                                  const SizedBox(
-                                    height: 15.0,
-                                  ),
-                                  defaultDateFormField(
-                                    controller: datecontroller,
-                                    type: TextInputType.datetime,
-                                    validate: (String value) {
-                                      if (value.isEmpty) {
-                                        return 'التاريخ فارغ';
-                                      }
-                                      return null;
-                                    },
-                                    onTap: () {
-                                      showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime.now(),
-                                        lastDate:
-                                        DateTime.parse('2028-12-01'),
-                                      ).then((value) {
-                                        datecontroller.text =
-                                            DateFormat.yMMMd().format(value);
-                                      });
-                                    },
-                                    label: 'تاريخ المهمه',
-                                    prefix: Icons.calendar_today_outlined,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        elevation: 20.0,
-                      )
-                          .closed
-                          .then((value) {
-                        ToDoCubit.get(context)
-                            .changeBottomsheet(isShow: false, icon: Icons.edit);
-                      });
-                      ToDoCubit.get(context)
-                          .changeBottomsheet(isShow: true, icon: Icons.add);
-                    }
-                  },
-                  child: Icon(
-                    ToDoCubit.get(context).fab,
-                  ),
-                ),
-*/
               if (selectedValue == values[0])
                 buildCardBox(),
               if (selectedValue == values[1])

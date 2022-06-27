@@ -1,4 +1,5 @@
 import 'package:etma2n/login/constant/constant.dart';
+import 'package:etma2n/model/DoctorModel.dart';
 import 'package:etma2n/shared/component/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -162,35 +163,43 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
     }
     if(day=='sat'){
       SelectedDatessat = SelectedDates;
-      SaveData('sat',SelectedDatessat );
+      SaveData('الاء صلاح','sat',SelectedDatessat );
     }
     else if(day=='sun') {
       SelectedDatessun = SelectedDates;
-      SaveData('sun',SelectedDatessun );
+      SaveData('الاء صلاح','sun',SelectedDatessun );
     } else if(day=='mon') {
       SelectedDatesmon = SelectedDates;
-      SaveData('mon',SelectedDatesmon );
+      SaveData('الاء صلاح','mon',SelectedDatesmon );
     } else if(day=='tue') {
       SelectedDatestue = SelectedDates;
-      SaveData('tue',SelectedDatestue );
+      SaveData('الاء صلاح','tue',SelectedDatestue );
     } else if(day=='wed') {
       SelectedDateswed = SelectedDates;
-      SaveData('wed',SelectedDateswed );
+      SaveData('الاء صلاح','wed',SelectedDateswed );
     } else if(day=='thu') {
       SelectedDatesthu = SelectedDates;
-      SaveData('thu',SelectedDatesthu );
+      SaveData('الاء صلاح','thu',SelectedDatesthu );
     } else if(day=='fri') {
       SelectedDatesfri = SelectedDates;
-      SaveData('fri',SelectedDatesfri );
+      SaveData('الاء صلاح','fri',SelectedDatesfri );
     }
     emit(DoctorSchedulSecondDateState());
   }
-  void SaveData(String day, List<String> dates){
-    DotorDatesModel(
+
+
+
+  void SaveData(String DocName,String day, List<String> dates){
+
+    DoctorDates(
+      DocName,
       day,
-      SelectedDates,
+      dates,
     );
   }
+
+
+
   void ResetData() {
         end1=-1;
         start1=-1;
