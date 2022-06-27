@@ -9,42 +9,39 @@ import 'package:flutter/material.dart';
 Color mainColor = const Color(0xffa9c1f7);
 Color secondColor = const Color(0xff576dca);
 
-Widget buildCart({
+Widget buildTestCart({
   required Function() function,
   String testName = '',
   required String imageLink,
 }) =>
     Card(
       clipBehavior: Clip.antiAlias,
-      child: SizedBox(
-        height: 200,
-        child: Stack(
-          alignment: Alignment.bottomRight,
-          children: [
-            Ink.image(
-              image: NetworkImage(imageLink),
-              child: InkWell(
-                onTap: function,
-              ),
-              height: 200,
-              fit: BoxFit.cover,
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          Ink.image(
+            image: NetworkImage(imageLink),
+            child: InkWell(
+              onTap: function,
             ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Text(
-                  testName,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+            height: 200,
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Text(
+                testName,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 
@@ -73,8 +70,8 @@ Widget buildConsUlItem( context,{
               width: double.infinity,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
                     child: Text(
@@ -259,7 +256,9 @@ Widget myDivider() => Padding(
       ),
     );
 
-Widget defaultFormField({
+Widget defaultFormField(
+    context,
+    {
   required TextEditingController controller,
   required TextInputType type,
   ValueChanged<String>? onSubmit,
@@ -286,9 +285,18 @@ Widget defaultFormField({
       validator: validate,
       decoration: InputDecoration(
         labelText: label,
+        //hoverColor: Colors.grey,
+        labelStyle: Theme.of(context).textTheme.headline6,
         prefixIcon: Icon(
           prefix,
         ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25.0),
+          borderSide: BorderSide(
+            color: Colors.white38,
+          ),
+        ),
+        //disabledBorder:
         suffixIcon: suffix != null
             ? IconButton(
                 onPressed: suffixPressed,
@@ -297,7 +305,9 @@ Widget defaultFormField({
                 ),
               )
             : null,
-        border: OutlineInputBorder(),
+        border: OutlineInputBorder(
+
+        ),
       ),
     );
 
@@ -578,10 +588,12 @@ Widget homeCard ({
           clipBehavior: Clip.antiAlias,
           shadowColor: const Color(0xFF5271f0),
           elevation: 3.5,
+          //color: Colors.white54,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
           ),
           child: Container(
+
             width: double.infinity,
             height: 200,
             padding: const EdgeInsets.all(10),

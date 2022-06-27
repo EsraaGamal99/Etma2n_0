@@ -20,7 +20,7 @@ Widget moveonCard({
           borderRadius: BorderRadius.circular(15),
         ),
         child: Container(
-          height: 200,
+
           padding: const EdgeInsets.all(15),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -31,6 +31,7 @@ Widget moveonCard({
           ),
           child: Row(
             children: [
+
               Padding(
                 padding: const EdgeInsets.only(left: 15),
                 child: Image(
@@ -62,6 +63,7 @@ Widget moveonCard({
                   ],
                 ),
               ),
+
             ],
           ),
         ),
@@ -355,63 +357,69 @@ Widget booksCard({
 }) =>
     GestureDetector(
       onTap: onClick,
-      child: Row(
+      child: Column(
         children: [
-          Image(
-            image: image1!,
-            height: 100,
-          ),
-          const SizedBox(
-            width: 20.0,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  width: 6.0,
-                ),
-                Row(
+          SizedBox(height:25.0,),
+          Row(
+            children: [
+              Image(
+                image: image1!,
+                height: 100,
+              ),
+              const SizedBox(
+                width: 20.0,
+              ),
+              Expanded(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // description
-                    Expanded(
-                      child: Text(
-                        description!,
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                    Text(
+                      title!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-
-                    // writer
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15, top: 35),
-                      child: Text(
-                        writer!,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                    const SizedBox(
+                      width: 6.0,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // description
+                        Expanded(
+                          child: Text(
+                            description!,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
+
+                        // writer
+                        Padding(
+                          padding: const EdgeInsets.only(right: 15, top: 35),
+                          child: Text(
+                            writer!,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+          SizedBox(height:25.0,),
         ],
       ),
     );
@@ -479,9 +487,11 @@ Widget doctorList({
                   // rating
                   Row(
                     children: [
+                      Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(
-                            right: 140, top: 11, left: 0.2),
+
+                            top: 11, left: 0.2),
                         child: Row(
                           children: [
                             Icon(
@@ -890,6 +900,7 @@ Widget buildSettingCard({
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
+                color: Colors.black,
                 fontSize: 22.0,
                 fontWeight: FontWeight.bold,
               ),

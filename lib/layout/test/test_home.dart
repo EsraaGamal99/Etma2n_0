@@ -22,12 +22,12 @@ class TestHome extends StatelessWidget {
                 "الاختبارات النفسية",
               ),
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SingleChildScrollView(
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                 child: Column(
                   children: [
-                    buildCart(
+                    buildTestCart(
                       function: () {
                         cubit.testIndex = 0;
                         cubit.testName = "مقياس الاكتئاب";
@@ -44,7 +44,7 @@ class TestHome extends StatelessWidget {
                     const SizedBox(
                       height: 15.0,
                     ),
-                    buildCart(
+                    buildTestCart(
                       function: () {
                         cubit.testIndex = 1;
                         cubit.testName = "مقياس اضطراب ما بعد الصدمة";
@@ -61,7 +61,7 @@ class TestHome extends StatelessWidget {
                     const SizedBox(
                       height: 15.0,
                     ),
-                    buildCart(
+                    buildTestCart(
                       function: () {
                         cubit.testIndex = 2;
                         cubit.testName = "  مقياس الوسواس القهري";

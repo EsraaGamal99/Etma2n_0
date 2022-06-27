@@ -1,18 +1,16 @@
 import 'package:date_field/date_field.dart';
 import 'package:etma2n/home.dart';
 import 'package:etma2n/login/reg_cubit/cubit.dart';
-import 'package:etma2n/login/reg_cubit/states.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import '../../widgets/components.dart';
 import '../constant/constant.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -38,11 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    return BlocConsumer<RegisterCubit, RegisterStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var cubit = RegisterCubit.get(context);
-          return Directionality(
+    return Directionality(
             textDirection: ui.TextDirection.rtl,
             child: Scaffold(
               backgroundColor: KTherdycolor,
@@ -244,7 +238,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           onPressed: () async {
 
-                            cubit.userRegister(
+                            RegisterCubit.get(context).userRegister(
                               name: namecontroller.text,
                               email: emcontroller.text,
                               phone: phoncontroller.text,
@@ -297,7 +291,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           );
-        });
+        
   }
 
   Widget dateForm() => DateTimeFormField(

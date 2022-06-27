@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () { navigateTo ( context,const RegisterScreen());},
+                      onTap: () { navigateTo ( context, RegisterScreen());},
                       child: const Text(
                         'تسجيل',
                         style: TextStyle(

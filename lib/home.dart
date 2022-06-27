@@ -1,4 +1,5 @@
 import 'package:etma2n/MOVE_ON/move_on_home.dart';
+import 'package:etma2n/Settings/main_setting_page.dart';
 import 'package:etma2n/appointment/menu_doctors.dart';
 import 'package:etma2n/doctor_calender.dart';
 import 'package:etma2n/doctor_schedule/doctor.dart';
@@ -33,23 +34,20 @@ class HomeScreen extends StatelessWidget {
                   Icons.calendar_today_outlined,
                 )),
             IconButton(
-                icon: Icon(
-                  Icons.brightness_4_outlined,
-                ),
-                onPressed: () {
-                  AppCubit.get(context).changeAppMode();
-                }),
-            IconButton(
                 onPressed: () {
                   navigateTo(context, ConsQuestionHome());
                 },
                 icon: const Icon(
                   Icons.help,
                 )),
+            IconButton(
+                onPressed: () {
+                  navigateTo(context, SettingScreen());
+                },
+                icon: const Icon(
+                  Icons.settings,
+                )),
           ],
-          /* title: Text(
-            'الصفحه الرئيسية',
-          ),*/
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),

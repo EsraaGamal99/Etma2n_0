@@ -13,8 +13,9 @@ import 'package:etma2n/login/reg_cubit/cubit.dart';
 import 'package:etma2n/login/screen/login_screen.dart';
 import 'package:etma2n/shared/AppCubit/states.dart';
 import 'package:etma2n/shared/network/local/cache_helper.dart';
-import 'package:etma2n/widgets/sessionaudio.dart';
+//import 'package:etma2n/widgets/sessionaudio.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -88,11 +89,6 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 scaffoldBackgroundColor: Colors.white,
                 primarySwatch: ThemeColor,
-                textTheme: const TextTheme(
-                bodyText1: TextStyle(
-                color: Colors.white,
-                ),
-                ),
                 appBarTheme: AppBarTheme(
                   backgroundColor: Colors.white,
                   iconTheme: IconThemeData(
@@ -112,6 +108,19 @@ class MyApp extends StatelessWidget {
 
                 backgroundColor: Colors.white,
                 primaryColor: secondColor,
+                textTheme: const TextTheme(
+                  headline1: TextStyle(
+                    fontSize: 20.0, fontWeight: FontWeight.bold, color:Colors.black,),
+                  headline6: TextStyle(fontSize: 11.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                  ),
+                  bodyText2: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
               darkTheme: ThemeData(
                 primarySwatch: ThemeColor,
@@ -134,14 +143,26 @@ class MyApp extends StatelessWidget {
                   iconTheme: IconThemeData(
                     color:KSeconedarycolor,
                   ),
-                  textTheme: TextTheme(
-                    bodyText1: TextStyle(
+                  actionsIconTheme: IconThemeData(
+                    color: KSeconedarycolor,
+                  ),
+
+                ),
+                  textTheme: const TextTheme(
+                    headline1: TextStyle(
+                      fontSize: 20.0, fontWeight: FontWeight.bold, color:Colors.white,),
+                    headline6: TextStyle(fontSize: 11.0,
+                    fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
-
+                    bodyText2: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+
+                  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                   backgroundColor: Colors.black54,
                   type: BottomNavigationBarType.fixed,
                   selectedItemColor: KSeconedarycolor,
@@ -152,98 +173,11 @@ class MyApp extends StatelessWidget {
                 floatingActionButtonTheme: const FloatingActionButtonThemeData(
                   backgroundColor: KSeconedarycolor,
                 ),
-                textTheme: const TextTheme(
-                  bodyText1: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
                 backgroundColor: Colors.black54
               ),
               themeMode: AppCubit.get(context).isDark
                   ? ThemeMode.dark
                   : ThemeMode.light,
-              /*color: Colors.deepPurpleAccent,
-              theme: ThemeData(
-                primaryColorLight: Colors.deepPurpleAccent,
-                scaffoldBackgroundColor: Colors.white,
-                appBarTheme: const AppBarTheme(
-                  backwardsCompatibility: false,
-                  systemOverlayStyle: SystemUiOverlayStyle(
-                      statusBarColor: Colors.white,
-                      //systemNavigationBarIconBrightness: ,
-                      statusBarIconBrightness: Brightness.dark),
-                  titleTextStyle: TextStyle(
-                    color: Colors.deepPurpleAccent,
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  backgroundColor: Colors.white,
-                  elevation: 0.0,
-                  iconTheme: IconThemeData(
-                    color: Colors.deepPurpleAccent,
-                  ),
-                ),
-                bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                  backgroundColor: Colors.white,
-                  type: BottomNavigationBarType.fixed,
-                  selectedItemColor: Colors.deepPurpleAccent,
-                  elevation: 15.0,
-                ),
-                primaryColor: Colors.deepPurpleAccent,
-                floatingActionButtonTheme: const FloatingActionButtonThemeData(
-                  backgroundColor: Colors.deepPurpleAccent,
-                ),
-                textTheme: const TextTheme(
-                  bodyText1: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              darkTheme: ThemeData(
-                primaryColorLight: Colors.deepPurpleAccent,
-                scaffoldBackgroundColor: Colors.black54,
-                appBarTheme: const AppBarTheme(
-                  // ignore: deprecated_member_use
-                  backwardsCompatibility: false,
-                  systemOverlayStyle: SystemUiOverlayStyle(
-                      statusBarColor: Colors.black45,
-                      //systemNavigationBarIconBrightness: ,
-                      statusBarIconBrightness: Brightness.light),
-                  titleTextStyle: TextStyle(
-                    color: Colors.deepPurpleAccent,
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  backgroundColor: Colors.black45,
-                  elevation: 0.0,
-                  iconTheme: IconThemeData(
-                    color: Colors.deepPurpleAccent,
-                  ),
-                ),
-                bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                  backgroundColor: Colors.black54,
-                  type: BottomNavigationBarType.fixed,
-                  selectedItemColor: Colors.deepPurpleAccent,
-                  unselectedItemColor: Colors.white60,
-                  elevation: 15.0,
-                ),
-                primaryColor: Colors.deepPurpleAccent,
-                floatingActionButtonTheme: const FloatingActionButtonThemeData(
-                  backgroundColor: Colors.deepPurpleAccent,
-                ),
-                textTheme: const TextTheme(
-                  bodyText1: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              themeMode: AppCubit.get(context).isDark
-                  ? ThemeMode.dark
-                  : ThemeMode.light,*/
               debugShowCheckedModeBanner: false,
               home: const Directionality(
                 textDirection: TextDirection.rtl,

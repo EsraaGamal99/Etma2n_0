@@ -1,5 +1,6 @@
 
 import 'package:etma2n/login/screen/login_screen.dart';
+import 'package:etma2n/shared/AppCubit/cubit.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,22 +26,14 @@ class _SettingScreenState extends State<SettingScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white, //const Color(0xFF5271ff),
           leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             icon: const Icon(Icons.arrow_back_ios),
-            color: KSeconedarycolor,
           ),
           title: const Text(
             'الإعدادات',
-            style: TextStyle(
-              color: KSeconedarycolor, //Colors.white,
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-            ),
           ),
           centerTitle: true,
         ),
@@ -156,7 +149,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 height: 20,
               ),
 
-              //break
+          /*    //break
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -170,9 +163,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     style: TextStyle(fontSize: 15, color: Colors.grey[800]),
                   ),
                 ),
-              ),
+              ),*/
 
-              //favorites
+         /*     //favorites
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Row(
@@ -192,7 +185,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   ],
                 ),
               ),
-
+*/
               // break
               Container(
                 width: double.infinity,
@@ -216,10 +209,9 @@ class _SettingScreenState extends State<SettingScreen> {
                   children: [
                     const Icon(Icons.dark_mode_outlined,size: 30,),
                     const SizedBox(width: 15,),
-                    const Text(
+                    Text(
                       'الوضع المظلم',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      style: Theme.of(context).textTheme.headline1,
                     ),
                     const Spacer(),
                     SizedBox(
@@ -240,6 +232,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         //labels: const ['Off','On'],
                         radiusStyle: true,
                         onToggle: (index) {
+                          AppCubit.get(context).changeAppMode();
                           if (kDebugMode) {
                             print('switched to: $index');
                           }
