@@ -13,7 +13,7 @@ import 'package:etma2n/login/reg_cubit/cubit.dart';
 import 'package:etma2n/login/screen/login_screen.dart';
 import 'package:etma2n/shared/AppCubit/states.dart';
 import 'package:etma2n/shared/network/local/cache_helper.dart';
-import 'package:etma2n/widgets/sessionaudio.dart';
+//import 'package:etma2n/widgets/sessionaudio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
