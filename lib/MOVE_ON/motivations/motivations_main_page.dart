@@ -16,14 +16,10 @@ class MotivationsMainPage extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF5271ff),
+
           title: const Text(
             'جلسات استرخاء',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-            ),
+
           ),
           centerTitle: true,
           actions: [
@@ -34,12 +30,12 @@ class MotivationsMainPage extends StatelessWidget {
               onPressed: () {
                 onPrint();
               },
-              color: Colors.white,
+
             ),
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -155,6 +155,7 @@ class MyApp extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
+                backgroundColor: Colors.black54
               ),
               themeMode: AppCubit.get(context).isDark
                   ? ThemeMode.dark

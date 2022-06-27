@@ -43,7 +43,7 @@ List<MotivationsModel> motivation = [
       7,
       'التعامل مع الأرق',
       '6 جلسات',
-      'assets/images/motivations/moty2.jpg',
+      'assets/images/moty2.jpg',
       Colors.blueGrey[500]!,
       'تعلم تقدير ذاتك وحبها من خلال ألبوم الأرق ', [
     'الجلسه الاولي - المقدمة',
@@ -60,7 +60,7 @@ List<MotivationsModel> motivation = [
       7,
       'التعامل مع القلق والتوتر',
       '6 جلسات',
-      'assets/images/motivations/moty3.jpg',
+      'assets/images/moty3.jpg',
       Colors.blueGrey[800]!,
       'تعلم تقدير ذاتك وحبها من ألبوم القلق والتوتر', [
     'الجلسه الاولي - المقدمة',
@@ -77,7 +77,7 @@ List<MotivationsModel> motivation = [
       7,
       'التعامل مع الضغط',
       '6 جلسات',
-      'assets/images/motivations/moty4.jpg',
+      'assets/images/moty4.jpg',
       Colors.deepPurple[200]!,
       'تعلم تقدير ذاتك وحبها من ألبوم الضغط', [
     'الجلسه الاولي - المقدمة',
@@ -94,7 +94,7 @@ List<MotivationsModel> motivation = [
       7,
       'الإمتنان',
       '6 جلسات',
-      'assets/images/motivations/moty5.jpg',
+      'assets/images/moty5.jpg',
       Colors.indigo[200]!,
       'تعلم تقدير ذاتك وحبها من ألبوم الإمتنان  ', [
     'الجلسه الاولي - المقدمة',
@@ -111,7 +111,7 @@ List<MotivationsModel> motivation = [
       7,
       'التعامل مع الاكتئاب',
       '6 جلسات',
-      'assets/images/motivations/moty6.jpg',
+      'assets/images/moty6.jpg',
       Colors.brown[700]!,
       'تعلم تقدير ذاتك وحبها من ألبوم الاكتئاب ', [
     'الجلسه الاولي - المقدمة',
@@ -141,21 +141,21 @@ List<SessionModel> session = [
   SessionModel('https://youtu.be/V00-Roort6o','الجلسه الاولي - المقدمة'),
 
   //2
-  SessionModel('assets/moty_mp3/mot2.mp3', 'الجلسة الثانية'),
+  SessionModel('moty_mp3/mot2.mp3', 'الجلسة الثانية'),
 
   //3
-  SessionModel('assets/moty_mp3/mot3.mp3', 'الجلسة الثالثة'),
+  SessionModel('moty_mp3/mot3.mp3', 'الجلسة الثالثة'),
 
   //4
-  SessionModel('assets/moty_mp3/mot1.mp3', 'الجلسة الرابعة'),
+  SessionModel('moty_mp3/mot1.mp3', 'الجلسة الرابعة'),
 
   //5
-  SessionModel('assets/moty_mp3/mot2.mp3', 'الجلسة الخامسة'),
+  SessionModel('moty_mp3/mot2.mp3', 'الجلسة الخامسة'),
 
   //6
-  SessionModel('assets/moty_mp3/mot3.mp3', 'الجلسة السادسة'),
+  SessionModel('moty_mp3/mot3.mp3', 'الجلسة السادسة'),
 
   //7
-  SessionModel('assets/moty_mp3/mot1.mp3', 'الجلسة السابعة'),
+  SessionModel('moty_mp3/mot1.mp3', 'الجلسة السابعة'),
 
 ];

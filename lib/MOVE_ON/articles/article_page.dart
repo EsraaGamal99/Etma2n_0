@@ -63,7 +63,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         child: Row(children: [
                           CircleAvatar(
                             radius: 30.0,
-                            backgroundImage: AssetImage(
+                            backgroundImage: NetworkImage(
                                 article[widget.artindex].writerimage),
                           ),
                           const SizedBox(
