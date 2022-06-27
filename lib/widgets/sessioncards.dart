@@ -1,8 +1,11 @@
-//import 'package:audioplayers/audio_cache.dart';
-//import 'package:audioplayer/audioplayer.dart';
-
 import 'package:flutter/material.dart';
 import 'components.dart';
+import 'dart:io';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:etma2n/models/motivation_models.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+
 
 class SessionCard extends StatefulWidget {
   //static String id = 'SessionCard';
@@ -19,6 +22,7 @@ class SessionCard extends StatefulWidget {
   _SessionCardState createState() => _SessionCardState();
 }
 
+
 //AnimationController? _animationIconController1;
 bool issongplaying = false;
 bool isplaying = false;
@@ -28,31 +32,59 @@ bool isPlay = false;
 
 class _SessionCardState extends State<SessionCard>
     with TickerProviderStateMixin {
-  final Duration _duration = const Duration();
-  final Duration _position = const Duration();
-  //AudioPlayer? advancedPlayer;
-  //AudioCache? audioCache;
-  //AudioPlayer? audioPlayer;
+
+  final audioPlayer = AudioPlayer();
+  bool isPlaying=false;
+  Duration duration=Duration.zero;
+  Duration position=Duration.zero;
+
 
   @override
   void initState() {
     super.initState();
-    initPlayer();
+
+    // listen to states (playing , paused , stopped )
+    audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == PlayerState.playing;
+      });
+    });
+
+    // listen to audio duration
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration=newDuration;
+      });
+    });
+
+    // listen to audio position
+    audioPlayer.onPositionChanged.listen((newPosition) {
+      setState(() {
+        position=newPosition;
+      });
+    });
+
   }
 
-  void initPlayer() {
-    //advancedPlayer = AudioPlayer();
-    //audioCache = AudioCache(fixedPlayer: advancedPlayer);
+  Future setAudio() async{
+    //Repeat audio when finished
+    audioPlayer.setReleaseMode(ReleaseMode.loop);
 
-//    advancedPlayer!.durationHandler = (d) => setState(() {_duration = d;});
+    //load audio from file
+    final result = await FilePicker.platform.pickFiles();
 
-//    advancedPlayer!.positionHandler = (p) => setState(() {_position = p;});
-
+    if (result !=null) {
+      final file =File('moty_mp3/mot2.mp3');
+      audioPlayer.setSourceUrl(file.path);
+    }
   }
 
-  late String localFilePath;
+  @override
+  void dispose() {
+    audioPlayer.dispose();
 
-//  void seekToSecond(int second) {Duration newDuration = Duration(seconds: second);advancedPlayer!.seek(newDuration);}
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -30,6 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passcontroller = TextEditingController();
   //late String email, password;
   bool isPassword= true;
+  static const values = <String> [ 'مستخدم','طبيب'];
+  String selectedValue = values.first;
+  final selectedColor = KSeconedarycolor;
+  final unselectedColor = Colors.blueGrey;
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +115,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
+                SizedBox(height: height * .018),
+
+                //user or doctor
+                buildRadios(),
+
+
                 SizedBox(height: height * .05),
 
                 //forget password
@@ -161,4 +171,31 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+
+
+  Widget buildRadios() => Row(
+    children: values.map(
+          ( value) {
+        return RadioListTile<String>(
+            value: value,
+            groupValue: selectedValue,
+            title: Row(
+              children: [
+                Text(value,style: const TextStyle(color: KSeconedarycolor,fontWeight: FontWeight.bold),),
+              ],
+            ),
+            activeColor: selectedColor,
+            onChanged: (value) {
+              setState(() {
+                selectedValue = value!;
+                if(selectedValue=='طبيب') {
+                  isDoctor=! isDoctor;
+                }
+              });
+            }
+        );
+      },
+    ).toList(),
+  );
 }

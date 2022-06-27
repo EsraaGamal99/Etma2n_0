@@ -113,7 +113,7 @@ class DoctorProfile extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            '${doctor[docindex].docabout} ${doctor[docindex].docabout} ${doctor[docindex].docabout} ${doctor[docindex].docabout} ${doctor[docindex].docabout}',
+                            doctor[docindex].docPio,
                             style: const TextStyle(
                               //backgroundColor: Colors.grey[200],
                                 fontSize: 18,
