@@ -4,6 +4,7 @@ import 'package:flutter_pdfview/flutter_pdfview.dart';
 //import 'package:path/path.dart';
 
 import '../../models/books_models.dart';
+import '../../widgets/constant.dart';
 
 class BookViewerPage extends StatefulWidget {
   final File file;
@@ -30,15 +31,10 @@ class _BookViewerPageState extends State<BookViewerPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF5271ff),
           title: Center(
             child: Text(
               book[widget.bookindex].bkname,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20.0,
-                fontWeight: FontWeight.w600,
-              ),
+
             ),
           ),
           actions: pages >= 1
@@ -49,7 +45,7 @@ class _BookViewerPageState extends State<BookViewerPage> {
                         child: Text(
                       text,
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: KSeconedarycolor,
                         fontSize: 16.0,
                         fontWeight: FontWeight.w500,
                       ),

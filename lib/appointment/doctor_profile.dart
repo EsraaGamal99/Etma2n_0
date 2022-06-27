@@ -71,9 +71,10 @@ class DoctorProfile extends StatelessWidget {
                   //rate
                   Row(
                     children: [
+                      Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(
-                            right: 240, top: 11, left: 5),
+                             top: 11, left: 5),
                         child: Row(
                           children: [
                             Icon(
@@ -113,12 +114,8 @@ class DoctorProfile extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            doctor[docindex].docPio,
-                            style: const TextStyle(
-                              //backgroundColor: Colors.grey[200],
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black),
+                            '${doctor[docindex].docabout}',
+                            style: Theme.of(context).textTheme.bodyText2,
                             maxLines: 5,
                           ),
                         ),
@@ -165,15 +162,11 @@ class DoctorProfile extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
+                        children: [
                           Center(
                             child: Text(
                               'التخصصات الدقيقة',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                              ),
+                              style: Theme.of(context).textTheme.headline1,
                             ),
                           ),
                         ],
@@ -299,11 +292,7 @@ class DoctorProfile extends StatelessWidget {
                           Center(
                             child: Text(
                               'التقيمات :  ''${doctor[docindex].fusername.length}',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                              ),
+                              style: Theme.of(context).textTheme.headline1,
                             ),
                           ),
                         ],
@@ -330,7 +319,7 @@ class DoctorProfile extends StatelessWidget {
         bottomNavigationBar: Container(
           padding: const EdgeInsets.only(right: 15, left: 8, bottom: 5, top: 5),
           decoration: BoxDecoration(
-            color: Colors.grey[100],
+           // color: Colors.grey[100],
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(

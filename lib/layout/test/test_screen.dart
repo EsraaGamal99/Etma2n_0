@@ -41,6 +41,7 @@ class QuizScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          SizedBox(height: 30.0),
                           SizedBox(
                             width: double.infinity,
                             child: Text(
@@ -79,7 +80,7 @@ class QuizScreen extends StatelessWidget {
                               margin: const EdgeInsets.only(bottom: 15.0),
                               child: MaterialButton(
                                 shape: const StadiumBorder(),
-                                color: secondColor,
+                                color: Colors.white54,
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 15.0),
                                 //هنا بعد ما يجاوب بيشوف انا واقفة فين لو لسه فيه اسئلة بيكمل ولو وصلت لاخر سؤال بيعرض النتيجة
@@ -105,7 +106,7 @@ class QuizScreen extends StatelessWidget {
                                 child: Text(
                                   test[index].answer!.keys.toList()[i],
                                   style: const TextStyle(
-                                    color: Colors.white70,
+                                    color: Color(0xff0f1954),
                                   ),
                                 ),
                               ),

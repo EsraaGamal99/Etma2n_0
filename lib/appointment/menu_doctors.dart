@@ -16,27 +16,19 @@ class MenuDoctors extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white,
           title: const Center(
             child: Text(
               'اختر طبيبك',
-              style: TextStyle(
-                color: KSeconedarycolor,
-                fontSize: 25.0,
-                fontWeight: FontWeight.w600,
-              ),
             ),
           ),
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.menu,
+                Icons.settings,
               ),
               onPressed: () {
                 navigateTo(context, const SettingScreen());
               },
-              color: KSeconedarycolor,
             ),
           ],
         ),
@@ -47,40 +39,6 @@ class MenuDoctors extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //البحث
-                  GestureDetector(
-                    onTap: () {
-                      print('search now');
-                      },
-                    child: Container(
-                      decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Colors.white, Colors.grey],
-                      begin: Alignment.topLeft,
-                      end: Alignment.topRight,
-                    ),
-                    borderRadius: BorderRadius.circular(
-                      15.0,
-                    ),
-                  ),
-                      padding: const EdgeInsets.all(8.0,),
-                      child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Icon(
-                        Icons.search,
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Text(
-                        '  بحث  ',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-                  const SizedBox(height: 15.0,),
                   Container(
                 decoration: BoxDecoration(
                   color: Colors.grey[400],

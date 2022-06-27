@@ -21,7 +21,7 @@ class MoveonHomePage extends StatelessWidget {
         appBar: AppBar(
 
           title: const Text(
-            'Move ON',
+            'الدعم النفسي',
 
           ),
           centerTitle: true,

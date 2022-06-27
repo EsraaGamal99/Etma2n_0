@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:etma2n/layout/consultation/cons_home.dart';
+import 'package:etma2n/models/doctors_model.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,14 +19,12 @@ class _AddNewConsState extends State<AddNewCons> {
     Color mainColor = const Color(0xffa9c1f7);
     Color secondColor = const Color(0xff576dca);
     //doctors name
-    List<String> items = [
-      'Dr1',
-      'Dr2',
-      'Dr3',
-      'Dr4',
-      'Dr5',
-    ];
-    String? selectedDoctor = "Dr1";
+    List<String> items = [];
+    for(int i=0;i< doctor.length;i++){
+      items.add(doctor[i].docname);
+    }
+
+    String? selectedDoctor = items[0];
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -54,17 +53,25 @@ class _AddNewConsState extends State<AddNewCons> {
                             )),
                         child: DropdownButton<String>(
                           isExpanded: true,
-                          value: selectedDoctor,
+
                           onChanged: (String? newValue) {
+
                             setState(() {
                               selectedDoctor = newValue!;
                             });
+                            print(selectedDoctor);
                           },
+                          value: selectedDoctor,
                           items: items
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
-                              child: Text(value),
+                              child: Text(value,
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.white54
+                              ),
+                              ),
                             );
                           }).toList(),
                         ),
@@ -73,6 +80,7 @@ class _AddNewConsState extends State<AddNewCons> {
                         height: 30.0,
                       ),
                       defaultFormField(
+                        context,
                         controller: newConsController,
                         type: TextInputType.text,
                         validate: (String value) {

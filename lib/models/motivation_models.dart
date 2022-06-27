@@ -26,7 +26,7 @@ List<MotivationsModel> motivation = [
       7,
       'حب الذات',
       '6 جلسات',
-      'assets/images/motivations/moty1.jpg',
+      'assets/images/moty1.jpg',
       Colors.brown[200]!,
       'تعلم تقدير ذاتك وحبها من خلال ألبوم حب الذات', [
     'الجلسه الاولي - المقدمة',
