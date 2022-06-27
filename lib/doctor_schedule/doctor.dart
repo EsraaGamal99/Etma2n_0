@@ -85,7 +85,7 @@ class _DoctorState extends State<Doctor> {
                                           children: [
                                             MaterialButton(
                                               child: const Text(
-                                                "Start Date",
+                                                "من",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -109,7 +109,7 @@ class _DoctorState extends State<Doctor> {
                                             ),
                                             MaterialButton(
                                               child: const Text(
-                                                "End Date",
+                                                "الى",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -140,7 +140,7 @@ class _DoctorState extends State<Doctor> {
                                             children: [
                                               MaterialButton(
                                                 child: const Text(
-                                                  "Start Date",
+                                                  "من",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -164,7 +164,7 @@ class _DoctorState extends State<Doctor> {
                                               ),
                                               MaterialButton(
                                                 child: const Text(
-                                                  "End Date",
+                                                  "الى",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -259,7 +259,7 @@ class _DoctorState extends State<Doctor> {
                                           children: [
                                             MaterialButton(
                                               child: const Text(
-                                                "Start Date",
+                                                "من",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -283,7 +283,7 @@ class _DoctorState extends State<Doctor> {
                                             ),
                                             MaterialButton(
                                               child: const Text(
-                                                "End Date",
+                                                "الى",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -314,7 +314,7 @@ class _DoctorState extends State<Doctor> {
                                             children: [
                                               MaterialButton(
                                                 child: const Text(
-                                                  "Start Date",
+                                                  "من",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -338,7 +338,7 @@ class _DoctorState extends State<Doctor> {
                                               ),
                                               MaterialButton(
                                                 child: const Text(
-                                                  "End Date",
+                                                  "الى",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -407,7 +407,7 @@ class _DoctorState extends State<Doctor> {
                       height: 20.0,
                     ),
                     Buidsch(
-                      day: '  لاثنين',
+                      day: 'الاثنين',
                       icon: cubit.fab,
                       OnPress: () {
                         {
@@ -433,7 +433,7 @@ class _DoctorState extends State<Doctor> {
                                           children: [
                                             MaterialButton(
                                               child: const Text(
-                                                "Start Date",
+                                                "من",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -457,7 +457,7 @@ class _DoctorState extends State<Doctor> {
                                             ),
                                             MaterialButton(
                                               child: const Text(
-                                                "End Date",
+                                                "الى",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -488,7 +488,7 @@ class _DoctorState extends State<Doctor> {
                                             children: [
                                               MaterialButton(
                                                 child: const Text(
-                                                  "Start Date",
+                                                  "من",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -512,7 +512,7 @@ class _DoctorState extends State<Doctor> {
                                               ),
                                               MaterialButton(
                                                 child: const Text(
-                                                  "End Date",
+                                                  "الى",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -607,7 +607,7 @@ class _DoctorState extends State<Doctor> {
                                           children: [
                                             MaterialButton(
                                               child: const Text(
-                                                "Start Date",
+                                                "من",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -631,7 +631,7 @@ class _DoctorState extends State<Doctor> {
                                             ),
                                             MaterialButton(
                                               child: const Text(
-                                                "End Date",
+                                                "الى",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -662,7 +662,7 @@ class _DoctorState extends State<Doctor> {
                                             children: [
                                               MaterialButton(
                                                 child: const Text(
-                                                  "Start Date",
+                                                  "من",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -686,7 +686,7 @@ class _DoctorState extends State<Doctor> {
                                               ),
                                               MaterialButton(
                                                 child: const Text(
-                                                  "End Date",
+                                                  "الى",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -780,7 +780,7 @@ class _DoctorState extends State<Doctor> {
                                           children: [
                                             MaterialButton(
                                               child: const Text(
-                                                "Start Date",
+                                                "من",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -804,7 +804,7 @@ class _DoctorState extends State<Doctor> {
                                             ),
                                             MaterialButton(
                                               child: const Text(
-                                                "End Date",
+                                                "الى",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -835,7 +835,7 @@ class _DoctorState extends State<Doctor> {
                                             children: [
                                               MaterialButton(
                                                 child: const Text(
-                                                  "Start Date",
+                                                  "من",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -859,7 +859,7 @@ class _DoctorState extends State<Doctor> {
                                               ),
                                               MaterialButton(
                                                 child: const Text(
-                                                  "End Date",
+                                                  "الى",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -953,7 +953,7 @@ class _DoctorState extends State<Doctor> {
                                           children: [
                                             MaterialButton(
                                               child: const Text(
-                                                "Start Date",
+                                                "من",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -977,7 +977,7 @@ class _DoctorState extends State<Doctor> {
                                             ),
                                             MaterialButton(
                                               child: const Text(
-                                                "End Date",
+                                                "الى",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -1008,7 +1008,7 @@ class _DoctorState extends State<Doctor> {
                                             children: [
                                               MaterialButton(
                                                 child: const Text(
-                                                  "Start Date",
+                                                  "من",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -1032,7 +1032,7 @@ class _DoctorState extends State<Doctor> {
                                               ),
                                               MaterialButton(
                                                 child: const Text(
-                                                  "End Date",
+                                                  "الى",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -1127,7 +1127,7 @@ class _DoctorState extends State<Doctor> {
                                           children: [
                                             MaterialButton(
                                               child: const Text(
-                                                "Start Date",
+                                                "من",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -1151,7 +1151,7 @@ class _DoctorState extends State<Doctor> {
                                             ),
                                             MaterialButton(
                                               child: const Text(
-                                                "End Date",
+                                                "الى",
                                                 style: TextStyle(
                                                     color: Colors.white),
                                               ),
@@ -1182,7 +1182,7 @@ class _DoctorState extends State<Doctor> {
                                             children: [
                                               MaterialButton(
                                                 child: const Text(
-                                                  "Start Date",
+                                                  "من",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -1206,7 +1206,7 @@ class _DoctorState extends State<Doctor> {
                                               ),
                                               MaterialButton(
                                                 child: const Text(
-                                                  "End Date",
+                                                  "الى",
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),

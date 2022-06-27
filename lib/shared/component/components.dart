@@ -564,7 +564,77 @@ Widget buildhomeCart({
 
 
 
+Widget homeCard ({
+  required Function() onClick,
+  String? FunctionName,
+  String? Description,
+  required ImageProvider image1,
+}) =>
+    GestureDetector(
+      onTap: onClick,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Card(
+          clipBehavior: Clip.antiAlias,
+          shadowColor: const Color(0xFF5271f0),
+          elevation: 3.5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Container(
+            width: double.infinity,
+            height: 200,
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                //article
+                Expanded(
+                  child: Column(
+                   // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
 
+                      Center(
+                        child: Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Image(
+                              image: image1,
+                             height: 66,
+                              width: 66,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 15.0,),
+                      Text(
+                        FunctionName!,
+
+                        style: const TextStyle(
+                          color: KSeconedarycolor,
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 15.0,),
+                      Text(
+                        Description!,
+
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
 
 Widget Buidsch({
   required String day,

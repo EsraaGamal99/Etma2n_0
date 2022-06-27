@@ -18,7 +18,6 @@ class TestHome extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.white,
               title: const Text(
                 "الاختبارات النفسية",
               ),

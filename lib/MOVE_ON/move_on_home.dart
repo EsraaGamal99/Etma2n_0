@@ -19,14 +19,10 @@ class MoveonHomePage extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF5271ff),
+
           title: const Text(
             'Move ON',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-            ),
+
           ),
           centerTitle: true,
           actions: [
@@ -37,13 +33,15 @@ class MoveonHomePage extends StatelessWidget {
               onPressed: () {
                 print('setting opened');
               },
-              color: Colors.white,
+
             ),
           ],
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 35, right: 5, left: 5),
+            padding: const EdgeInsets.only(
+                //top: 35,
+                right: 5, left: 5),
             child: Center(
               child: Column(
                 children: [

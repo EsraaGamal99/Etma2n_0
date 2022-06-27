@@ -41,6 +41,18 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
   late String EndDate;
   late String StartDate2;
   late String EndDate2;
+  late int index;
+  List<String> SelectedDates =[];
+  List<String> SelectedDatessun =[];
+  List<String> SelectedDatesmon =[];
+  List<String> SelectedDatestue =[];
+  List<String> SelectedDateswed =[];
+  List<String> SelectedDatesthu =[];
+  List<String> SelectedDatesfri =[];
+  List<String> SelectedDatessat =[];
+  List<String> SelectedDates2 =[];
+  List<String> XDates2 =[];
+  List<String> MainDates = DatesConstant;
 
   Widget defultAlertDialog({
     required List<String> dates,
@@ -84,7 +96,6 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
                         } else {
                           start1 = i +1 ;
                         }
-
                         print(StartDate);
                         print(start1);
                       }
@@ -126,20 +137,8 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
           ),
         ),
       );
-   late int index;
-   List<String> SelectedDates =[];
-   List<String> SelectedDatessun =[];
-   List<String> SelectedDatesmon =[];
-   List<String> SelectedDatestue =[];
-   List<String> SelectedDateswed =[];
-   List<String> SelectedDatesthu =[];
-   List<String> SelectedDatesfri =[];
-   List<String> SelectedDatessat =[];
-   List<String> SelectedDates2 =[];
-   List<String> XDates2 =[];
-   List<String> MainDates = DatesConstant;
+
   void checkDoctor(String day) {
-    //SelectedDates.add(StartDate);
     if(isPress==false){
       isPress= true;
       print(SelectedDates);
@@ -151,7 +150,6 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
     print(SelectedDates);
     print(SelectedDates);
     index = SelectedDates.length;
-
     }
     else{
       SelectedDates2 = XDates2.getRange(start2, end2-1).toList();
@@ -159,13 +157,10 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
       SelectedDates.add(StartDate2);
       SelectedDates.addAll(SelectedDates2);
       SelectedDates.add(EndDate2);
-     // SelectedDates.insert (index,StartDate2);
       print(SelectedDates);
       print(SelectedDates);
-
     }
     if(day=='sat'){
-
       SelectedDatessat = SelectedDates;
       SaveData('sat',SelectedDatessat );
     }

@@ -4,7 +4,7 @@ List <BooksModel> book = [
   BooksModel('لا بطعم الفلامنكو',
     'https://www.arab-books.com/wp-content/uploads/2020/04/%D9%84%D8%A3-%D8%A8%D8%B7%D8%B9%D9%85-%D8%A7%D9%84%D9%81%D9%84%D8%A7%D9%85%D9%86%D9%83%D9%88-PDF.jpg',
     "كتاب عن الصحه النفسيه لدكتور محمد طه واحد من اهم واكبر الدكاتر النفسيين ف مصر",
-  'د . محمد طه','assets/books_pdf/book1.pdf',),
+  'د . محمد طه','books_pdf/book1.pdf',),
 
   //2
   BooksModel(
