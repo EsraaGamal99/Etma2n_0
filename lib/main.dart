@@ -19,7 +19,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async  {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); //علشان نتأكد ان حصل Intialize
+                                            // قبل م ن RUN البروجيكت
   await Firebase.initializeApp(
    options: DefaultFirebaseOptions.currentPlatform,
   );
