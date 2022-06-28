@@ -1,8 +1,11 @@
 import 'package:etma2n/home.dart';
+import 'package:etma2n/login/login_cubit/cubit.dart';
+import 'package:etma2n/login/login_cubit/states.dart';
 import 'package:etma2n/login/screen/forgetting_password.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:etma2n/widgets/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 import '../../shared/styles/colors.dart';
@@ -28,6 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    return BlocConsumer<LoginCubit, LoginStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = LoginCubit.get(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -43,18 +50,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: height * .045),
 
-               //الايميل
-               defaultFormField1 (
-                   controller: emcontroller,
-                   type: TextInputType.emailAddress,
-                   validate: (value)
-                   {
-                     if(value.isEmpty)
-                     {
-                       return 'البريد غير صحيح';}
-                     },
-                   label: 'البريد',
-                   prefix: Icons.email_outlined),
+                //الايميل
+                defaultFormField1 (
+                    controller: emcontroller,
+                    type: TextInputType.emailAddress,
+                    validate: (value)
+                    {
+                      if(value.isEmpty)
+                      {
+                        return 'البريد غير صحيح';}
+                    },
+                    label: 'البريد',
+                    prefix: Icons.email_outlined),
 
 
                 SizedBox(height: height * .015),
@@ -64,14 +71,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: passcontroller,
                   label: 'كلمة السر',
                   prefix: Icons.lock,
-                  suffix: isPassword ? Icons.visibility : Icons.visibility_off,
-                  isPassword: isPassword,
+                  suffix: cubit.suffix,
+                  isPassword: cubit.isPassword,
                   suffixPressed: ()
                   {
-                    setState(()
-                    {
-                      isPassword = !isPassword;
-                    });
+                  cubit.changePasswordVisibility();
                   },
                   type: TextInputType.visiblePassword,
                   validate: (String value)
@@ -154,6 +158,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-    );
+    );});
   }
 }

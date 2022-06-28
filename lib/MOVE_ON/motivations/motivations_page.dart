@@ -46,7 +46,7 @@ class _MotivationPageState extends State<MotivationPage> {
                   Column(
                     children: <Widget>[
                       Container(
-                        height: 300,
+                         height: 300,
                         width: width1,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
