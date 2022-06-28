@@ -1,4 +1,5 @@
 import 'package:etma2n/doc.dart';
+import 'package:etma2n/doctor_schedule/DaysOfSCh.dart';
 import 'package:etma2n/login/constant/constant.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:etma2n/shared/component/constants.dart';
@@ -45,7 +46,7 @@ class _DoctorState extends State<Doctor> {
               actions: [
                 IconButton(
                     onPressed: () {
-                      navigateTo(context, doc());
+                      navigateTo(context, Days());
                     },
                     icon: const Icon(
                       Icons.add,
@@ -219,13 +220,9 @@ class _DoctorState extends State<Doctor> {
                                 elevation: 20.0,
                               )
                               .closed
-                              .then((value) {
-                            cubit.changeBottomSheet(
-                                isShow: false, icon: Icons.add);
-                          });
+                              .then((value) {});
 
-                          cubit.changeBottomSheet(
-                              isShow: true, icon: Icons.edit);
+
                         }
                       },
                     ),
@@ -394,12 +391,12 @@ class _DoctorState extends State<Doctor> {
                               )
                               .closed
                               .then((value) {
-                            cubit.changeBottomSheet(
-                                isShow: false, icon: Icons.add);
+                            // cubit.changeBottomSheet(
+                            //     isShow: false, icon: Icons.add);
                           });
 
-                          cubit.changeBottomSheet(
-                              isShow: true, icon: Icons.edit);
+                          // cubit.changeBottomSheet(
+                          //     isShow: true, icon: Icons.edit);
                         }
                       },
                     ),
@@ -568,12 +565,12 @@ class _DoctorState extends State<Doctor> {
                               )
                               .closed
                               .then((value) {
-                            cubit.changeBottomSheet(
-                                isShow: false, icon: Icons.add);
+                            // cubit.changeBottomSheet(
+                            //     isShow: false, icon: Icons.add);
                           });
 
-                          cubit.changeBottomSheet(
-                              isShow: true, icon: Icons.edit);
+                          // cubit.changeBottomSheet(
+                          //     isShow: true, icon: Icons.edit);
                         }
                       },
                     ),
@@ -741,12 +738,12 @@ class _DoctorState extends State<Doctor> {
                               )
                               .closed
                               .then((value) {
-                            cubit.changeBottomSheet(
-                                isShow: false, icon: Icons.add);
+                            // cubit.changeBottomSheet(
+                            //     isShow: false, icon: Icons.add);
                           });
 
-                          cubit.changeBottomSheet(
-                              isShow: true, icon: Icons.edit);
+                          // cubit.changeBottomSheet(
+                          //     isShow: true, icon: Icons.edit);
                         }
                       },
                     ),
@@ -914,12 +911,12 @@ class _DoctorState extends State<Doctor> {
                               )
                               .closed
                               .then((value) {
-                            cubit.changeBottomSheet(
-                                isShow: false, icon: Icons.add);
+                            // cubit.changeBottomSheet(
+                            //     isShow: false, icon: Icons.add);
                           });
 
-                          cubit.changeBottomSheet(
-                              isShow: true, icon: Icons.edit);
+                          // cubit.changeBottomSheet(
+                          //     isShow: true, icon: Icons.edit);
                         }
                       },
                     ),
@@ -1088,12 +1085,12 @@ class _DoctorState extends State<Doctor> {
                               )
                               .closed
                               .then((value) {
-                            cubit.changeBottomSheet(
-                                isShow: false, icon: Icons.add);
+                            // cubit.changeBottomSheet(
+                            //     isShow: false, icon: Icons.add);
                           });
 
-                          cubit.changeBottomSheet(
-                              isShow: true, icon: Icons.edit);
+                          // cubit.changeBottomSheet(
+                          //     isShow: true, icon: Icons.edit);
                         }
                       },
                     ),
@@ -1261,12 +1258,12 @@ class _DoctorState extends State<Doctor> {
                               )
                               .closed
                               .then((value) {
-                            cubit.changeBottomSheet(
-                                isShow: false, icon: Icons.add);
+                            // cubit.changeBottomSheet(
+                            //     isShow: false, icon: Icons.add);
                           });
 
-                          cubit.changeBottomSheet(
-                              isShow: true, icon: Icons.edit);
+                          // cubit.changeBottomSheet(
+                          //     isShow: true, icon: Icons.edit);
                         }
                       },
                     ),

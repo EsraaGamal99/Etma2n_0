@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            IconButton(
+          /*  IconButton(
                 onPressed: () {
                   navigateTo(context, Doctor());
                 },
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 },
                 icon: const Icon(
                   Icons.help,
-                )),
+                )),*/
             IconButton(
                 onPressed: () {
                   navigateTo(context, SettingScreen());

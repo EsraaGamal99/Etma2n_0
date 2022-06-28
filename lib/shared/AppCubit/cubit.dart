@@ -12,7 +12,8 @@ class AppCubit extends Cubit<AppStates> {
 
   var TextColor = TextLColor;
 
-  bool isDark = false;
+  bool isDark = true;
+  bool isDoc = false;
 
   void changeAppMode({bool? fromShared})
   {

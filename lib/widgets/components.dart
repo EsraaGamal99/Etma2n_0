@@ -172,7 +172,7 @@ Widget articleCard({
   String? hour,
   String? thearticle,
   Function()? onTop,
-  bool? isFav,
+  //bool? isFav,
   bool? isColor,
 }) =>
     GestureDetector(
@@ -229,15 +229,15 @@ Widget articleCard({
                         ),
                       ]),
                     ),
-                    IconButton(
-                        iconSize: 30,
-                        color: isColor != true ? Colors.black45 : Colors.red,
-                        icon: Icon(
-                          isFav != true
-                              ? Icons.favorite_border_rounded
-                              : Icons.favorite,
-                        ),
-                        onPressed: onClick),
+                   // IconButton(
+                   //      iconSize: 30,
+                   //      color: isColor != true ? Colors.black45 : Colors.red,
+                   //      icon: Icon(
+                   //        isFav != true
+                   //            ? Icons.favorite_border_rounded
+                   //            : Icons.favorite,
+                   //      ),
+                   //      onPressed: onClick),
                   ],
                 ),
 
@@ -871,50 +871,51 @@ Widget customImageField({
 }
 
 Widget buildSettingCard({
-  //required Function() onClick,
   required String title,
   required IconData icon,
+  required Function() onClick,
 }) =>
-    Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Material(
-        elevation: 5,
-        color: KTherdycolor,
-        shadowColor: KSeconedarycolor,
-        borderRadius: BorderRadius.circular(20),
-        clipBehavior: Clip.antiAlias,
-        child: Row(
-          children: [
-            const SizedBox(
-              width: 10.0,
-            ),
-            Icon(
-              icon,
-              size: 35,
-            ),
-            const SizedBox(
-              width: 15.0,
-            ),
-            Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
+    GestureDetector(
+      onTap: onClick,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Material(
+          elevation: 5,
+          color: KTherdycolor,
+          shadowColor: KSeconedarycolor,
+          borderRadius: BorderRadius.circular(20),
+          clipBehavior: Clip.antiAlias,
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 10.0,
               ),
-            ),
-            const Spacer(),
+              Icon(
+                icon,
+                size: 35,
+              ),
+              const SizedBox(
+                width: 15.0,
+              ),
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Spacer(),
               const Icon(
                 Icons.arrow_forward_ios,
               ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-
-
 /*Widget defaultDateFormField({
   required TextEditingController controller,
   required TextInputType type,

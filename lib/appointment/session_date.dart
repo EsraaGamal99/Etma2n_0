@@ -1,3 +1,5 @@
+import 'package:etma2n/NoTimes.dart';
+import 'package:etma2n/doctor_schedule/cubit/cubit.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,14 +28,14 @@ class SessionDate extends StatefulWidget {
 class _SessionDateState extends State<SessionDate> {
   @override
   Widget build(BuildContext context) {
-    List<String> sessiondates1 = ['1 يوليو','2 يوليو','3 يوليو','4 يوليو','6 يوليو','7 يوليو','9 يوليو','10 يوليو','12 يوليو','13 يوليو','15 يوليو'];
-    List<String> sessiondates2 = ['16 يوليو','17 يوليو','18 يوليو','20 يوليو','21 يوليو','22 يوليو','23 يوليو','25 يوليو','27 يوليو','28 يوليو','29 يوليو',];
+    List<String> sessiondates1 = ['1 يوليو','2 يوليو','3 يوليو','4 يوليو','6 يوليو','7 يوليو','9 يوليو'];
+
+    // List<String> sessiondates2 = ['16 يوليو','17 يوليو','18 يوليو','20 يوليو','21 يوليو','22 يوليو','23 يوليو','25 يوليو','27 يوليو','28 يوليو','29 يوليو',];
     late String selectedDate='1 يوليو';
 
     //var color1=Colors.grey[300];
     bool pressAttention=false;
-
-
+    late List<String> Times;
     return Directionality(
       textDirection: ui.TextDirection.rtl,
       child: Scaffold(
@@ -57,125 +59,90 @@ class _SessionDateState extends State<SessionDate> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment:
+                CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment:
-                      CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ListView.separated(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder:
-                              (BuildContext context, int index) =>
-                              MaterialButton(
-                                onPressed: () {
-                                  //navigateTo(context, SessionTime(docindex: widget.docindex, selectedDuration: widget.selectedDuration, selectedDate: selectedDate, price: widget.price, times: widget.times, result: widget.result));
-                                  selectedDate=sessiondates2[index];
-                                  if (kDebugMode) {
-                                    print(selectedDate);
-                                  }
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: GestureDetector(
-                                    onTap: (){
-                                      navigateTo(context, SessionTime(docindex: widget.docindex, selectedDuration: widget.selectedDuration, selectedDate: selectedDate, price: widget.price, times: widget.times, result: widget.result));
-                                      setState(() => pressAttention = !pressAttention);
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        color: pressAttention==false? Colors.grey[300] : Colors.green,
-                                        borderRadius:
-                                        BorderRadius.circular(15),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          sessiondates1[index],
-                                          style: const TextStyle(
-                                            color: Colors.indigoAccent,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder:
+                        (BuildContext context, int index) =>
+                        MaterialButton(
+                          onPressed: () {
+                            //navigateTo(context, SessionTime(docindex: widget.docindex, selectedDuration: widget.selectedDuration, selectedDate: selectedDate, price: widget.price, times: widget.times, result: widget.result));
+                            selectedDate = sessiondates1[index];
+                            if (kDebugMode) {
+                              print(selectedDate);
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: GestureDetector(
+                              onTap: (){
+                                if(selectedDate == sessiondates1[0])
+                                  Times = DoctorScheduleCubit.get(context).SelectedDatesfri;
+                                else  if(selectedDate == sessiondates1[1])
+                                  Times = DoctorScheduleCubit.get(context).SelectedDatessat;
+                                else  if(selectedDate == sessiondates1[2])
+                                  Times = DoctorScheduleCubit.get(context).SelectedDatessun;
+                                else  if(selectedDate == sessiondates1[3])
+                                  Times = DoctorScheduleCubit.get(context).SelectedDatesmon;
+                                else  if(selectedDate == sessiondates1[4])
+                                  Times = DoctorScheduleCubit.get(context).SelectedDatestue;
+                                if(selectedDate == sessiondates1[5])
+                                  Times = DoctorScheduleCubit.get(context).SelectedDateswed;
+                                else  if(selectedDate == sessiondates1[6])
+                                  Times = DoctorScheduleCubit.get(context).SelectedDatesthu;
+
+                                if(Times != null)
+                                  {
+                                navigateTo(context, SessionTime(docindex: widget.docindex,
+                                    selectedDuration: widget.selectedDuration,
+                                    selectedDate: selectedDate,
+                                    price: widget.price,
+                                    times: widget.times,
+                                    result: widget.result,
+                                    selectedTimes: Times,
+                                ));
+                                setState(() => pressAttention = !pressAttention);}
+                                else{
+                                  navigateTo(context, NoTime());
+                                  setState(() => pressAttention = !pressAttention);
+                                }
+                              },
+                              child: Container(
+                                height: 50,
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: pressAttention==false? Colors.grey[300] : Colors.green,
+                                  borderRadius:
+                                  BorderRadius.circular(15),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    sessiondates1[index],
+                                    style: const TextStyle(
+                                      color: Colors.indigoAccent,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
                               ),
-                          itemCount: sessiondates1.length,
-                          separatorBuilder: (context, index) =>
-                              const SizedBox(width: 5,),
+                            ),
+                          ),
                         ),
-                      ],
-                    ),),
-                  Expanded(
-                    //fit: FlexFit.loose,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment:
-                      CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ListView.separated(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder:
-                              (BuildContext context, int index) =>
-                              MaterialButton(
-                                onPressed: () {
-                                  selectedDate=sessiondates2[index];
-                                  //navigateTo(context, SessionTime(docindex: widget.docindex, selectedDuration: widget.selectedDuration, selectedDate: selectedDate, price: widget.price, times: widget.times, result: widget.result));
-                                  if (kDebugMode) {
-                                    print(selectedDate);
-                                  }
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: GestureDetector(
-                                    onTap: (){
-                                      navigateTo(context, SessionTime(docindex: widget.docindex, selectedDuration: widget.selectedDuration, selectedDate: selectedDate, price: widget.price, times: widget.times, result: widget.result));
-                                      setState(() => pressAttention = !pressAttention);
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        color: pressAttention==false? Colors.grey[300] : Colors.green,
-                                        borderRadius:
-                                        BorderRadius.circular(15),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          sessiondates2[index],
-                                          style: const TextStyle(
-                                            color: Colors.indigoAccent,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          itemCount: sessiondates2.length,
-                          separatorBuilder: (context, index) =>
-                          const SizedBox(width: 5,),
-                        ),
-                      ],
-                    ),
+                    itemCount: sessiondates1.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 5,),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),

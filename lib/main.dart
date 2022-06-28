@@ -1,6 +1,7 @@
 // @dart=2.9
 
 import 'package:etma2n/appointment/menu_doctors.dart';
+import 'package:etma2n/doctor_profile.dart';
 import 'package:etma2n/doctor_schedule/cubit/cubit.dart';
 import 'package:etma2n/doctor_schedule/doctor.dart';
 import 'package:etma2n/doctor_calender.dart';
@@ -179,7 +180,7 @@ class MyApp extends StatelessWidget {
                   ? ThemeMode.dark
                   : ThemeMode.light,
               debugShowCheckedModeBanner: false,
-              home: const Directionality(
+              home:  Directionality(
                 textDirection: TextDirection.rtl,
                 child: LoginScreen(),
               ),

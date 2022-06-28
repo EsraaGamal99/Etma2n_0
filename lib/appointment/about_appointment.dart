@@ -49,8 +49,6 @@ class _AboutAppointmentState extends State<AboutAppointment> {
       textDirection: ui.TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
@@ -60,18 +58,13 @@ class _AboutAppointmentState extends State<AboutAppointment> {
           ),
           title: const Text(
             'تقرير',
-            style: TextStyle(
-              color: KSeconedarycolor,
-              fontSize: 25.0,
-              fontWeight: FontWeight.w600,
-            ),
+
           ),
           centerTitle: true,
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.menu,
-              color: KSeconedarycolor,
+                Icons.settings,
               ),
               onPressed: () {
                 navigateTo(context, const SettingScreen());
@@ -175,7 +168,7 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                     ),
                     const SizedBox(height: 15,),
                     //discount
-                    Row(
+                   /* Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -207,7 +200,7 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                           ),
                         ),
                       ],
-                    ),
+                    ),*/
                     //الضريبة
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -275,20 +268,6 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 8,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'يوجد 15% ضريبة القيمة المضافة',
-                      style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400
-                      ),
-                    ),
-                  ],
-                ),
                 const SizedBox(height: 15,),
                 myLine(Colors.grey[300]!),
 
@@ -299,11 +278,7 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                       padding: const EdgeInsets.only(right: 20,top: 10,bottom: 10),
                       child: Text(
                         'دكتور الجلسة  :  ${doctor[widget.docindex].docname}',
-                        style: const TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ),
                   ],
@@ -316,11 +291,7 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                       padding: const EdgeInsets.only(right: 20,top: 10,bottom: 10),
                       child: Text(
                         'عدد الجلسات   :   $times',
-                        style: const TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15,
-                        ),
+                        style:  Theme.of(context).textTheme.bodyText2,
                       ),
                     ),
                   ],
@@ -333,11 +304,7 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                       padding: const EdgeInsets.only(right: 20,top: 10,bottom: 10),
                       child: Text(
                         'تاريخ الجلسة   :   ${widget.selectedDate}',
-                        style: const TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15,
-                        ),
+                        style:  Theme.of(context).textTheme.bodyText2,
                       ),
                     ),
                   ],
@@ -350,11 +317,7 @@ class _AboutAppointmentState extends State<AboutAppointment> {
                       padding: const EdgeInsets.only(right: 20,top: 10,bottom: 10),
                       child: Text(
                         'معاد الجلسة   :   ${widget.selectedTime}',
-                        style: const TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15,
-                        ),
+                        style:  Theme.of(context).textTheme.bodyText2,
                       ),
                     ),
                   ],

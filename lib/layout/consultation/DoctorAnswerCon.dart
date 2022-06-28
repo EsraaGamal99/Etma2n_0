@@ -1,3 +1,5 @@
+import 'package:etma2n/layout/consultation/Doctor_Questions_View.dart';
+import 'package:etma2n/layout/consultation/con_cubit/cubit.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,7 @@ class DoctorAnswerCon extends StatelessWidget {
     var newConsController = TextEditingController();
     Color mainColor = const Color(0xffa9c1f7);
     Color secondColor = const Color(0xff576dca);
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -75,8 +78,17 @@ class DoctorAnswerCon extends StatelessWidget {
                 shape: const StadiumBorder(),
                 color: secondColor,
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
-                //بكتب الفانكشن اللى هتخزن وتبعت السؤال للدكتور
-                onPressed: () {},
+
+                onPressed: () {
+
+                  ConsCubit.get(context).ConA.add(newConsController.text);
+                  ConsCubit.get(context).ConQ.add(ConQuestion);
+                  print(ConsCubit.get(context).ConA);
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConsQuestionHome(),),);
+                },
                 child: const Text(
                   'ارسال',
                   style: TextStyle(

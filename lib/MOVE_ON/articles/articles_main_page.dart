@@ -1,3 +1,4 @@
+import 'package:etma2n/Settings/main_setting_page.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/material.dart';
 
@@ -36,10 +37,10 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.menu,
+                Icons.settings,
               ),
               onPressed: () {
-                onPrint();
+                navigateTo(context, SettingScreen());
               },
             ),
           ],
@@ -58,7 +59,7 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
                   thearticle: article[index].artcontant,
                   image1: NetworkImage(article[index].writerimage),
                   onClick: () {
-                    /*setState(() {
+                   /* setState(() {
                       isColor =! isColor;
                       isFav =! isFav;
                     });*/

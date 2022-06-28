@@ -1,9 +1,13 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:etma2n/home.dart';
+import 'package:etma2n/layout/consultation/con_cubit/cubit.dart';
+import 'package:etma2n/layout/consultation/con_cubit/states.dart';
 import 'package:etma2n/layout/consultation/cons_home.dart';
 import 'package:etma2n/models/doctors_model.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddNewCons extends StatefulWidget {
   const AddNewCons({Key? key}) : super(key: key);
@@ -25,6 +29,10 @@ class _AddNewConsState extends State<AddNewCons> {
     }
 
     String? selectedDoctor = items[0];
+
+    return BlocConsumer<ConsCubit, ConsStates>(
+    listener: (context, state) {},
+    builder: (context, state) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -102,8 +110,12 @@ class _AddNewConsState extends State<AddNewCons> {
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 //بكتب الفانكشن اللى هتخزن وتبعت السؤال للدكتور
                 onPressed: () {
-
-                  navigateTo(context, ConsHome());
+                  ConsCubit.get(context).ConQuest.add(newConsController.text);
+                  print(ConsCubit.get(context).ConQuest);
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),),);
                 },
                 child: const Text(
                   'ارسال',
@@ -116,6 +128,6 @@ class _AddNewConsState extends State<AddNewCons> {
           ),
         ),
       ),
-    );
+    );});
   }
 }

@@ -1,10 +1,12 @@
 
 import 'package:etma2n/login/screen/login_screen.dart';
+import 'package:etma2n/rateapp.dart';
 import 'package:etma2n/shared/AppCubit/cubit.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import '../aboutus.dart';
 import '../models/setting_models.dart';
 import '../shared/styles/colors.dart';
 import '../widgets/components.dart';
@@ -207,7 +209,9 @@ class _SettingScreenState extends State<SettingScreen> {
                 padding: const EdgeInsets.all(20),
                 child: Row(
                   children: [
-                    const Icon(Icons.dark_mode_outlined,size: 30,),
+                    const Icon(Icons.dark_mode_outlined,size: 30,
+                    color: Colors.grey,
+                    ),
                     const SizedBox(width: 15,),
                     Text(
                       'الوضع المظلم',
@@ -247,20 +251,27 @@ class _SettingScreenState extends State<SettingScreen> {
               const SizedBox(height: 15,),
 
               // settings
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => buildSettingCard(
-                    title: settings[index].mtitle,
-                    icon: settings[index].micon,
-                    /*onClick: () {
-                      navigateTo(context, Settings(setindex: index,));
-                    }*/
-                    ),
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: 1,
-                ),
-                itemCount: settings.length,
+
+              buildSettingCard(
+                  title: settings[1].mtitle,
+                  icon: settings[1].micon,
+                  onClick: () {
+                    navigateTo(context, const AboutUs());
+                  }
+              ),
+              buildSettingCard(
+                  title: settings[2].mtitle,
+                  icon: settings[2].micon,
+                  onClick: () {
+                    navigateTo(context, const RateAPP());
+                  }
+              ),
+              buildSettingCard(
+                  title: settings[0].mtitle,
+                  icon: settings[0].micon,
+                  onClick: () {
+
+                  }
               ),
               const SizedBox(height: 15,),
               myLine(Colors.grey[100]!),
@@ -271,7 +282,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: GestureDetector(
                   onTap: () async {
                     //await auth.signOut();
-                    Navigator.pushReplacement(
+                    Navigator.pop(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const LoginScreen()));

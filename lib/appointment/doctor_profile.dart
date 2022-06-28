@@ -1,6 +1,7 @@
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/material.dart';
 import '../models/doctors_model.dart';
+import '../shared/styles/colors.dart';
 import '../widgets/components.dart';
 import 'about_session.dart';
 
@@ -381,7 +382,7 @@ class DoctorProfile extends StatelessWidget {
           children: [
             Icon(
               icon1,
-              color: Colors.black87,
+              color: KSeconedarycolor,
               size: 33,
             ),
             const SizedBox(
