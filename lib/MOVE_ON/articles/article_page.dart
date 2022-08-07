@@ -35,118 +35,120 @@ class _ArticlePageState extends State<ArticlePage> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              height: height1,
-              clipBehavior: Clip.antiAlias,
-              padding: const EdgeInsets.only(right: 20, left: 20, top: 77),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.5),
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.grey[350]!,
-                    const Color(0xFF5271ff),
-                    Colors.grey[300]!
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // writer
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Row(children: [
-                          CircleAvatar(
-                            radius: 30.0,
-                            backgroundImage: NetworkImage(
-                                article[widget.artindex].writerimage),
-                          ),
-                          const SizedBox(
-                            width: 12.5,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // owner name
-                              Text(
-                                article[widget.artindex].writername,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-
-                              // time
-                              Text(
-                                article[widget.artindex].arttime,
-                                style: const TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ]),
-                      ),
-                      IconButton(
-                          iconSize: 30,
-                          color: isColor != true ? Colors.white : Colors.red,
-                          icon: Icon(
-                            isFav != true
-                                ? Icons.favorite_border_rounded
-                                : Icons.favorite,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              isFav = !isFav;
-                              isColor = !isColor;
-                            });
-                          }),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+               // height: height1,
+                clipBehavior: Clip.antiAlias,
+                padding: const EdgeInsets.only(right: 20, left: 20, top: 77),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.5),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.grey[350]!,
+                      const Color(0xFF5271ff),
+                      Colors.grey[300]!
                     ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  //title
-                  SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // writer
+                    Row(
                       children: [
-                        Text(
-                          article[widget.artindex].arttitle,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.5,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        Expanded(
+                          child: Row(children: [
+                            CircleAvatar(
+                              radius: 30.0,
+                              backgroundImage: NetworkImage(
+                                  article[widget.artindex].writerimage),
+                            ),
+                            const SizedBox(
+                              width: 12.5,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // owner name
+                                Text(
+                                  article[widget.artindex].writername,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
 
-                        //article
-                        Text(
-                          article[widget.artindex].artcontant,
-                          style: const TextStyle(
-                            fontSize: 18.5,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
+                                // time
+                                Text(
+                                  article[widget.artindex].arttime,
+                                  style: const TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ]),
                         ),
+                        IconButton(
+                            iconSize: 30,
+                            color: isColor != true ? Colors.white : Colors.red,
+                            icon: Icon(
+                              isFav != true
+                                  ? Icons.favorite_border_rounded
+                                  : Icons.favorite,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                isFav = !isFav;
+                                isColor = !isColor;
+                              });
+                            }),
                       ],
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+                    //title
+                    SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            article[widget.artindex].arttitle,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 22.5,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+
+                          //article
+                          Text(
+                            article[widget.artindex].artcontant,
+                            style: const TextStyle(
+                              fontSize: 18.5,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

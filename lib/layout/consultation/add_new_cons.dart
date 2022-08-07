@@ -20,11 +20,14 @@ class _AddNewConsState extends State<AddNewCons> {
     Color secondColor = const Color(0xff576dca);
     //doctors name
     List<String> items = [];
+    // هبة عادل
+    // الآء صلاح
+    // محمد جمال
     for(int i=0;i< doctor.length;i++){
       items.add(doctor[i].docname);
     }
 
-    String? selectedDoctor = items[0];
+    String selectedDoctor = items[0];
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -34,67 +37,63 @@ class _AddNewConsState extends State<AddNewCons> {
           child: Column(
             children: [
               Expanded(
-               child:  Center(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 12,
+                child:  Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 12,
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: secondColor,
+                                width: 4,
+                              )),
+                          child: DropdownButton<String>(
+                            isExpanded: true,
+                            onChanged: (String? newValue) {
+
+                              setState(() {
+                                selectedDoctor = newValue!;
+                              });
+                              print(selectedDoctor);
+                            },
+                            value: selectedDoctor,
+                            items: items
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value,
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                              );
+                            }).toList(),
+                          ),
                         ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: secondColor,
-                              width: 4,
-                            )),
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-
-                          onChanged: (String? newValue) {
-
-                            setState(() {
-                              selectedDoctor = newValue!;
-                            });
-                            print(selectedDoctor);
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        defaultFormField(
+                          context,
+                          controller: newConsController,
+                          type: TextInputType.text,
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return "السؤال فارغ";
+                            }
+                            return null;
                           },
-                          value: selectedDoctor,
-                          items: items
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.white54
-                              ),
-                              ),
-                            );
-                          }).toList(),
+                          label: 'اكتب سؤالك',
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30.0,
-                      ),
-                      defaultFormField(
-                        context,
-                        controller: newConsController,
-                        type: TextInputType.text,
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return "السؤال فارغ";
-                          }
-                          return null;
-                        },
-                        label: 'اكتب سؤالك',
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-               ),
               ),
               MaterialButton(
                 shape: const StadiumBorder(),
@@ -103,7 +102,14 @@ class _AddNewConsState extends State<AddNewCons> {
                 //بكتب الفانكشن اللى هتخزن وتبعت السؤال للدكتور
                 onPressed: () {
 
-                  navigateTo(context, ConsHome());
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConsHome(),),
+                        (rout) {
+                      return false;
+                    },
+                  );
                 },
                 child: const Text(
                   'ارسال',

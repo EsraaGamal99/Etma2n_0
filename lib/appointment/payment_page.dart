@@ -94,10 +94,18 @@ class _PaymentPageState extends State<PaymentPage> {
                       side: const BorderSide(color: KTherdycolor),
                     ),
                     onPressed: () async {
-                      navigateTo ( context,const HomeScreen());},
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) => HomeScreen(),),
+                            (rout) {
+                          return false;
+                        },
+                      );
+                     },
                     color: KSeconedarycolor,
                     child: const Text(
-                      'done',
+                      'تم',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -117,6 +125,7 @@ class _PaymentPageState extends State<PaymentPage> {
         //final color = selected ? selectedColor : unselectedColor;
 
         return RadioListTile<String>(
+
           value: value,
           groupValue: selectedValue,
           title: Row(

@@ -16,6 +16,8 @@ class SessionTime extends StatefulWidget {
   final int result;
   final String times;
   final String selectedDate;
+  final List<String> selectedTimes;
+
 
   const SessionTime(
       {Key? key,
@@ -24,7 +26,8 @@ class SessionTime extends StatefulWidget {
       required this.selectedDate,
       required this.price,
       required this.times,
-      required this.result})
+      required this.result,
+      required this.selectedTimes})
       : super(key: key);
 
   @override
@@ -36,8 +39,9 @@ class _SessionTimeState extends State<SessionTime> {
   Widget build(BuildContext context) {
     //double height1 = MediaQuery.of(context).size.height;
     //double width1 = MediaQuery.of(context).size.width;
-
     late String selectedTime = "00:00";
+    List<String> SelTimes= [ "12:00 مساء", "12:30 مساء", "1:00 مساء", "1:30 PM", "2:00 مساء", "2:30 مساء", "3:00 مساء", "3:30 مساء", "4:00 مساء", "4:30 مساء",
+      "5:00 مساء","9:00 مساء","9:30 مساء","10:00 مساء","10:30 مساء","11:00 مساء","11:30 مساء"];
 
     return Directionality(
       textDirection: ui.TextDirection.rtl,
@@ -67,133 +71,59 @@ class _SessionTimeState extends State<SessionTime> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ListView.separated(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (BuildContext context, int index) =>
-                              MaterialButton(
-                            onPressed: () {
-                              navigateTo(
-                                  context,
-                                  AboutAppointment(
-                                    docindex: widget.docindex,
-                                    selectedDuration: widget.selectedDuration,
-                                    selectedDate: widget.selectedDate,
-                                    price: widget.price,
-                                    times: widget.times,
-                                    selectedTime: selectedTime,
-                                  ));
-                              selectedTime =
-                                  doctor[widget.docindex].doctime1[index];
-                              if (kDebugMode) {
-                                print(selectedTime);
-                              }
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Container(
-                                width: 150,
-                                height: 50,
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey[300],
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    doctor[widget.docindex].doctime1[index],
-                                    style: const TextStyle(
-                                      color: Colors.indigoAccent,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) =>
+                        MaterialButton(
+                      onPressed: () {
+                        navigateTo(
+                            context,
+                            AboutAppointment(
+                              docindex: widget.docindex,
+                              selectedDuration: widget.selectedDuration,
+                              selectedDate: widget.selectedDate,
+                              price: widget.price,
+                              times: widget.times,
+                              selectedTime: SelTimes[index],
+                            ));
+                        selectedTime =
+                        SelTimes[index];
+                        if (kDebugMode) {
+                          print(selectedTime);
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          width: 150,
+                          height: 50,
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Center(
+                            child: Text(
+                              SelTimes[index],
+                              style: const TextStyle(
+                                color: Colors.indigoAccent,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
-                          itemCount: doctor[widget.docindex].doctime1.length,
-                          separatorBuilder: (context, index) => const SizedBox(
-                            width: 5,
-                          ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    //fit: FlexFit.loose,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ListView.separated(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemBuilder: (BuildContext context, int index) =>
-                              MaterialButton(
-                            onPressed: () {
-                              //navigateTo(context, AboutAppointment(docindex: widget.docindex, selectedDuration: widget.selectedDuration, selectedDate: widget.selectedDate, price: widget.price, times: widget.times, selectedTime: selectedTime,));
-                              selectedTime =
-                                  doctor[widget.docindex].doctime2[index];
-                              if (kDebugMode) {
-                                print(selectedTime);
-                              }
-                            },
-                            child: GestureDetector(
-                              onTap: () {
-                                navigateTo(
-                                    context,
-                                    AboutAppointment(
-                                      docindex: widget.docindex,
-                                      selectedDuration: widget.selectedDuration,
-                                      selectedDate: widget.selectedDate,
-                                      price: widget.price,
-                                      times: widget.times,
-                                      selectedTime: selectedTime,
-                                    ));
-                                selectedTime =
-                                    doctor[widget.docindex].doctime2[index];
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Container(
-                                  width: 150,
-                                  height: 50,
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey[300],
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      doctor[widget.docindex].doctime2[index],
-                                      style: const TextStyle(
-                                        color: Colors.indigoAccent,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          itemCount: doctor[widget.docindex].doctime2.length,
-                          separatorBuilder: (context, index) => const SizedBox(
-                            width: 5,
-                          ),
-                        ),
-                      ],
+                    itemCount: SelTimes.length,
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: 5,
                     ),
                   ),
                 ],

@@ -14,14 +14,14 @@ import '../widgets/components.dart';
 import 'edit_profile.dart';
 import 'favourites.dart';
 
-class SettingScreen extends StatefulWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+class SettingDocScreen extends StatefulWidget {
+  const SettingDocScreen({Key? key}) : super(key: key);
 
   @override
-  State<SettingScreen> createState() => _SettingScreenState();
+  State<SettingDocScreen> createState() => _SettingDocScreenState();
 }
 
-class _SettingScreenState extends State<SettingScreen> {
+class _SettingDocScreenState extends State<SettingDocScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -73,7 +73,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   const CircleAvatar(
                     radius: 60.0,
                     backgroundImage: NetworkImage(
-                        'https://i.pinimg.com/736x/08/32/e5/0832e515d15c0aea2be94bf942f6aa72.jpg'),
+                        'https://www.pngmart.com/files/21/Female-Doctor-PNG-Transparent.png'),
                   ),
                   Padding(
                     padding: const EdgeInsetsDirectional.only(
@@ -103,7 +103,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 padding: const EdgeInsets.only(top: 8),
                 child: const Center(
                   child: Text(
-                    'مريم جابر',
+                    'دينا الفقى',
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -310,11 +310,14 @@ class _SettingScreenState extends State<SettingScreen> {
                         child: IconButton(
                           onPressed: () async {
                             //await auth.signOut();
-                            Navigator.pushReplacement(
+                            Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => LoginScreen(),
                               ),
+                                  (rout) {
+                                return false;
+                              },
                             );
 /*
                             Navigator.pushReplacement(

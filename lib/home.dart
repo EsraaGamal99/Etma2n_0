@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            IconButton(
+          /*  IconButton(
                 onPressed: () {
                   navigateTo(context, Doctor());
                 },
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 },
                 icon: const Icon(
                   Icons.help,
-                )),
+                )),*/
             IconButton(
                 onPressed: () {
                   navigateTo(context, SettingScreen());
@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                       'https://icons-for-free.com/download-icon-alert+notification+date+appointment-1320567851973095506_512.png'
                   ),
                   FunctionName: 'حجز معاد',
-                  Description: "احجز جلستك بسولة وامان",
+                  Description: "احجز جلستك بسهولة وامان",
                   //Height: height*0.5,
                 ),
                 const SizedBox(
@@ -105,7 +105,7 @@ class HomeScreen extends StatelessWidget {
                       'https://www.nicepng.com/png/full/334-3345245_icon-consultant.png'
                   ),
                   FunctionName: 'استشارة نفسية',
-                  Description: "اسئل طبيبك بكل سهولة",
+                  Description: "اسأل طبيبك بكل سهولة",
                   //Height: height*0.5,
                 ),
 
@@ -124,7 +124,6 @@ class HomeScreen extends StatelessWidget {
                   Description: "نظم يومك وضع مهامك بكل سهولة",
                   //Height: height*0.5,
                 ),
-
                 const SizedBox(
                   height: 15.0,
                 ),

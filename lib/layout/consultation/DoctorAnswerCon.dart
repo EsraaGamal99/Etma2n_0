@@ -1,3 +1,5 @@
+import 'package:etma2n/doctor_profile.dart';
+import 'package:etma2n/layout/consultation/Doctor_Questions_View.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +78,16 @@ class DoctorAnswerCon extends StatelessWidget {
                 color: secondColor,
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 //بكتب الفانكشن اللى هتخزن وتبعت السؤال للدكتور
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConsQuestionHome(),),
+                        (rout) {
+                      return false;
+                    },
+                  );
+                },
                 child: const Text(
                   'ارسال',
                   style: TextStyle(

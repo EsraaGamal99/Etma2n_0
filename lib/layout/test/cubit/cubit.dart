@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:etma2n/data/depressionq_qestions.dart';
+import 'package:etma2n/data/ocd_questions.dart';
 import 'package:etma2n/data/question_list1.dart';
 import 'package:etma2n/layout/test/cubit/states.dart';
 import 'package:etma2n/layout/test/result_screen.dart';
@@ -46,6 +47,9 @@ class TestCubit extends Cubit<TestStates> {
     } else if (testIndex == 1) {
       emit(TestTakenState());
       return QuizScreen(questions1);
+    }else if (testIndex == 2) {
+      emit(TestTakenState());
+      return QuizScreen(OCDQestions);
     }
   }
 

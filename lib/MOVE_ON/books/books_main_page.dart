@@ -33,7 +33,7 @@ class _BooksMainPageState extends State<BooksMainPage> {
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.menu,
+                Icons.settings,
               ),
               onPressed: () {
                 navigateTo(context, const SettingScreen());

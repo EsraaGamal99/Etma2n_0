@@ -44,7 +44,7 @@ class _SessionCardState extends State<SessionCard>
     super.initState();
 
     // listen to states (playing , paused , stopped )
-    audioPlayer.onPlayerStateChanged.listen((state) {
+   /* audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
         isPlaying = state == PlayerState.playing;
       });
@@ -62,7 +62,7 @@ class _SessionCardState extends State<SessionCard>
       setState(() {
         position=newPosition;
       });
-    });
+    });*/
 
   }
 
@@ -133,10 +133,14 @@ class _SessionCardState extends State<SessionCard>
 
                 // play icon
                 IconButton(
-                /*  onPressed: ()  async{
-                    if (isPlay == false) {
-                      await audioCache.play(widget.sespath,
-                          volume: 99, mode: PlayerMode.MEDIA_PLAYER);
+                 onPressed: ()  async{
+                   setState(() {
+                     isPlay = !isPlay;
+                   });
+
+                   /*  if (isPlay == false) {
+                      //await audioCache.play(widget.sespath,
+                        //  volume: 99, mode: PlayerMode.MEDIA_PLAYER);
                       setState(() {
                         isPlay = true;
                       });
@@ -146,8 +150,9 @@ class _SessionCardState extends State<SessionCard>
                       setState(() {
                         isPlay = false;
                       });
-                    }
-                    },*/
+                    }*/
+
+                    },
                   icon: Icon(
                     isPlay != true
                         ? Icons.play_circle_outline_rounded
@@ -155,7 +160,7 @@ class _SessionCardState extends State<SessionCard>
                   ),
                   color: Colors.white,
                   iconSize: 44,
-                  onPressed: () {  },
+                  //onPressed: () {  },
                 ),
               ],
             ),

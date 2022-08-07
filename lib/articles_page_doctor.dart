@@ -1,4 +1,6 @@
 import 'package:etma2n/Settings/main_setting_page.dart';
+import 'package:etma2n/add_article.dart';
+import 'package:etma2n/models/doctors_model.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/material.dart';
 
@@ -6,17 +8,20 @@ import '../../models/article_models.dart';
 import '../../widgets/components.dart';
 import 'article_page.dart';
 
-class ArticlesMainPage extends StatefulWidget {
-  static String id = 'ArticlesMainPage';
+class ArticlesDoctor extends StatefulWidget {
+  final List<String>? articles;
+  final List<String>? docnames;
+  final List<String>? title;
+  final List<String>? time;
 
-  const ArticlesMainPage({Key? key}) : super(key: key);
+  const ArticlesDoctor({Key? key, this.articles, this.docnames, this.title, this.time, }) : super(key: key);
 
   @override
-  _ArticlesMainPageState createState() => _ArticlesMainPageState();
+  _ArticlesDoctorState createState() => _ArticlesDoctorState();
 }
 bool isColor=false;
 bool isFav = false;
-class _ArticlesMainPageState extends State<ArticlesMainPage> {
+class _ArticlesDoctorState extends State<ArticlesDoctor> {
   @override
   Widget build(BuildContext context) {
   //  double height1 = MediaQuery.of(context).size.height;
@@ -37,10 +42,18 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
           actions: [
             IconButton(
               icon: const Icon(
+                Icons.add,
+              ),
+              onPressed: () {
+                navigateTo(context,  AddArticle());
+              },
+            ),
+            IconButton(
+              icon: const Icon(
                 Icons.settings,
               ),
               onPressed: () {
-                navigateTo(context, SettingScreen());
+                navigateTo(context, const SettingScreen());
               },
             ),
           ],
@@ -59,15 +72,36 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
                   thearticle: article[index].artcontant,
                   image1: NetworkImage(article[index].writerimage),
                   onClick: () {
-                   /* setState(() {
+                    setState(() {
                       isColor =! isColor;
                       isFav =! isFav;
-                    });*/
+                    });
                     navigateTo ( context,ArticlePage(artindex: index,));},
                 ),
                 separatorBuilder: (context, index) => const SizedBox(height: 1,),
                 itemCount: article.length,
               ),
+
+              if(widget.articles != null)
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) => articleCard(
+                  owner: widget.docnames![index],
+                  hour:  widget.time![index],
+                  thearticle:  widget.articles![index],
+                  image1: NetworkImage(doctor[index].docpic),
+                  onClick: () {
+                    setState(() {
+                      isColor =! isColor;
+                      isFav =! isFav;
+                    });
+                    navigateTo ( context,ArticlePage(artindex: index,));},
+                ),
+                separatorBuilder: (context, index) => const SizedBox(height: 1,),
+                itemCount: widget.articles!.length,
+              ),
+
             ],
           ),
         ),
@@ -75,5 +109,3 @@ class _ArticlesMainPageState extends State<ArticlesMainPage> {
     );
   }
 }
-
-onPrint() => print("printed");

@@ -15,14 +15,14 @@ class DoctorScheduleCubit extends Cubit<DoctorScheduleStates> {
 
   IconData fab = Icons.add;
 
-  void changeBottomSheet({
+ /* void changeBottomSheet({
     required bool isShow,
     required IconData icon,
   }) {
     isBottomSheetShow = isShow;
     fab = icon;
     emit(DoctorScheduleChangeBottomState());
-  }
+  }*/
 
   List<String> Dates = DatesConstant;
   List<String> Dates2 = DatesConstant;

@@ -1,4 +1,5 @@
 import 'package:etma2n/data/depressionq_qestions.dart';
+import 'package:etma2n/data/ocd_questions.dart';
 import 'package:etma2n/data/question_list1.dart';
 import 'package:etma2n/layout/test/cubit/cubit.dart';
 import 'package:etma2n/layout/test/cubit/states.dart';
@@ -76,6 +77,9 @@ class Welcom extends StatelessWidget {
                           } else if (cubit.testIndex == 1) {
 
                             navigateTo(context, QuizScreen(questions1));
+                          }else  if (cubit.testIndex == 2) {
+
+                            navigateTo(context, QuizScreen(OCDQestions));
                           }
                           navigateTo(context, cubit.takeTest());
                         },

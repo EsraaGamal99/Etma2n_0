@@ -25,7 +25,7 @@ class MotivationsMainPage extends StatelessWidget {
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.menu,
+                Icons.settings,
               ),
               onPressed: () {
                 onPrint();
