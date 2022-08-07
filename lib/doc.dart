@@ -36,6 +36,10 @@ class doc extends StatelessWidget {
                       onPressed: () {  },
                       child: Text(
                         SDates[i],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0
+                        ),
                       ),
 
                     ),

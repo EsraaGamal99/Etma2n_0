@@ -39,8 +39,9 @@ class _SessionTimeState extends State<SessionTime> {
   Widget build(BuildContext context) {
     //double height1 = MediaQuery.of(context).size.height;
     //double width1 = MediaQuery.of(context).size.width;
-
     late String selectedTime = "00:00";
+    List<String> SelTimes= [ "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM",
+      "5:00 PM","9:00 PM","9:30 PM","10:00 PM","10:30 PM","11:00 PM","11:30 PM"];
 
     return Directionality(
       textDirection: ui.TextDirection.rtl,
@@ -89,10 +90,10 @@ class _SessionTimeState extends State<SessionTime> {
                               selectedDate: widget.selectedDate,
                               price: widget.price,
                               times: widget.times,
-                              selectedTime: widget.selectedTimes[index],
+                              selectedTime: SelTimes[index],
                             ));
                         selectedTime =
-                        widget.selectedTimes[index];
+                        SelTimes[index];
                         if (kDebugMode) {
                           print(selectedTime);
                         }
@@ -109,7 +110,7 @@ class _SessionTimeState extends State<SessionTime> {
                           ),
                           child: Center(
                             child: Text(
-                              widget.selectedTimes[index],
+                              SelTimes[index],
                               style: const TextStyle(
                                 color: Colors.indigoAccent,
                                 fontSize: 15,
@@ -120,7 +121,7 @@ class _SessionTimeState extends State<SessionTime> {
                         ),
                       ),
                     ),
-                    itemCount: widget.selectedTimes.length,
+                    itemCount: SelTimes.length,
                     separatorBuilder: (context, index) => const SizedBox(
                       width: 5,
                     ),

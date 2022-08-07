@@ -77,56 +77,56 @@ class _AboutAppointmentState extends State<AboutAppointment> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                //discount code
-                Container(
-                  height: 66,
-                  decoration: BoxDecoration(
-                    color: Colors.indigo.shade50,
-                    borderRadius: BorderRadius.circular(11.0,),
-                  ),
-                  padding: const EdgeInsets.only(right: 44),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      /*customTextField(
-                          icon: Icons.local_offer,
-                          hint: 'ادخل الكود',
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'الكود فارغ';
-                          }
-                          return null;
-                        },
-                        controle: codecontroller,
-                        keyboard: TextInputType.number,
-                      ),*/
-
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: (){
-                          discount = (widget.price/100)*10;
-                          total=widget.price+faces-discount;
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 44,right: 11),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade500,
-                            borderRadius: BorderRadius.circular(11.0,),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'تطبيق الكود',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 20,),
+                // //discount code
+                // Container(
+                //   height: 66,
+                //   decoration: BoxDecoration(
+                //     color: Colors.indigo.shade50,
+                //     borderRadius: BorderRadius.circular(11.0,),
+                //   ),
+                //   padding: const EdgeInsets.only(right: 44),
+                //   child: Row(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       /*customTextField(
+                //           icon: Icons.local_offer,
+                //           hint: 'ادخل الكود',
+                //         validate: (String value) {
+                //           if (value.isEmpty) {
+                //             return 'الكود فارغ';
+                //           }
+                //           return null;
+                //         },
+                //         controle: codecontroller,
+                //         keyboard: TextInputType.number,
+                //       ),*/
+                //
+                //       const Spacer(),
+                //       GestureDetector(
+                //         onTap: (){
+                //           discount = (widget.price/100)*10;
+                //           total=widget.price+faces-discount;
+                //         },
+                //         child: Container(
+                //           padding: const EdgeInsets.only(left: 44,right: 11),
+                //           decoration: BoxDecoration(
+                //             color: Colors.grey.shade500,
+                //             borderRadius: BorderRadius.circular(11.0,),
+                //           ),
+                //           child: const Center(
+                //             child: Text(
+                //               'تطبيق الكود',
+                //               style: TextStyle(color: Colors.white),
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                //
+                // const SizedBox(height: 20,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,

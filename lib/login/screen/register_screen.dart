@@ -184,12 +184,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     defaultFormField1(
                       controller: passcontroller,
                       label: 'كلمة السر',
+                     // label: 'تاكيد كلمة السر',
                       prefix: Icons.lock,
-                      suffix: cubit.suffix,
-                      isPassword: cubit.isPassword,
+                      suffix:  Icons.visibility_off_outlined,
+                      isPassword: isPassword,
+
                       suffixPressed: ()
                       {
-                        cubit.changePasswordVisibility();
+                        //cubit.changePasswordVisibility();
                       },
                       type: TextInputType.visiblePassword,
                       validate: (String value)

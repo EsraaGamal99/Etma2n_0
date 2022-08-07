@@ -43,8 +43,8 @@ class ConsHome extends StatelessWidget {
           ),
           fallback: (context) => const Center(
               child: CircularProgressIndicator(
-            color: Colors.deepPurpleAccent,
-          )),
+                color: Colors.deepPurpleAccent,
+              )),
         ),
       ),
     );

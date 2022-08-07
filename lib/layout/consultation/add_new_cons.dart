@@ -1,13 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:etma2n/home.dart';
-import 'package:etma2n/layout/consultation/con_cubit/cubit.dart';
-import 'package:etma2n/layout/consultation/con_cubit/states.dart';
 import 'package:etma2n/layout/consultation/cons_home.dart';
 import 'package:etma2n/models/doctors_model.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddNewCons extends StatefulWidget {
   const AddNewCons({Key? key}) : super(key: key);
@@ -24,15 +20,14 @@ class _AddNewConsState extends State<AddNewCons> {
     Color secondColor = const Color(0xff576dca);
     //doctors name
     List<String> items = [];
+    // هبة عادل
+    // الآء صلاح
+    // محمد جمال
     for(int i=0;i< doctor.length;i++){
       items.add(doctor[i].docname);
     }
 
-    String? selectedDoctor = items[0];
-
-    return BlocConsumer<ConsCubit, ConsStates>(
-    listener: (context, state) {},
-    builder: (context, state) {
+    String selectedDoctor = items[0];
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -42,67 +37,63 @@ class _AddNewConsState extends State<AddNewCons> {
           child: Column(
             children: [
               Expanded(
-               child:  Center(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 12,
+                child:  Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 12,
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: secondColor,
+                                width: 4,
+                              )),
+                          child: DropdownButton<String>(
+                            isExpanded: true,
+                            onChanged: (String? newValue) {
+
+                              setState(() {
+                                selectedDoctor = newValue!;
+                              });
+                              print(selectedDoctor);
+                            },
+                            value: selectedDoctor,
+                            items: items
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value,
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                              );
+                            }).toList(),
+                          ),
                         ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: secondColor,
-                              width: 4,
-                            )),
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-
-                          onChanged: (String? newValue) {
-
-                            setState(() {
-                              selectedDoctor = newValue!;
-                            });
-                            print(selectedDoctor);
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        defaultFormField(
+                          context,
+                          controller: newConsController,
+                          type: TextInputType.text,
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return "السؤال فارغ";
+                            }
+                            return null;
                           },
-                          value: selectedDoctor,
-                          items: items
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.white54
-                              ),
-                              ),
-                            );
-                          }).toList(),
+                          label: 'اكتب سؤالك',
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30.0,
-                      ),
-                      defaultFormField(
-                        context,
-                        controller: newConsController,
-                        type: TextInputType.text,
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return "السؤال فارغ";
-                          }
-                          return null;
-                        },
-                        label: 'اكتب سؤالك',
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-               ),
               ),
               MaterialButton(
                 shape: const StadiumBorder(),
@@ -110,12 +101,8 @@ class _AddNewConsState extends State<AddNewCons> {
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 //بكتب الفانكشن اللى هتخزن وتبعت السؤال للدكتور
                 onPressed: () {
-                  ConsCubit.get(context).ConQuest.add(newConsController.text);
-                  print(ConsCubit.get(context).ConQuest);
-                  Navigator.pop(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),),);
+
+                  navigateTo(context, ConsHome());
                 },
                 child: const Text(
                   'ارسال',
@@ -128,6 +115,6 @@ class _AddNewConsState extends State<AddNewCons> {
           ),
         ),
       ),
-    );});
+    );
   }
 }

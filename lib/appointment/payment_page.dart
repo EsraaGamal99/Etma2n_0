@@ -94,14 +94,14 @@ class _PaymentPageState extends State<PaymentPage> {
                       side: const BorderSide(color: KTherdycolor),
                     ),
                     onPressed: () async {
-                      Navigator.pop(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                           builder: (context) => HomeScreen(),),);
                      },
                     color: KSeconedarycolor,
                     child: const Text(
-                      'done',
+                      'تم',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

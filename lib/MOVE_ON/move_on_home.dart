@@ -1,3 +1,4 @@
+import 'package:etma2n/Settings/main_setting_page.dart';
 import 'package:etma2n/shared/component/components.dart';
 import 'package:flutter/material.dart';
 import '../widgets/components.dart';
@@ -28,9 +29,10 @@ class MoveonHomePage extends StatelessWidget {
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.menu,
+                Icons.settings,
               ),
               onPressed: () {
+                navigateTo(context, SettingScreen());
                 print('setting opened');
               },
 

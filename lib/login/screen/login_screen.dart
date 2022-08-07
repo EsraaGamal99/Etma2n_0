@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       // button login
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 130),
+                        padding: const EdgeInsets.symmetric(horizontal: 100),
                         child: Builder(
                           builder: (context) => MaterialButton(
                             shape: RoundedRectangleBorder(

@@ -43,15 +43,7 @@ class _DoctorState extends State<Doctor> {
               title: const Text(
                 'مواعيد الدكتور',
               ),
-              actions: [
-                IconButton(
-                    onPressed: () {
-                      navigateTo(context, Days());
-                    },
-                    icon: const Icon(
-                      Icons.add,
-                    )),
-              ],
+
             ),
             body: Padding(
               padding: const EdgeInsets.all(8.0),
