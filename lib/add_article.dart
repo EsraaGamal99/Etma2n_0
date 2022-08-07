@@ -109,7 +109,14 @@ class AddArticle extends StatelessWidget{
                   //for (int i=0;i<doctor.length;i++){
                     //docpic.add(doctor[i].docpic);}
                   time.add(DateTime.now().month.toString());
-                  navigatePOp(context,  ArticlesDoctor(title:AddArticle.title, docnames: AddArticle.docnames, articles:AddArticle.docnames, time: AddArticle.time,));
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ArticlesDoctor(title:AddArticle.title, docnames: AddArticle.docnames, articles:AddArticle.docnames, time: AddArticle.time,),),
+                        (rout) {
+                      return false;
+                    },
+                  );
                 },
                 child: const Text(
                   'ارسال',

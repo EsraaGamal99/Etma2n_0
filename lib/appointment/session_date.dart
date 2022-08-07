@@ -28,7 +28,7 @@ class SessionDate extends StatefulWidget {
 class _SessionDateState extends State<SessionDate> {
   @override
   Widget build(BuildContext context) {
-    List<String> sessiondates1 = ['1 يوليو','2 يوليو','3 يوليو','4 يوليو','6 يوليو','7 يوليو','9 يوليو'];
+    List<String> sessiondates1 = ['7 أغسطس','9 أغسطس','11 أغسطس','12 أغسطس','14 أغسطس','16 أغسطس','20 أغسطس'];
 
     // List<String> sessiondates2 = ['16 يوليو','17 يوليو','18 يوليو','20 يوليو','21 يوليو','22 يوليو','23 يوليو','25 يوليو','27 يوليو','28 يوليو','29 يوليو',];
     late String selectedDate='1 يوليو';

@@ -79,7 +79,14 @@ class DoctorAnswerCon extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 //بكتب الفانكشن اللى هتخزن وتبعت السؤال للدكتور
                 onPressed: () {
-                  navigateTo(context, ConsQuestionHome());
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConsQuestionHome(),),
+                        (rout) {
+                      return false;
+                    },
+                  );
                 },
                 child: const Text(
                   'ارسال',

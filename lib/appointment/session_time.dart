@@ -40,8 +40,8 @@ class _SessionTimeState extends State<SessionTime> {
     //double height1 = MediaQuery.of(context).size.height;
     //double width1 = MediaQuery.of(context).size.width;
     late String selectedTime = "00:00";
-    List<String> SelTimes= [ "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM",
-      "5:00 PM","9:00 PM","9:30 PM","10:00 PM","10:30 PM","11:00 PM","11:30 PM"];
+    List<String> SelTimes= [ "12:00 مساء", "12:30 مساء", "1:00 مساء", "1:30 PM", "2:00 مساء", "2:30 مساء", "3:00 مساء", "3:30 مساء", "4:00 مساء", "4:30 مساء",
+      "5:00 مساء","9:00 مساء","9:30 مساء","10:00 مساء","10:30 مساء","11:00 مساء","11:30 مساء"];
 
     return Directionality(
       textDirection: ui.TextDirection.rtl,

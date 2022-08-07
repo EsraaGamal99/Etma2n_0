@@ -102,7 +102,14 @@ class _AddNewConsState extends State<AddNewCons> {
                 //بكتب الفانكشن اللى هتخزن وتبعت السؤال للدكتور
                 onPressed: () {
 
-                  navigateTo(context, ConsHome());
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConsHome(),),
+                        (rout) {
+                      return false;
+                    },
+                  );
                 },
                 child: const Text(
                   'ارسال',

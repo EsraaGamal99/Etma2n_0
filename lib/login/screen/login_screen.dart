@@ -102,20 +102,27 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () async {
                               print(passcontroller.text);
                               if(passcontroller.text=="doctor123"){
-                                Navigator.pushReplacement(
+                                Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => DocHomeScreen(),
-                                    )
+
+                                    ),
+                                      (rout) {
+                                    return false;
+                                  },
                               //navigatePOp ( context, DocHomeScreen()
                                     );
                               }
                               else{
-                                Navigator.pushReplacement(
+                                Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => HomeScreen(),
-                                    )
+                                    ),
+                              (rout) {
+                              return false;
+                              },
                                   //navigatePOp ( context, DocHomeScreen()
                                 );}
                               //navigatePOp ( context, HomeScreen());

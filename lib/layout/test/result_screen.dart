@@ -77,10 +77,14 @@ class ResultScreen extends StatelessWidget {
                     child: Center(
                       child: RawMaterialButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>  HomeScreen() ));
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(),),
+                                (rout) {
+                              return false;
+                            },
+                          );
                         },
                         shape: const StadiumBorder(),
                         fillColor: const Color(0xff0f1954),

@@ -310,11 +310,14 @@ class _SettingDocScreenState extends State<SettingDocScreen> {
                         child: IconButton(
                           onPressed: () async {
                             //await auth.signOut();
-                            Navigator.pushReplacement(
+                            Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => LoginScreen(),
                               ),
+                                  (rout) {
+                                return false;
+                              },
                             );
 /*
                             Navigator.pushReplacement(
